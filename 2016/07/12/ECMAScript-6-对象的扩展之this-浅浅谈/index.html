@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="种奔奔看一下以下代码 注意this的指向
+<meta name="description" content="琪艺安看一下以下代码 注意this的指向
 1234567891011121314151617181920212223242526272829303132333435&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;			var ageInt = 10;			var ob = &amp;#123;				name:&quot;zs&quot;,				age:ageInt			&amp;#125;						v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ECMAScript 6 对象的扩展之this => 浅谈">
 <meta property="og:url" content="http://yoursite.com/2016/07/12/ECMAScript-6-对象的扩展之this-浅浅谈/index.html">
 <meta property="og:site_name" content="qiyian's blog">
-<meta property="og:description" content="种奔奔看一下以下代码 注意this的指向
+<meta property="og:description" content="琪艺安看一下以下代码 注意this的指向
 1234567891011121314151617181920212223242526272829303132333435&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;			var ageInt = 10;			var ob = &amp;#123;				name:&quot;zs&quot;,				age:ageInt			&amp;#125;						v">
-<meta property="og:updated_time" content="2016-09-24T04:07:39.231Z">
+<meta property="og:updated_time" content="2017-03-24T04:31:09.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ECMAScript 6 对象的扩展之this => 浅谈">
-<meta name="twitter:description" content="种奔奔看一下以下代码 注意this的指向
+<meta name="twitter:description" content="琪艺安看一下以下代码 注意this的指向
 1234567891011121314151617181920212223242526272829303132333435&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;			var ageInt = 10;			var ob = &amp;#123;				name:&quot;zs&quot;,				age:ageInt			&amp;#125;						v">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -307,7 +307,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="种奔奔"><a href="#种奔奔" class="headerlink" title="种奔奔"></a>种奔奔</h2><h3 id="看一下以下代码-注意this的指向"><a href="#看一下以下代码-注意this的指向" class="headerlink" title="看一下以下代码 注意this的指向"></a>看一下以下代码 注意this的指向</h3><hr>
+        <h2 id="琪艺安"><a href="#琪艺安" class="headerlink" title="琪艺安"></a>琪艺安</h2><h3 id="看一下以下代码-注意this的指向"><a href="#看一下以下代码-注意this的指向" class="headerlink" title="看一下以下代码 注意this的指向"></a>看一下以下代码 注意this的指向</h3><hr>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">			<span class="keyword">var</span> ageInt = <span class="number">10</span>;</div><div class="line">			<span class="keyword">var</span> ob = &#123;</div><div class="line">				<span class="attr">name</span>:<span class="string">"zs"</span>,</div><div class="line">				<span class="attr">age</span>:ageInt</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			<span class="keyword">var</span> age = <span class="number">10</span>;</div><div class="line">			<span class="keyword">var</span> ob2 = &#123;<span class="attr">age</span>:age&#125;</div><div class="line">			dw(ob2.age);<span class="comment">//10</span></div><div class="line">			<span class="keyword">var</span> ob1=&#123;age&#125;;</div><div class="line">			dw(ob1.age);<span class="comment">//10</span></div><div class="line">			</div><div class="line">			<span class="keyword">var</span> ob3=&#123;</div><div class="line">				<span class="attr">age</span>:<span class="number">20</span>,</div><div class="line">				<span class="attr">showAge</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">					alert(<span class="keyword">this</span>.age); <span class="comment">//20 this-&gt;object</span></div><div class="line">				&#125;,</div><div class="line">				showAgeX()&#123;</div><div class="line">					alert(<span class="keyword">this</span>.age); <span class="comment">//20 this-&gt;object</span></div><div class="line">				&#125;,</div><div class="line">				<span class="attr">showAgeXX</span>:<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">					alert(<span class="keyword">this</span>.age); <span class="comment">//10 this-&gt;window</span></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			ob3.showAge();</div><div class="line">			ob3.showAgeX();</div><div class="line">			ob3.showAgeXX();</div><div class="line">			</div><div class="line">			</div><div class="line">			<span class="function"><span class="keyword">function</span> <span class="title">dw</span>(<span class="params">param</span>)</span>&#123;</div><div class="line">				<span class="built_in">document</span>.write(param);</div><div class="line">				<span class="built_in">document</span>.write(<span class="string">"&lt;br /&gt;"</span>)</div><div class="line">			&#125;</div><div class="line">		&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="ECMAScript中新增了很多不一样的用法-更多内容-gt-查看"><a href="#ECMAScript中新增了很多不一样的用法-更多内容-gt-查看" class="headerlink" title="ECMAScript中新增了很多不一样的用法 更多内容 -&gt;  查看"></a>ECMAScript中新增了很多不一样的用法 更多内容 -&gt;  <code><a href="http://es6.ruanyifeng.com/#docs/object" target="_blank" rel="external">查看</a></code></h3>
       
@@ -320,7 +320,7 @@
         <p><span>本文标题:</span><a href="/2016/07/12/ECMAScript-6-对象的扩展之this-浅浅谈/">ECMAScript 6 对象的扩展之this =&gt; 浅谈</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">qiyian</a></p>
         <p><span>发布时间:</span>2016-07-12, 21:26:53</p>
-        <p><span>最后更新:</span>2016-09-24, 12:07:39</p>
+        <p><span>最后更新:</span>2017-03-24, 12:31:09</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/07/12/ECMAScript-6-对象的扩展之this-浅浅谈/" title="ECMAScript 6 对象的扩展之this =&gt; 浅谈">http://yoursite.com/2016/07/12/ECMAScript-6-对象的扩展之this-浅浅谈/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/07/12/ECMAScript-6-对象的扩展之this-浅浅谈/　　作者: qiyian" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -356,7 +356,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#种奔奔"><span class="toc-number">1.</span> <span class="toc-text">种奔奔</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#看一下以下代码-注意this的指向"><span class="toc-number">1.1.</span> <span class="toc-text">看一下以下代码 注意this的指向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ECMAScript中新增了很多不一样的用法-更多内容-gt-查看"><span class="toc-number">1.2.</span> <span class="toc-text">ECMAScript中新增了很多不一样的用法 更多内容 ->  查看</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#琪艺安"><span class="toc-number">1.</span> <span class="toc-text">琪艺安</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#看一下以下代码-注意this的指向"><span class="toc-number">1.1.</span> <span class="toc-text">看一下以下代码 注意this的指向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ECMAScript中新增了很多不一样的用法-更多内容-gt-查看"><span class="toc-number">1.2.</span> <span class="toc-text">ECMAScript中新增了很多不一样的用法 更多内容 ->  查看</span></a></li></ol></li></ol>
         
     </div>
     <style>
