@@ -27,7 +27,7 @@
 尤其是XSS和CSRF等攻击的盛行也得益于此。
 同源策略（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。
 跨域问题是由于浏">
-<meta property="og:updated_time" content="2017-04-05T01:58:35.531Z">
+<meta property="og:updated_time" content="2017-04-05T02:02:38.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器同源与跨域问题总结">
 <meta name="twitter:description" content="总概述1.浏览器同源策略互联网的发展催生了跨域访问的需求，各种跨域方法和协议满足了需求但也增加了各种风险。
@@ -331,12 +331,12 @@
 </blockquote>
 </li>
 </ul>
-<a id="more"></a>
 <p>在浏览器中，&lt;script&gt;、&lt;img&gt;、&lt;iframe&gt;、&lt;link&gt;等标签都可以加载跨域资源，而不受同源限制，但浏览器限制了JavaScript的权限使其不能读、写加载的内容。</p>
 <p>另外同源策略只对网页的HTML文档做了限制，对加载的其他静态资源如javascript、css、图片等仍然认为属于同源。</p>
 <p>URL由协议、域名、端口和路径组成，如果两个URL的协议、域名和端口相同，则表示他们同源。</p>
 <p>比较容易忽略的一点就是协议不同也会引发同源策略，http和https是不同源的。</p>
 <p>浏览器的同源策略就是，从一个源上加载的脚本不允许访问不同源的文档，这个有点抽象，具体体现在下面两个方面。</p>
+<a id="more"></a>
 <ul>
 <li>标签的同源策略</li>
 </ul>
@@ -395,7 +395,7 @@
         <p><span>本文标题:</span><a href="/2017/03/24/cross-domain/">浏览器同源与跨域问题总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">琪艺安</a></p>
         <p><span>发布时间:</span>2017-03-24, 09:35:15</p>
-        <p><span>最后更新:</span>2017-04-05, 09:58:35</p>
+        <p><span>最后更新:</span>2017-04-05, 10:02:38</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/03/24/cross-domain/" title="浏览器同源与跨域问题总结">https://qiyian.github.io/2017/03/24/cross-domain/</a>
             <span class="copy-path" data-clipboard-text="原文: https://qiyian.github.io/2017/03/24/cross-domain/　　作者: 琪艺安" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
