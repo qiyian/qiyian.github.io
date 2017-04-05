@@ -494,20 +494,14 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="1、Git是分布式版本控制系统，SVN是集中式版本控制系统："><a href="#1、Git是分布式版本控制系统，SVN是集中式版本控制系统：" class="headerlink" title="1、Git是分布式版本控制系统，SVN是集中式版本控制系统："></a>1、Git是分布式版本控制系统，SVN是集中式版本控制系统：</h3><p>这是最核心的区别。好处是跟其他同事不会有太多的冲突，自己写的代码放在自己电脑上，一段时间后再提交、合并，也可以不用联网在本地提交；Git并不是目前第一个或唯一的分布式版本控制系统。还有一些系统，例如Bitkeeper, Mercurial等，也是运行在分布式模式上的。但Git在这方面做的更好，而且有更多强大的功能特征。</p>
+              <h3 id="1、Git是分布式版本控制系统，SVN是集中式版本控制系统："><a href="#1、Git是分布式版本控制系统，SVN是集中式版本控制系统：" class="headerlink" title="1、Git是分布式版本控制系统，SVN是集中式版本控制系统："></a>1、Git是分布式版本控制系统，SVN是集中式版本控制系统：</h3><p>这是最核心的区别。好处是跟其他同事不会有太多的冲突，自己写的代码放在自己电脑上，一段时间后再提交、合并，也可以不用联网在本地提交；Git并不是目前第一个或唯一的分布式版本控制系统。还有一些系统，例如Bitkeeper, Mercurial等，也是运行在分布式模式上的。但Git在这方面做的更好，而且有更多强大的功能特征。</p>
 <p>Git跟SVN一样有自己的 集中式版本库或服务器。但，Git更倾向于被使用于分布式模式，也就是每个开发人员从中心版本库/服务器上chect out代码后会在自己的机器上克隆一个自己的版本库。可以这样说，如果你被困在一个不能连接网络的地方时，你仍然能够提交文件，查看历史版本记录，创建项 目分支等。</p>
 <p>Git需要建两个Repositories(Local Repositories &amp; Remote Repositories),指令很多，除此之外你需要知道哪些指令在Local Repository，哪些指令在Remote Repository。</p>
 <h3 id="2、Git把内容按元数据方式存储，而SVN是按文件："><a href="#2、Git把内容按元数据方式存储，而SVN是按文件：" class="headerlink" title="2、Git把内容按元数据方式存储，而SVN是按文件："></a>2、Git把内容按元数据方式存储，而SVN是按文件：</h3><p>如果你把.git目录的体积大小跟.svn比较，你会发现它们差距很大。因 为,.git目录是处于你的机器上的一个克隆版的版本库，它拥有中心版本库上所有的东西，例如标签，分支，版本记录等。</p>
 <h3 id="3、Git没有一个全局版本号，而SVN有："><a href="#3、Git没有一个全局版本号，而SVN有：" class="headerlink" title="3、Git没有一个全局版本号，而SVN有："></a>3、Git没有一个全局版本号，而SVN有：</h3><p>目前为止这是跟SVN相比GIT缺少的最大的一个特征。</p>
 <h3 id="4、Git的内容的完整性要优于SVN"><a href="#4、Git的内容的完整性要优于SVN" class="headerlink" title="4、Git的内容的完整性要优于SVN:"></a>4、Git的内容的完整性要优于SVN:</h3><p> GIT的内容存储使用的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和网络问题时降低对版本库的破坏。</p>
 <h3 id="5、Git下载下来后，在本地不必联网就可以看到所有的log，很方便学习，SVN却需要联网"><a href="#5、Git下载下来后，在本地不必联网就可以看到所有的log，很方便学习，SVN却需要联网" class="headerlink" title="5、Git下载下来后，在本地不必联网就可以看到所有的log，很方便学习，SVN却需要联网"></a>5、Git下载下来后，在本地不必联网就可以看到所有的log，很方便学习，SVN却需要联网</h3><h3 id="6、版本库（repository"><a href="#6、版本库（repository" class="headerlink" title="6、版本库（repository):"></a>6、版本库（repository):</h3><p>SVN只能有一个指定中央版本库。当这个中央版本库有问题时，所有工作成员都一起瘫痪直到版本库维修完毕或者新的版本库设立完成。而 Git可以有无限个版本库。或者，更正确的说法，每一个Git都是一个版本库，区别是它们是否拥有活跃目录（Git Working Tree）。如果主要版本库（例如：置於GitHub的版本库）发生了什麼事，工作成员仍然可以在自己的本地版本库（local repository）提交，等待主要版本库恢复即可。工作成员也可以提交到其他的版本库！</p>
-<h3 id="7、分支（Branch）"><a href="#7、分支（Branch）" class="headerlink" title="7、分支（Branch）"></a>7、分支（Branch）</h3><p>在SVN，分支是一个完整的目录。且这个目录拥有完整的实际文件。如果工作成员想要开啟新的分支，那将会影响“全世界”！每个人都会拥有和你一样的分支。如果你的分支是用来进行破坏工作（安检测试），那将会像传染病一样,你改一个分支，还得让其他人重新切分支重新下载，十分狗血。而 Git，每个工作成员可以任意在自己的本地版本库开啟无限个分支。举例：当我想尝试破坏自己的程序（安检测试），并且想保留这些被修改的文件供日后使用， 我可以开一个分支，做我喜欢的事。完全不需担心妨碍其他工作成员。只要我不合并及提交到主要版本库，没有一个工作成员会被影响。等到我不需要这个分支时， 我只要把它从我的本地版本库删除即可。无痛无痒。</p>
-<h3 id="8、提交（Commit）"><a href="#8、提交（Commit）" class="headerlink" title="8、提交（Commit）"></a>8、提交（Commit）</h3><p>在SVN，当你提交你的完成品时，它将直接记录到中央版本库。当你发现你的完成品存在严重问题时，你已经无法阻止事情的发生了。如果网路中断，你根本没办法提交！而Git的提交完全属於本地版本库的活动。而你只需“推”（git push）到主要版本库即可。Git的“推”其实是在执行“同步”（Sync）。</p>
-<h4 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h4><ol>
-<li><a href="http://blog.csdn.net/bruce_6/article/details/38299677" target="_blank" rel="external">http://blog.csdn.net/bruce_6/article/details/38299677</a></li>
-<li><a href="http://www.cnblogs.com/qinfengxiaoyue/p/3450194.html" target="_blank" rel="external">http://www.cnblogs.com/qinfengxiaoyue/p/3450194.html</a></li>
-</ol>
-
+          
       
     </div>
     
@@ -524,6 +518,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Svn/">Svn</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2014/12/18/git/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -640,7 +638,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>HTML5是HTML最新的修订版本，2014年10月由万维网联盟（W3C）完成标准制定。<br>HTML5的设计目的是为了在移动设备上支持多媒体。</p>
+              <p>HTML5是HTML最新的修订版本，2014年10月由万维网联盟（W3C）完成标准制定。<br>HTML5的设计目的是为了在移动设备上支持多媒体。</p>
 <p>有人说HTML5就像是一场革命，它很“新”，那么它有哪些新颖特殊的地方呢？</p>
 <p>HTML 5的革新体现在：</p>
 <ul>
@@ -654,28 +652,7 @@
 <h2 id="一、语义化标记："><a href="#一、语义化标记：" class="headerlink" title="一、语义化标记："></a>一、语义化标记：</h2><p>语义性好，少类名，有利于SEO ，文档易读 ，搜索引擎能够更好的理解页面中的内容，作为开发者，能够更快更准确的搜索到信息。</p>
 <pre><code>header、section、aside、hgroup、footer、article、nav、time.....
 </code></pre><p><img src="http://i.imgur.com/z0HITSv.gif" alt=""></p>
-<h2 id="二、表单增强功能："><a href="#二、表单增强功能：" class="headerlink" title="二、表单增强功能："></a>二、表单增强功能：</h2><p>HTML5 拥有多个新的表单输入类型。这些新特性提供了更好的输入控制和验证。</p>
-<pre><code>email、url、number、tel、range[min,max,step]、color、date、time、datetime、datetime-local、month、week、search、required、placeholder、progress......
-</code></pre><h2 id="三、视频-音频："><a href="#三、视频-音频：" class="headerlink" title="三、视频/音频："></a>三、视频/音频：</h2><p>HTML5 规定了一种通过 video 元素来包含视频的标准方法。</p>
-<pre><code>&lt;video&gt;&lt;/video&gt;
-</code></pre><p>可选属性有：autoplay、controls、height、width、loop、muted、poster、src等</p>
-<p>HTML5 规定了在网页上嵌入音频元素的标准，即使用 <audio> 元素。</audio></p>
-<p>可选属性有：autoplay、controls、loop、muted、poster、src等，还有很多控制播放的属性。</p>
-<h2 id="四、画布："><a href="#四、画布：" class="headerlink" title="四、画布："></a>四、画布：</h2><p>HTML5 中最让人兴奋的特性是 canvas — 那个用来作画的东东。在你的页面中插入 canvas 就像插入其他标记一样平常，但你将需要一些编程 的经验来绘制形状、图表、动画、游戏、图片作品等。</p>
-<h2 id="五、拖放："><a href="#五、拖放：" class="headerlink" title="五、拖放："></a>五、拖放：</h2><p>拖放是一种常见的特性，即抓取对象以后拖到另一个位置。<br>在 HTML5 中，拖放是标准的一部分，任何元素都能够拖放。</p>
-<p>为了使元素可拖动，把 draggable 属性设置为 true ：</p>
-<pre><code>&lt;img draggable=&quot;true&quot;&gt;
-</code></pre><h2 id="六、本地存储："><a href="#六、本地存储：" class="headerlink" title="六、本地存储："></a>六、本地存储：</h2><p>早些时候,本地存储使用的是 cookie。但是Web 存储需要更加的安全与快速. 这些数据不会被保存在服务器上，但是这些数据只用于用户请求网站数据上.它也可以存储大量的数据，而不影响网站的性能.<br>数据以 键/值 对存在, web网页的数据只允许该网页访问使用。</p>
-<ul>
-<li>ocalStorage - 没有时间限制的数据存储</li>
-<li>sessionStorage - 针对一个 session 的数据存储</li>
-</ul>
-<h4 id="参考及推荐网站："><a href="#参考及推荐网站：" class="headerlink" title="参考及推荐网站："></a>参考及推荐网站：</h4><ol>
-<li><a href="http://www.aseoe.com/special/html5/ele.html" target="_blank" rel="external">http://www.aseoe.com/special/html5/ele.html</a></li>
-<li><a href="http://www.cnblogs.com/jasmine-95/p/4999032.html" target="_blank" rel="external">http://www.cnblogs.com/jasmine-95/p/4999032.html</a></li>
-<li><a href="http://www.runoob.com/html/html5-intro.html" target="_blank" rel="external">http://www.runoob.com/html/html5-intro.html</a></li>
-</ol>
-
+          
       
     </div>
     
@@ -692,6 +669,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/W3C/">W3C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/h5新标签/">h5新标签</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2014/10/16/html5/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -738,7 +719,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <pre><code>在javascript当中每一个function都是一个对象，所以在函数里var temp=this 指的是function当前的对象。
+              <pre><code>在javascript当中每一个function都是一个对象，所以在函数里var temp=this 指的是function当前的对象。
 this是Javascript语言的一个关键字。它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。
 </code></pre><p>随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。</p>
 <p>在《javaScript语言精粹》这本书中，把 this 出现的场景分为四类，简单的说就是：</p>
@@ -765,112 +746,7 @@ console.log(myObject.getValue()); // =&gt; 100
 </code></pre><blockquote>
 <p>getValue() 属于对象 myObject，并由 myOjbect 进行 . 调用，因此 this 指向对象 myObject。</p>
 </blockquote>
-<h3 id="2-函数没有所属对象：指向全局对象"><a href="#2-函数没有所属对象：指向全局对象" class="headerlink" title="2.函数没有所属对象：指向全局对象"></a>2.函数没有所属对象：指向全局对象</h3><pre><code>var myObject = {value: 100};
-
-myObject.getValue = function () {
-
-    var foo = function () {
-
-        console.log(this.value) // =&gt; undefined
-
-        console.log(this);// 输出全局对象 global/window
-
-    }; 
-
-    foo();
-
-        return this.value;
-
-    };
-
-console.log(myObject.getValue()); // =&gt; 100
-</code></pre><blockquote>
-<p>在上述代码块中，foo 函数虽然定义在 getValue 的函数体内，但实际上它既不属于 getValue 也不属于 myObject。foo 并没有被绑定在任何对象上，所以当调用时，它的 this 指针指向了全局对象 global。</p>
-</blockquote>
-<h3 id="3-构造器中的-this：指向新对象"><a href="#3-构造器中的-this：指向新对象" class="headerlink" title="3.构造器中的 this：指向新对象"></a>3.构造器中的 this：指向新对象</h3><p>js 中，我们通过 new 关键词来调用构造函数，此时 this 会绑定在该新对象上。<br>    var SomeClass = function(){<br>        this.value = 100;<br>    }</p>
-<pre><code>var myCreate = new SomeClass();
-
-console.log(myCreate.value); // 输出100
-</code></pre><blockquote>
-<p>顺便说一句，在 js 中，构造函数、普通函数、对象方法、闭包，这四者没有明确界线。界线都在人的心中。(说得好)</p>
-</blockquote>
-<h3 id="4-apply-和-call-调用以及-bind-绑定：指向绑定的对象"><a href="#4-apply-和-call-调用以及-bind-绑定：指向绑定的对象" class="headerlink" title="4.apply 和 call 调用以及 bind 绑定：指向绑定的对象"></a>4.apply 和 call 调用以及 bind 绑定：指向绑定的对象</h3><p>apply() 方法接受两个参数第一个是函数运行的作用域，另外一个是一个参数数组(arguments)。</p>
-<p>call() 方法第一个参数的意义与 apply() 方法相同，只是其他的参数需要一个个列举出来。</p>
-<p>简单来说，call 的方式更接近我们平时调用函数，而 apply 需要我们传递 Array 形式的数组给它。它们是可以互相转换的。</p>
-<pre><code>var myObject = {value: 100};
-
-var foo = function(){
- console.log(this);
-};
-
-foo(); // 全局变量 global
-foo.apply(myObject); // { value: 100 }
-foo.call(myObject); // { value: 100 }
-
-var newFoo = foo.bind(myObject);
-newFoo(); // { value: 100 }
-</code></pre><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>摘取阮一峰老师的文章中的几个例子，来巩固一下知识点：</p>
-<p>1.</p>
-<pre><code>function test(){
-　　　this.x = 1;
-　　　alert(this.x);
-　}
-test(); // 1
-</code></pre><p>2.</p>
-<pre><code>　var x = 1;
-　function test(){
-　　　alert(this.x);
- 　}
-　test(); // 1
-</code></pre><p>3.</p>
-<pre><code>var x = 1;
-　　function test(){
-　　　　this.x = 0;
-　　}
-　　test();
-　　alert(x); //0
-</code></pre><p>4.</p>
-<pre><code>function test(){
-　　　　alert(this.x);
-　　}
-　　var o = {};
-　　o.x = 1;
-　　o.m = test;
-　　o.m(); // 1
-</code></pre><p>5.</p>
-<pre><code>　function test(){
-　　　　this.x = 1;
-　　}
-　　var o = new test();
-　　alert(o.x); // 1
-</code></pre><p>6.</p>
-<pre><code>var x = 2;
-　　function test(){
-　　　　this.x = 1;
-　　}
-　　var o = new test();
-　　alert(x); //2
-</code></pre><p>7.</p>
-<pre><code>var x = 0;
-　　function test(){
-　　　　alert(this.x);
-　　}
-　　var o={};
-　　o.x = 1;
-　　o.m = test;
-　　o.m.apply(); //0
-</code></pre><p>8.</p>
-<pre><code>var x = 0;
-　　function test(){
-　　　　alert(this.x);
-　　}
-　　var o={};
-　　o.x = 1;
-　　o.m = test;
-　　o.m.apply(o); //1
-</code></pre><p>本文引用文章地址：</p>
-<p>1.<a href="http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html" title="http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html</a><br>2.<a href="http://www.jb51.net/article/65850.htm" title="http://www.jb51.net/article/65850.htm" target="_blank" rel="external">http://www.jb51.net/article/65850.htm</a></p>
-
+          
       
     </div>
     
@@ -887,6 +763,10 @@ test(); // 1
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/this指向/">this指向</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2014/06/02/this/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -933,7 +813,7 @@ test(); // 1
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>call和apply，它们的作用都是将函数绑定到另外一个对象上去运行,但是我们对此还是有些困惑：</p>
+              <p>call和apply，它们的作用都是将函数绑定到另外一个对象上去运行,但是我们对此还是有些困惑：</p>
 <ol>
 <li><p>apply和call的区别在哪里</p>
 </li>
@@ -953,17 +833,7 @@ test(); // 1
 <p>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。</p>
 <p>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。 </p>
 </blockquote>
-<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><p>语法：</p>
-<pre><code>apply([thisObj[,argArray]]) 
-</code></pre><p>定义：</p>
-<blockquote>
-<p>应用某一对象的一个方法，用另一个对象替换当前对象。 </p>
-</blockquote>
-<p>说明：</p>
-<blockquote>
-<p>如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。<br>如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
-</blockquote>
-
+          
       
     </div>
     
@@ -980,6 +850,10 @@ test(); // 1
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apply/">apply</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/call/">call</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2014/05/28/callapply/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1026,7 +900,7 @@ test(); // 1
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>JSON: <strong>JavaScript Object Notation</strong>(JavaScript 对象表示法)</p>
+              <p>JSON: <strong>JavaScript Object Notation</strong>(JavaScript 对象表示法)</p>
 <p>JSON 是存储和交换文本信息的语法。类似 XML。</p>
 <p>JSON 比 XML 更小、更快，更易解析。</p>
 <h2 id="一、什么是-JSON-？"><a href="#一、什么是-JSON-？" class="headerlink" title="一、什么是 JSON ？"></a>一、什么是 JSON ？</h2><ul>
@@ -1050,64 +924,7 @@ test(); // 1
     {&quot;name&quot;:&quot;tony&quot;, &quot;password&quot;:&quot;2222&quot;}
 ];
 </code></pre><p>数组是值的有序集合。一个数组以“[”开始，“]”结束。值之间运用 “,”分隔。</p>
-<h2 id="三、JSON对象和JSON字符串的转换"><a href="#三、JSON对象和JSON字符串的转换" class="headerlink" title="三、JSON对象和JSON字符串的转换"></a>三、JSON对象和JSON字符串的转换</h2><p>在数据传输流程中，json是以文本，即字符串的形式传递的，而JS操作的是JSON对象，所以，JSON对象和JSON字符串之间的相互转换是关键。例如：</p>
-<p>JSON字符串：</p>
-<pre><code>var jsonStr = &apos;{&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;}&apos;;
-</code></pre><p>JSON对象：</p>
-<pre><code>var jsonObj = {&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;};
-</code></pre><h4 id="3-1-jQuery插件支持的转换方式："><a href="#3-1-jQuery插件支持的转换方式：" class="headerlink" title="3.1  jQuery插件支持的转换方式："></a>3.1  jQuery插件支持的转换方式：</h4><pre><code>$.parseJSON( jsonstr ); //jQuery.parseJSON(jsonstr),可以将json字符串转换成json对象
-</code></pre><h4 id="3-2-浏览器支持的转换方式"><a href="#3-2-浏览器支持的转换方式" class="headerlink" title="3.2 浏览器支持的转换方式:"></a>3.2 浏览器支持的转换方式:</h4><pre><code>JSON.parse(jsonstr); //可以将json字符串转换成json对象 
-JSON.stringify(jsonobj); //可以将json对象转换成json对符串 
-</code></pre><h4 id="3-3-Javascript支持的转换方式："><a href="#3-3-Javascript支持的转换方式：" class="headerlink" title="3.3 Javascript支持的转换方式："></a>3.3 Javascript支持的转换方式：</h4><pre><code>eval(&apos;(&apos; + jsonstr + &apos;)&apos;); //可以将json字符串转换成json对象,注意需要在json字符外包裹一对小括号 
-</code></pre><blockquote>
-<p>注：ie8(兼容模式),ie7和ie6也可以使用eval()将字符串转为JSON对象，但不推荐这些方式，这种方式不安全eval会执行json串中的表达式。 </p>
-</blockquote>
-<p><strong>注意：</strong></p>
-<blockquote>
-<p>上面的几个方法中，除了eval()函数是js自带的之外，其他的几个方法都来自json.js包。新版本的 JSON 修改了 API，将 JSON.stringify() 和 JSON.parse() 两个方法都注入到了 Javascript 的内建对象里面，前者变成了 Object.toJSONString()，而后者变成了 String.parseJSON()。如果提示找不到toJSONString()和parseJSON()方法，则说明您的json包版本太低。</p>
-</blockquote>
-<h2 id="四、遍历JSON对象"><a href="#四、遍历JSON对象" class="headerlink" title="四、遍历JSON对象"></a>四、遍历JSON对象</h2><pre><code>myJson = {&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;};
-
-for(var p in myJson){//遍历json对象的每个key/value对,p为key
-
-   alert(p + &quot; &quot; + myJson[p]);
-
-}
-</code></pre><h4 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h4><p><img src="http://i.imgur.com/hQJMIGL.jpg" alt=""></p>
-<h2 id="五、遍历JSON数组"><a href="#五、遍历JSON数组" class="headerlink" title="五、遍历JSON数组"></a>五、遍历JSON数组</h2><pre><code>packJson = [
-    {&quot;name&quot;:&quot;nikita&quot;, &quot;password&quot;:&quot;1111&quot;},    
-    {&quot;name&quot;:&quot;tony&quot;, &quot;password&quot;:&quot;2222&quot;}    
-    ];        
-    for(var p in packJson){//遍历json数组时，这么写p为索引，0,1    
-       alert(packJson[p].name + &quot; &quot; + packJson[p].password);
-}
-</code></pre><p>也可以这么遍历：<br>    for(var i = 0; i &lt; packJson.length; i++){</p>
-<pre><code>   alert(packJson[i].name + &quot; &quot; + packJson[i].password);
-
-}
-</code></pre><h4 id="运行结果：-1"><a href="#运行结果：-1" class="headerlink" title="运行结果："></a>运行结果：</h4><p><img src="http://i.imgur.com/8FMpq1S.jpg" alt=""></p>
-<h2 id="六、将两个JSON对象组装到一个里面"><a href="#六、将两个JSON对象组装到一个里面" class="headerlink" title="六、将两个JSON对象组装到一个里面"></a>六、将两个JSON对象组装到一个里面</h2><ul>
-<li>方法：</li>
-</ul>
-<pre><code>var mergeJsonObject = function (jsonbject1, jsonbject2) {
-var resultJsonObject={};
-    for(var attr in jsonbject1){
-        resultJsonObject[attr]=jsonbject1[attr];
-    }
-    for(var attr in jsonbject2){
-        resultJsonObject[attr]=jsonbject2[attr];
-    }
-    return resultJsonObject;
-};
-</code></pre><p>举个栗子：</p>
-<pre><code>var json1 = {&quot;name&quot;:&quot;nikita&quot;};
-var json2 = {&quot;password&quot;:&quot;1111&quot;};
-mergeJsonObject(json1, json2);
-</code></pre><p>本文引用文章地址：</p>
-<p>1.<a href="http://www.cnblogs.com/csj222/archive/2013/04/11/3013667.html" title="http://www.cnblogs.com/csj222/archive/2013/04/11/3013667.html" target="_blank" rel="external">http://www.cnblogs.com/csj222/archive/2013/04/11/3013667.html</a></p>
-<p>2.<a href="http://www.jb51.net/article/35090.htm" title="http://www.jb51.net/article/35090.htm" target="_blank" rel="external">http://www.jb51.net/article/35090.htm</a></p>
-<p>3.<a href="http://blog.csdn.net/wangshu696/article/details/50969281" title="http://blog.csdn.net/wangshu696/article/details/50969281" target="_blank" rel="external">http://blog.csdn.net/wangshu696/article/details/50969281</a></p>
-
+          
       
     </div>
     
@@ -1124,6 +941,10 @@ mergeJsonObject(json1, json2);
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/">json</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2014/05/09/json/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

@@ -27,7 +27,7 @@ this是Javascript语言的一个关键字。它代表函数运行时，自动生
 this是Javascript语言的一个关键字。它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。
 随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。
 在《javaScript语言精粹》这本">
-<meta property="og:updated_time" content="2017-03-28T03:29:43.311Z">
+<meta property="og:updated_time" content="2017-04-05T02:27:22.262Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 中的 this">
 <meta name="twitter:description" content="在javascript当中每一个function都是一个对象，所以在函数里var temp=this 指的是function当前的对象。
@@ -348,6 +348,7 @@ console.log(myObject.getValue()); // =&gt; 100
 </code></pre><blockquote>
 <p>getValue() 属于对象 myObject，并由 myOjbect 进行 . 调用，因此 this 指向对象 myObject。</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="2-函数没有所属对象：指向全局对象"><a href="#2-函数没有所属对象：指向全局对象" class="headerlink" title="2.函数没有所属对象：指向全局对象"></a>2.函数没有所属对象：指向全局对象</h3><pre><code>var myObject = {value: 100};
 
 myObject.getValue = function () {
@@ -464,7 +465,7 @@ test(); // 1
         <p><span>本文标题:</span><a href="/2014/06/02/this/">JavaScript 中的 this</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">琪艺安</a></p>
         <p><span>发布时间:</span>2014-06-02, 10:33:01</p>
-        <p><span>最后更新:</span>2017-03-28, 11:29:43</p>
+        <p><span>最后更新:</span>2017-04-05, 10:27:22</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2014/06/02/this/" title="JavaScript 中的 this">https://qiyian.github.io/2014/06/02/this/</a>
             <span class="copy-path" data-clipboard-text="原文: https://qiyian.github.io/2014/06/02/this/　　作者: 琪艺安" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
