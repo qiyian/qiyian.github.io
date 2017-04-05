@@ -15,16 +15,40 @@
 
 
 
-<meta name="description" content="Gulp就是为了规范前端开发流程，实现前后端分离、模块化开发、版本控制、文件合并与压缩、mock数据等功能的一个前端自动化构建工具。说的形象点，Gulp就像是一个产品的流水线，整个产品从无到有，都要受流水线的控制，在流水线上我们可以对产品进行管理。">
+<meta name="description" content="Gulp就是为了规范前端开发流程，实现前后端分离、模块化开发、版本控制、文件合并与压缩、mock数据等功能的一个前端自动化构建工具。说的形象点，Gulp就像是一个产品的流水线，整个产品从无到有，都要受流水线的控制，在流水线上我们可以对产品进行管理。
+gulp前端工程化常用功能
+sass/less编译
+开启一个webserver
+css/js/图片压缩
+js模块化
+mock数据
+包管理
+版本号控制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gulp实现前端工程化">
 <meta property="og:url" content="https://qiyian.github.io/2015/06/22/gulp实现前端工程化/index.html">
 <meta property="og:site_name" content="qiyian's blog">
-<meta property="og:description" content="Gulp就是为了规范前端开发流程，实现前后端分离、模块化开发、版本控制、文件合并与压缩、mock数据等功能的一个前端自动化构建工具。说的形象点，Gulp就像是一个产品的流水线，整个产品从无到有，都要受流水线的控制，在流水线上我们可以对产品进行管理。">
-<meta property="og:updated_time" content="2017-03-28T03:13:51.590Z">
+<meta property="og:description" content="Gulp就是为了规范前端开发流程，实现前后端分离、模块化开发、版本控制、文件合并与压缩、mock数据等功能的一个前端自动化构建工具。说的形象点，Gulp就像是一个产品的流水线，整个产品从无到有，都要受流水线的控制，在流水线上我们可以对产品进行管理。
+gulp前端工程化常用功能
+sass/less编译
+开启一个webserver
+css/js/图片压缩
+js模块化
+mock数据
+包管理
+版本号控制">
+<meta property="og:updated_time" content="2017-04-05T02:23:32.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gulp实现前端工程化">
-<meta name="twitter:description" content="Gulp就是为了规范前端开发流程，实现前后端分离、模块化开发、版本控制、文件合并与压缩、mock数据等功能的一个前端自动化构建工具。说的形象点，Gulp就像是一个产品的流水线，整个产品从无到有，都要受流水线的控制，在流水线上我们可以对产品进行管理。">
+<meta name="twitter:description" content="Gulp就是为了规范前端开发流程，实现前后端分离、模块化开发、版本控制、文件合并与压缩、mock数据等功能的一个前端自动化构建工具。说的形象点，Gulp就像是一个产品的流水线，整个产品从无到有，都要受流水线的控制，在流水线上我们可以对产品进行管理。
+gulp前端工程化常用功能
+sass/less编译
+开启一个webserver
+css/js/图片压缩
+js模块化
+mock数据
+包管理
+版本号控制">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -312,7 +336,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Gulp就是为了规范前端开发流程，实现前后端分离、模块化开发、版本控制、文件合并与压缩、mock数据等功能的一个前端自动化构建工具。说的形象点，Gulp就像是一个产品的流水线，整个产品从无到有，都要受流水线的控制，在流水线上我们可以对产品进行管理。<br><a id="more"></a></p>
+        <p>Gulp就是为了规范前端开发流程，实现前后端分离、模块化开发、版本控制、文件合并与压缩、mock数据等功能的一个前端自动化构建工具。说的形象点，Gulp就像是一个产品的流水线，整个产品从无到有，都要受流水线的控制，在流水线上我们可以对产品进行管理。</p>
 <h1 id="gulp前端工程化常用功能"><a href="#gulp前端工程化常用功能" class="headerlink" title="gulp前端工程化常用功能"></a>gulp前端工程化常用功能</h1><ol>
 <li>sass/less编译</li>
 <li>开启一个webserver</li>
@@ -320,10 +344,11 @@
 <li>js模块化</li>
 <li>mock数据</li>
 <li>包管理</li>
-<li>版本号控制<!--more-->
+<li>版本号控制<a id="more"></a>
 <h2 id="安装gulp"><a href="#安装gulp" class="headerlink" title="安装gulp"></a>安装gulp</h2></li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">安装gulp  全局安装cnpm i gulp -g </div><div class="line">npm init </div><div class="line">cnpm i gulp -save-dev 本地安装 （放到开发依赖里面）可以简写成cnpm i gulp -D</div><div class="line">创建配置文件 touch gulpfile.js</div><div class="line">创建index.html </div><div class="line">创建build文件夹 (mkdir build)</div><div class="line">创建src文件夹 (mkdir src) </div><div class="line">在gulpfile.js里面写</div><div class="line">   //引入gulp工具</div><div class="line">   var gulp =require(&apos;gulp&apos;)</div><div class="line">   //拷贝index.html 到build文件夹</div><div class="line">   gulp.task(&apos;copy-index(任务名随便起)&apos;,function()&#123;</div><div class="line">   //回调函数</div><div class="line">   gulp.src(&apos;./index.html&apos;)   //找到文件</div><div class="line">   	. pipe(gulp.dest(&apos;./build&apos;) //输出到目标文件夹);</div><div class="line">   </div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
+<!--more-->
 <h2 id="执行gulp-copy-index-任务名"><a href="#执行gulp-copy-index-任务名" class="headerlink" title="执行gulp copy-index (任务名)"></a>执行gulp copy-index (任务名)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//拷贝images到build</span></div><div class="line">gulp.task(<span class="string">'copy-images'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    gulp.src(<span class="string">'./images/**/*'</span>)         <span class="comment">//*.*  **/*递归拷贝 *.&#123;&#125; </span></div><div class="line">    .pipe(gulp.dest(<span class="string">'./build/images/'</span>))</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <h2 id="执行gulp-copy-images"><a href="#执行gulp-copy-images" class="headerlink" title="执行gulp copy-images"></a>执行gulp copy-images</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//配置default 任务,执行任务队列  有顺序</span></div><div class="line">gulp.task(<span class="string">'default'</span>,[<span class="string">'copy-index'</span>,<span class="string">'copy-images'</span>],<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">	    <span class="comment">//回调</span></div><div class="line">	    </div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <h2 id="执行gulp"><a href="#执行gulp" class="headerlink" title="执行gulp"></a>执行gulp</h2><h2 id="启动webserver"><a href="#启动webserver" class="headerlink" title="启动webserver"></a>启动webserver</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">npm i gulp-webserver -D 装webserver</div><div class="line"></div><div class="line"><span class="comment">//引入gulp-webserver模块</span></div><div class="line"><span class="keyword">var</span> webserver =<span class="built_in">require</span>(<span class="string">'gulp-webserver'</span>); </div><div class="line">gulp.task(<span class="string">'webserver'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//回调函数启动webserver</span></div><div class="line">    gulp.src(<span class="string">'./'</span>)</div><div class="line">	.pipe(webserver(&#123;</div><div class="line">		<span class="attr">host</span>:<span class="string">'localhost'</span>,        <span class="comment">//配置域名</span></div><div class="line">	    port:<span class="number">80</span>,                <span class="comment">//端口号</span></div><div class="line">		directoryListing:&#123;</div><div class="line">			<span class="attr">enable</span>:<span class="literal">true</span>,</div><div class="line">			<span class="attr">path</span>:<span class="string">'./'</span></div><div class="line">		&#125;,                      <span class="comment">// 显示目录</span></div><div class="line">		livereload:<span class="literal">true</span>        <span class="comment">//热加载，</span></div><div class="line">		<span class="comment">//mock数据</span></div><div class="line">		middelware:<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> urlOjb = url.parse(req.url,<span class="literal">true</span>)     <span class="comment">//获得浏览器url</span></div><div class="line">			<span class="keyword">switch</span>(urlOjb.pathname)&#123;</div><div class="line">			    <span class="keyword">case</span> <span class="string">'/api/orders'</span>:</div><div class="line">				    res.setHeader(<span class="string">'Content-Type'</span>.<span class="string">'application/json'</span>);</div><div class="line">					fs.readFile(<span class="string">'./mock/list.json'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</div><div class="line">						res.end(data);</div><div class="line">					&#125;)</div><div class="line">					<span class="keyword">return</span>;</div><div class="line">				<span class="keyword">case</span> <span class="string">'api/uses'</span>:</div><div class="line">					<span class="keyword">return</span>;</div><div class="line"></div><div class="line">			&#125;</div><div class="line">			next();    <span class="comment">//执行</span></div><div class="line">		&#125;</div><div class="line">	&#125;))         <span class="comment">//任务引用</span></div><div class="line">&#125;)        <span class="comment">//这个名字随便起没有对应关系</span></div></pre></td></tr></table></figure>
@@ -344,7 +369,7 @@
         <p><span>本文标题:</span><a href="/2015/06/22/gulp实现前端工程化/">gulp实现前端工程化</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">琪艺安</a></p>
         <p><span>发布时间:</span>2015-06-22, 11:42:33</p>
-        <p><span>最后更新:</span>2017-03-28, 11:13:51</p>
+        <p><span>最后更新:</span>2017-04-05, 10:23:32</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/06/22/gulp实现前端工程化/" title="gulp实现前端工程化">https://qiyian.github.io/2015/06/22/gulp实现前端工程化/</a>
             <span class="copy-path" data-clipboard-text="原文: https://qiyian.github.io/2015/06/22/gulp实现前端工程化/　　作者: 琪艺安" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
