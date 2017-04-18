@@ -299,7 +299,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>前面文章中提过了Gulp的入门使用，那么这一篇会写一些常见插件的使用。</p>
+              <p>前面文章中提过了Gulp的入门使用，那么这一篇会写一些常见插件的使用。</p>
 <p>npm init命令初始化当前文件夹后，在当前文件夹新建gulpfile.js文件。当前目录下的所有操作流都在gulpfile.js文件中定义。</p>
 <p><img src="http://i.imgur.com/UDZBC3K.jpg" alt=""></p>
 <h1 id="gulp-uglify-（JS压缩）"><a href="#gulp-uglify-（JS压缩）" class="headerlink" title="gulp-uglify （JS压缩）"></a>gulp-uglify （JS压缩）</h1><h2 id="gulp-uglify安装"><a href="#gulp-uglify安装" class="headerlink" title="gulp-uglify安装:"></a>gulp-uglify安装:</h2><pre><code>npm install --save-dev gulp-uglify
@@ -313,94 +313,7 @@ gulp.task(&apos;compass&apos;, function () {
         .pipe(gulp.dest(&apos;javascript/&apos;));          //输出文件
 });
 </code></pre><p>小技巧，第二个参数’！js/*.min.js’是用来过滤掉后缀为min.js，！感叹号为排除模式。</p>
-<h1 id="gulp-minify-css（CSS压缩）"><a href="#gulp-minify-css（CSS压缩）" class="headerlink" title="gulp-minify-css（CSS压缩）"></a>gulp-minify-css（CSS压缩）</h1><h2 id="gulp-minify-css安装："><a href="#gulp-minify-css安装：" class="headerlink" title="gulp-minify-css安装："></a>gulp-minify-css安装：</h2><pre><code>npm install --save-dev gulp-minify-css
-</code></pre><h2 id="可以使用它来压缩CSS文件"><a href="#可以使用它来压缩CSS文件" class="headerlink" title="可以使用它来压缩CSS文件"></a>可以使用它来压缩CSS文件</h2><pre><code>var gulp = require(&apos;gulp&apos;);
-var minify = require(&apos;gulp-minify-css&apos;);
-
-gulp.task(&apos;cssmini&apos;, function () {
-    gulp.src([&apos;css/*.css&apos;, &apos;!css/*.min.css&apos;])  //要压缩的css
-        .pipe(minify())
-        .pipe(gulp.dest(&apos;buildcss/&apos;));
-});
-</code></pre><h1 id="gulp-minify-html（html压缩）"><a href="#gulp-minify-html（html压缩）" class="headerlink" title="gulp-minify-html（html压缩）"></a>gulp-minify-html（html压缩）</h1><h2 id="gulp-minify-html安装："><a href="#gulp-minify-html安装：" class="headerlink" title="gulp-minify-html安装："></a>gulp-minify-html安装：</h2><pre><code>npm install --save-dev gulp-minify-html
-</code></pre><h2 id="可以使用它来压缩html文件"><a href="#可以使用它来压缩html文件" class="headerlink" title="可以使用它来压缩html文件."></a>可以使用它来压缩html文件.</h2><pre><code>var gulp = require(&apos;gulp&apos;);
-var htmlmini = require(&apos;gulp-minify-html&apos;);
-
-gulp.task(&apos;htmlmini&apos;, function () {
-    gulp.src(&apos;*.html&apos;)
-        .pipe(htmlmini())
-        .pipe(gulp.dest(&apos;minihtml&apos;));
-})
-</code></pre><h1 id="gulp-jshint（JS代码检查）"><a href="#gulp-jshint（JS代码检查）" class="headerlink" title="gulp-jshint（JS代码检查）"></a>gulp-jshint（JS代码检查）</h1><h2 id="gulp-jshint安装："><a href="#gulp-jshint安装：" class="headerlink" title="gulp-jshint安装："></a>gulp-jshint安装：</h2><pre><code>npm install --save-dev gulp-jshint
-</code></pre><h2 id="可以用来检查JS的代码"><a href="#可以用来检查JS的代码" class="headerlink" title="可以用来检查JS的代码"></a>可以用来检查JS的代码</h2><pre><code>var gulp = require(&apos;gulp&apos;);
-var jshint = require(&quot;gulp-jshint&quot;);
-
-gulp.task(&apos;jsLint&apos;, function () {
-    gulp.src(&apos;js/*.js&apos;)
-    .pipe(jshint())
-    .pipe(jshint.reporter()); // 输出检查结果
-});
-</code></pre><h1 id="gulp-concat（文件合并）"><a href="#gulp-concat（文件合并）" class="headerlink" title="gulp-concat（文件合并）"></a>gulp-concat（文件合并）</h1><h2 id="gulp-concat安装："><a href="#gulp-concat安装：" class="headerlink" title="gulp-concat安装："></a>gulp-concat安装：</h2><pre><code>npm install --save-dev gulp-concat
-</code></pre><h2 id="合并CSS与JS文件，减少http请求。"><a href="#合并CSS与JS文件，减少http请求。" class="headerlink" title="合并CSS与JS文件，减少http请求。"></a>合并CSS与JS文件，减少http请求。</h2><pre><code>var gulp = require(&apos;gulp&apos;);
-var concat = require(&quot;gulp-concat&quot;);
-
-gulp.task(&apos;concat&apos;, function () {
-    gulp.src(&apos;js/*.js&apos;)  //要合并的文件
-    .pipe(concat(&apos;all.js&apos;))  // 合并匹配到的js文件并命名为 &quot;all.js&quot;
-    .pipe(gulp.dest(&apos;dist/js&apos;));
-});
-</code></pre><h1 id="gulp-less（编译Less）"><a href="#gulp-less（编译Less）" class="headerlink" title="gulp-less（编译Less）"></a>gulp-less（编译Less）</h1><h2 id="gulp-less安装："><a href="#gulp-less安装：" class="headerlink" title="gulp-less安装："></a>gulp-less安装：</h2><pre><code>npm install --save-dev gulp-less
-</code></pre><h2 id="把less文件转换为css。"><a href="#把less文件转换为css。" class="headerlink" title="把less文件转换为css。"></a>把less文件转换为css。</h2><pre><code>var gulp = require(&apos;gulp&apos;),
-    less = require(&quot;gulp-less&quot;);
-
-gulp.task(&apos;compile-less&apos;, function () {
-    gulp.src(&apos;less/*.less&apos;)
-    .pipe(less())
-    .pipe(gulp.dest(&apos;dist/css&apos;));
-});
-</code></pre><h1 id="gulp-sass（编译Sass）"><a href="#gulp-sass（编译Sass）" class="headerlink" title="gulp-sass（编译Sass）"></a>gulp-sass（编译Sass）</h1><h2 id="gulp-sass安装："><a href="#gulp-sass安装：" class="headerlink" title="gulp-sass安装："></a>gulp-sass安装：</h2><pre><code>npm install --save-dev gulp-sass
-</code></pre><h2 id="把scss文件转换为sass文件。"><a href="#把scss文件转换为sass文件。" class="headerlink" title="把scss文件转换为sass文件。"></a>把scss文件转换为sass文件。</h2><pre><code>var gulp = require(&apos;gulp&apos;),
-    sass = require(&quot;gulp-sass&quot;);
-
-gulp.task(&apos;compile-sass&apos;, function () {
-    gulp.src(&apos;sass/*.sass&apos;)
-    .pipe(sass())
-    .pipe(gulp.dest(&apos;dist/css&apos;));
-});
-</code></pre><h1 id="gulp-imagemin（压缩图片）"><a href="#gulp-imagemin（压缩图片）" class="headerlink" title="gulp-imagemin（压缩图片）"></a>gulp-imagemin（压缩图片）</h1><h2 id="gulp-imagemin安装："><a href="#gulp-imagemin安装：" class="headerlink" title="gulp-imagemin安装："></a>gulp-imagemin安装：</h2><pre><code>npm install --save-dev gulp-imagemin
-</code></pre><p>可以使用gulp-imagemin的插件来压缩jpg、png、gif等图片。（imagemin也是有插件的，是基于imagemin产生的插件，所以前缀是imagenin开头）</p>
-<h2 id="压缩png插件-imagemin-pngquant安装："><a href="#压缩png插件-imagemin-pngquant安装：" class="headerlink" title="压缩png插件-imagemin-pngquant安装："></a>压缩png插件-imagemin-pngquant安装：</h2><pre><code>$npm install--save-devimagemin-pngquant
-</code></pre><h2 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h2><pre><code>var gulp = require(&apos;gulp&apos;);
-var imagemin = require(&apos;gulp-imagemin&apos;);
-var pngquant = require(&apos;imagemin-pngquant&apos;); //png图片压缩插件
-
-gulp.task(&apos;default&apos;, function () {
-    return gulp.src(&apos;src/images/*&apos;)
-        .pipe(imagemin({
-            progressive: true,
-            use: [pngquant()] //使用pngquant来压缩png图片
-        }))
-        .pipe(gulp.dest(&apos;dist&apos;));
-});
-</code></pre><p>gulp-imagemin的使用比较复杂一点，它本身也有很多插件（更多imagemin插件），这里只是简单介绍一下，要想压缩不同格式的图片，必须对应安装不同的插件，这里只安装了pngquant插件。按照nodejs的模块化思想，每个require只包含一个功能，这样就可以达到按需加载的目的。</p>
-<h1 id="gulp-livereload（自动刷新）"><a href="#gulp-livereload（自动刷新）" class="headerlink" title="gulp-livereload（自动刷新）"></a>gulp-livereload（自动刷新）</h1><h2 id="gulp-livereload安装："><a href="#gulp-livereload安装：" class="headerlink" title="gulp-livereload安装："></a>gulp-livereload安装：</h2><pre><code>npm install --save-dev gulp-livereload
-</code></pre><p>当代码变化时，它可以帮助我们自动刷新页面，该插件最好配合谷歌浏览器，且要安装livereload chrome extension扩展插件，否则无效。</p>
-<h2 id="gulpfile-js-1"><a href="#gulpfile-js-1" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h2><pre><code>var gulp = require(&apos;gulp&apos;),
-    less = require(&apos;gulp-less&apos;),
-    livereload = require(&apos;gulp-livereload&apos;);
-
-gulp.task(&apos;less&apos;, function() {
-  gulp.src(&apos;less/*.less&apos;)
-    .pipe(less())
-    .pipe(gulp.dest(&apos;css&apos;))
-    .pipe(livereload());
-});
-
-gulp.task(&apos;watch&apos;, function() {
-  livereload.listen(); //要在这里调用listen()方法
-  gulp.watch(&apos;less/*.less&apos;, [&apos;less&apos;]);  //监听目录下的文件，若文件发生变化，则调用less任务。
-});
-</code></pre>
+          
       
     </div>
     
@@ -417,6 +330,10 @@ gulp.task(&apos;watch&apos;, function() {
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端模块化工具/">前端模块化工具</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2017/04/18/Gulp Plug-in summary/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -489,7 +406,7 @@ gulp.task(&apos;watch&apos;, function() {
 
       
         <p class="article-more-link">
-          <a href="/2017/03/28/aboutNetwork/#more">阅读全文 >></a>
+          <a href="/2017/03/28/aboutNetwork/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -571,7 +488,7 @@ gulp.task(&apos;watch&apos;, function() {
 
       
         <p class="article-more-link">
-          <a href="/2017/03/24/cross-domain/#more">阅读全文 >></a>
+          <a href="/2017/03/24/cross-domain/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -640,7 +557,7 @@ gulp.task(&apos;watch&apos;, function() {
 
       
         <p class="article-more-link">
-          <a href="/2016/09/24/关于前端工程化工具feikit的使用以及小案例/#more">阅读全文 >></a>
+          <a href="/2016/09/24/关于前端工程化工具feikit的使用以及小案例/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -709,7 +626,7 @@ gulp.task(&apos;watch&apos;, function() {
 
       
         <p class="article-more-link">
-          <a href="/2016/07/15/水平垂直居中/#more">阅读全文 >></a>
+          <a href="/2016/07/15/水平垂直居中/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -856,7 +773,7 @@ gulp.task(&apos;watch&apos;, function() {
 
       
         <p class="article-more-link">
-          <a href="/2016/03/30/cookiewebstorage/#more">阅读全文 >></a>
+          <a href="/2016/03/30/cookiewebstorage/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -936,7 +853,7 @@ gulp.task(&apos;watch&apos;, function() {
 
       
         <p class="article-more-link">
-          <a href="/2016/01/22/wexinhao/#more">阅读全文 >></a>
+          <a href="/2016/01/22/wexinhao/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -1007,7 +924,7 @@ gulp.task(&apos;watch&apos;, function() {
 
       
         <p class="article-more-link">
-          <a href="/2015/11/19/vue常用/#more">阅读全文 >></a>
+          <a href="/2015/11/19/vue常用/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -1083,7 +1000,7 @@ gulp.task(&apos;watch&apos;, function() {
 
       
         <p class="article-more-link">
-          <a href="/2015/06/22/gulp实现前端工程化/#more">阅读全文 >></a>
+          <a href="/2015/06/22/gulp实现前端工程化/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
