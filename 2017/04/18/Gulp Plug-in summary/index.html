@@ -15,22 +15,30 @@
 
 
 
-<meta name="description" content="Canvas中文翻译就是”画布”.它提供了强大的图形的处理功能(绘制,变换,像素处理…)。
-但是需要注意，canvas 元素本身并不绘制图形，它只是相当于一张空画布。
-如果开发者需要向 canvas 上绘制图形，则必须使用 JavaScript 脚本进行绘制。">
+<meta name="description" content="前面文章中提过了Gulp的入门使用，那么这一篇会写一些常见插件的使用。
+npm init命令初始化当前文件夹后，在当前文件夹新建gulpfile.js文件。当前目录下的所有操作流都在gulpfile.js文件中定义。
+
+gulp-uglify （JS压缩）gulp-uglify安装:npm install --save-dev gulp-uglify
+gulp-uglify用来压缩js文件，使用的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="canvas入门详解">
-<meta property="og:url" content="https://qiyian.github.io/2014/12/09/canvas/index.html">
+<meta property="og:title" content="前端自动化Gulp工具常用插件">
+<meta property="og:url" content="https://qiyian.github.io/2017/04/18/Gulp Plug-in summary/index.html">
 <meta property="og:site_name" content="qiyian's blog">
-<meta property="og:description" content="Canvas中文翻译就是”画布”.它提供了强大的图形的处理功能(绘制,变换,像素处理…)。
-但是需要注意，canvas 元素本身并不绘制图形，它只是相当于一张空画布。
-如果开发者需要向 canvas 上绘制图形，则必须使用 JavaScript 脚本进行绘制。">
-<meta property="og:updated_time" content="2017-04-05T02:26:20.213Z">
+<meta property="og:description" content="前面文章中提过了Gulp的入门使用，那么这一篇会写一些常见插件的使用。
+npm init命令初始化当前文件夹后，在当前文件夹新建gulpfile.js文件。当前目录下的所有操作流都在gulpfile.js文件中定义。
+
+gulp-uglify （JS压缩）gulp-uglify安装:npm install --save-dev gulp-uglify
+gulp-uglify用来压缩js文件，使用的">
+<meta property="og:image" content="http://i.imgur.com/UDZBC3K.jpg">
+<meta property="og:updated_time" content="2017-04-18T06:49:54.593Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="canvas入门详解">
-<meta name="twitter:description" content="Canvas中文翻译就是”画布”.它提供了强大的图形的处理功能(绘制,变换,像素处理…)。
-但是需要注意，canvas 元素本身并不绘制图形，它只是相当于一张空画布。
-如果开发者需要向 canvas 上绘制图形，则必须使用 JavaScript 脚本进行绘制。">
+<meta name="twitter:title" content="前端自动化Gulp工具常用插件">
+<meta name="twitter:description" content="前面文章中提过了Gulp的入门使用，那么这一篇会写一些常见插件的使用。
+npm init命令初始化当前文件夹后，在当前文件夹新建gulpfile.js文件。当前目录下的所有操作流都在gulpfile.js文件中定义。
+
+gulp-uglify （JS压缩）gulp-uglify安装:npm install --save-dev gulp-uglify
+gulp-uglify用来压缩js文件，使用的">
+<meta name="twitter:image" content="http://i.imgur.com/UDZBC3K.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -62,7 +70,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>canvas入门详解 | qiyian&#39;s blog</title>
+<title>前端自动化Gulp工具常用插件 | qiyian&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -270,11 +278,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-canvas" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Gulp Plug-in summary" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/09/canvas/" class="article-date">
-      <time datetime="2014-12-09T03:20:56.000Z" itemprop="datePublished">2014-12-09</time>
+      <a href="/2017/04/18/Gulp Plug-in summary/" class="article-date">
+      <time datetime="2017-04-18T06:25:01.000Z" itemprop="datePublished">2017-04-18</time>
 </a>
 
 
@@ -289,7 +297,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      canvas入门详解
+      前端自动化Gulp工具常用插件
     </h1>
   
 
@@ -298,13 +306,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Canvas技术/">Canvas技术</a>
+    <a class="article-category-link" href="/categories/前端工程化/">前端工程化</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas入门篇/">canvas入门篇</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端模块化工具/">前端模块化工具</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -314,27 +322,108 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Canvas中文翻译就是”画布”.它提供了强大的图形的处理功能(绘制,变换,像素处理…)。</p>
-<p>但是需要注意，canvas 元素本身并不绘制图形，它只是相当于一张空画布。</p>
-<p>如果开发者需要向 canvas 上绘制图形，则必须使用 JavaScript 脚本进行绘制。</p>
-<a id="more"></a>
-<h1 id="canvas-能够做什么"><a href="#canvas-能够做什么" class="headerlink" title="canvas 能够做什么"></a>canvas 能够做什么</h1><p>基础图形的绘制<br>文字的绘制<br>图形的变形和图片的合成<br>图片和视频的处理<br>动画的实现<br>小游戏的制作</p>
-<h1 id="支持的浏览器"><a href="#支持的浏览器" class="headerlink" title="支持的浏览器"></a>支持的浏览器</h1><p>大多数现代浏览器都是支持Canvas的,比如 Firefox, safari, chrome, opera的最近版本以及IE9都支持.</p>
-<p>IE8及以下不支持HTML5,但是我们可以进行提示用户更新到最新的版本</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="创建Canvas"><a href="#创建Canvas" class="headerlink" title="创建Canvas"></a>创建Canvas</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> 创建 &lt;canvas width="" height=""&gt;您的浏览器不支持canvas请更换再试&lt;/canvas&gt;</div><div class="line"> var canvas =document.querySelector('#id')</div><div class="line"> 	var context = canvas.getContext('2d')</div><div class="line"> 	canvas.width="" 	 canva.height="" //可以在canvas对象里面定义宽高</div><div class="line"> if(canvas.getContext('2d'))&#123;</div><div class="line">	var context=canvas.getContext('2d')</div><div class="line">&#125;else&#123;</div><div class="line">	alert('您的浏览器不支持canvas请更换再试')</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<!--more-->
-<h2 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> context.moveTo(<span class="number">100</span>,<span class="number">100</span>) 设置初始点位置</div><div class="line"><span class="number">2.</span> context.lineTo(<span class="number">600</span>,<span class="number">600</span>) </div><div class="line"><span class="number">3.</span> context.lineWidth= <span class="string">""</span> 设置线宽</div><div class="line"><span class="number">4.</span> context.strokeStylke=<span class="string">""</span> 设置颜色</div><div class="line"><span class="number">5.</span> context.lineTo(<span class="number">100</span>,<span class="number">700</span>)</div><div class="line"><span class="number">6.</span> context.stroke() <span class="comment">//绘制</span></div><div class="line"><span class="number">7.</span> context.moveTo(<span class="number">200</span>,<span class="number">100</span>)</div><div class="line"><span class="number">8.</span> context.lineTo(<span class="number">900</span>,<span class="number">700</span>)</div><div class="line"><span class="number">9.</span> context.lineWidth=<span class="string">""</span></div><div class="line"><span class="number">10.</span> context.strokeStyle=<span class="string">""</span></div><div class="line"><span class="number">11.</span> context.stroke() <span class="comment">//颜色会覆盖</span></div><div class="line"><span class="number">12.</span> context.beginPath() <span class="comment">//控制样式开始结束 context.closePath()  可以状态隔离 closePath 可以帮助做闭合</span></div><div class="line"><span class="number">13.</span> context.fillStyle =<span class="string">""</span> <span class="comment">//设置填充颜色</span></div><div class="line"><span class="number">14.</span> context.fill() <span class="comment">//填充颜色  线会吃掉一半 fill 和stroke顺序有关 先fill 就可以解决</span></div></pre></td></tr></table></figure>
-<h2 id="画弧线"><a href="#画弧线" class="headerlink" title="画弧线"></a>画弧线</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> context.arc(</div><div class="line">	圆心x,圆心y，半径,开始位置，结束位置,是否逆时针  </div><div class="line">)</div><div class="line"><span class="number">2.</span> context.lineWidth=<span class="string">''</span>,context.strokeStyle=<span class="string">''</span></div><div class="line"><span class="number">3.</span> context.arc(<span class="number">300</span>,<span class="number">300</span>,<span class="number">200</span>,<span class="number">0</span>,<span class="number">1.5</span>*<span class="built_in">Math</span>.PI)</div><div class="line"><span class="number">4.</span> context.stroke()</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</div><div class="line">	context.beginPath();</div><div class="line">	context.arc(<span class="number">50</span>+i*<span class="number">100</span>,<span class="number">60</span>,<span class="number">40</span>,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI*(i+<span class="number">1</span>)/<span class="number">10</span>)</div><div class="line">	context.closePath();<span class="comment">//没有就不闭合</span></div><div class="line">	context.stroke();</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<h1 id="复杂线形"><a href="#复杂线形" class="headerlink" title="复杂线形"></a>复杂线形</h1><h2 id="箭头"><a href="#箭头" class="headerlink" title="箭头"></a>箭头</h2><ol>
-<li>画矩形 context.rect(x,y,width,height)<br>context.fillRect()<br>context.strokeRect()</li>
-</ol>
-<h1 id="线条属性"><a href="#线条属性" class="headerlink" title="线条属性"></a>线条属性</h1><ol>
-<li>lineCap 线冒 默认butt尖  round圆 square方</li>
-</ol>
-<h2 id="画五星"><a href="#画五星" class="headerlink" title="画五星"></a>画五星</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</div><div class="line">	context.LineTo(<span class="built_in">Math</span>.cos((i*<span class="number">72</span>+<span class="number">18</span>)/<span class="number">180</span>*<span class="built_in">Math</span>.PI)*<span class="number">300</span>,-<span class="built_in">Math</span>.sin((<span class="number">18</span>+i*<span class="number">72</span>)/<span class="number">180</span>*<span class="built_in">Math</span>.PI)*<span class="number">300</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawStar</span>(<span class="params">x,y,R,r,rotate</span>)</span>&#123;</div><div class="line">	context.beginPath();</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</div><div class="line">		context.LineTo(<span class="built_in">Math</span>.cos((<span class="number">18</span>+i*<span class="number">72</span>+rotate)/<span class="number">180</span>*<span class="built_in">Math</span>.PI)*R+x,-<span class="built_in">Math</span>.sin((<span class="number">18</span>+i*<span class="number">72</span>+rotate)/<span class="number">180</span>*<span class="built_in">Math</span>.PI)*R+y);</div><div class="line">		context.LineTo(<span class="built_in">Math</span>.cos((<span class="number">54</span>+i*<span class="number">72</span>+rotate)/<span class="number">180</span>*<span class="built_in">Math</span>.PI)*r+x,-<span class="built_in">Math</span>.sin((<span class="number">54</span>+i*<span class="number">72</span>+rotate)/<span class="number">180</span>*<span class="built_in">Math</span>.PI)*r+y);</div><div class="line">	&#125;</div><div class="line">	context.closePath();</div><div class="line">	context.lineWidth=<span class="string">''</span></div><div class="line">	context.strokeStyle=<span class="string">''</span></div><div class="line">	context.stroke()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="线条属性-lineJoin-连接处"><a href="#线条属性-lineJoin-连接处" class="headerlink" title="线条属性 lineJoin 连接处"></a>线条属性 lineJoin 连接处</h1><p>默认miter（人字形）    round圆 bevel折叠 miterLimit 控制折叠只对miter生效</p>
-<h1 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h1><p>位移 translate(x,y)    旋转rotate(度数*Math.PI/180)  不用引号也不用单位 缩放scale(sx,sy)<br>context.save() context.restore()</p>
-<h1 id="矩阵变换"><a href="#矩阵变换" class="headerlink" title="矩阵变换"></a>矩阵变换</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a c e  ad 缩放 bc 倾斜 ef 位移</div><div class="line">   b d f </div><div class="line">   <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> 	</div><div class="line">   context.transform(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>) ab cd ef</div><div class="line">   context.setTransform()	<span class="comment">//重新绘制</span></div></pre></td></tr></table></figure>
+        <p>前面文章中提过了Gulp的入门使用，那么这一篇会写一些常见插件的使用。</p>
+<p>npm init命令初始化当前文件夹后，在当前文件夹新建gulpfile.js文件。当前目录下的所有操作流都在gulpfile.js文件中定义。</p>
+<p><img src="http://i.imgur.com/UDZBC3K.jpg" alt=""></p>
+<h1 id="gulp-uglify-（JS压缩）"><a href="#gulp-uglify-（JS压缩）" class="headerlink" title="gulp-uglify （JS压缩）"></a>gulp-uglify （JS压缩）</h1><h2 id="gulp-uglify安装"><a href="#gulp-uglify安装" class="headerlink" title="gulp-uglify安装:"></a>gulp-uglify安装:</h2><pre><code>npm install --save-dev gulp-uglify
+</code></pre><h2 id="gulp-uglify用来压缩js文件，使用的是uglify引擎。"><a href="#gulp-uglify用来压缩js文件，使用的是uglify引擎。" class="headerlink" title="gulp-uglify用来压缩js文件，使用的是uglify引擎。"></a>gulp-uglify用来压缩js文件，使用的是uglify引擎。</h2><pre><code>var gulp = require(&apos;gulp&apos;);          //加载gulp
+var uglify = require(&apos;gulp-uglify&apos;);          //加载js压缩
+
+// 定义一个任务 compass
+gulp.task(&apos;compass&apos;, function () {
+    gulp.src([&apos;js/*.js&apos;,&apos;!js/*.min.js&apos;])          //获取文件，同时过滤掉.min.js文件
+        .pipe(uglify())
+        .pipe(gulp.dest(&apos;javascript/&apos;));          //输出文件
+});
+</code></pre><p>小技巧，第二个参数’！js/*.min.js’是用来过滤掉后缀为min.js，！感叹号为排除模式。</p>
+<h1 id="gulp-minify-css（CSS压缩）"><a href="#gulp-minify-css（CSS压缩）" class="headerlink" title="gulp-minify-css（CSS压缩）"></a>gulp-minify-css（CSS压缩）</h1><h2 id="gulp-minify-css安装："><a href="#gulp-minify-css安装：" class="headerlink" title="gulp-minify-css安装："></a>gulp-minify-css安装：</h2><pre><code>npm install --save-dev gulp-minify-css
+</code></pre><h2 id="可以使用它来压缩CSS文件"><a href="#可以使用它来压缩CSS文件" class="headerlink" title="可以使用它来压缩CSS文件"></a>可以使用它来压缩CSS文件</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+var minify = require(&apos;gulp-minify-css&apos;);
+
+gulp.task(&apos;cssmini&apos;, function () {
+    gulp.src([&apos;css/*.css&apos;, &apos;!css/*.min.css&apos;])  //要压缩的css
+        .pipe(minify())
+        .pipe(gulp.dest(&apos;buildcss/&apos;));
+});
+</code></pre><h1 id="gulp-minify-html（html压缩）"><a href="#gulp-minify-html（html压缩）" class="headerlink" title="gulp-minify-html（html压缩）"></a>gulp-minify-html（html压缩）</h1><h2 id="gulp-minify-html安装："><a href="#gulp-minify-html安装：" class="headerlink" title="gulp-minify-html安装："></a>gulp-minify-html安装：</h2><pre><code>npm install --save-dev gulp-minify-html
+</code></pre><h2 id="可以使用它来压缩html文件"><a href="#可以使用它来压缩html文件" class="headerlink" title="可以使用它来压缩html文件."></a>可以使用它来压缩html文件.</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+var htmlmini = require(&apos;gulp-minify-html&apos;);
+
+gulp.task(&apos;htmlmini&apos;, function () {
+    gulp.src(&apos;*.html&apos;)
+        .pipe(htmlmini())
+        .pipe(gulp.dest(&apos;minihtml&apos;));
+})
+</code></pre><h1 id="gulp-jshint（JS代码检查）"><a href="#gulp-jshint（JS代码检查）" class="headerlink" title="gulp-jshint（JS代码检查）"></a>gulp-jshint（JS代码检查）</h1><h2 id="gulp-jshint安装："><a href="#gulp-jshint安装：" class="headerlink" title="gulp-jshint安装："></a>gulp-jshint安装：</h2><pre><code>npm install --save-dev gulp-jshint
+</code></pre><h2 id="可以用来检查JS的代码"><a href="#可以用来检查JS的代码" class="headerlink" title="可以用来检查JS的代码"></a>可以用来检查JS的代码</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+var jshint = require(&quot;gulp-jshint&quot;);
+
+gulp.task(&apos;jsLint&apos;, function () {
+    gulp.src(&apos;js/*.js&apos;)
+    .pipe(jshint())
+    .pipe(jshint.reporter()); // 输出检查结果
+});
+</code></pre><h1 id="gulp-concat（文件合并）"><a href="#gulp-concat（文件合并）" class="headerlink" title="gulp-concat（文件合并）"></a>gulp-concat（文件合并）</h1><h2 id="gulp-concat安装："><a href="#gulp-concat安装：" class="headerlink" title="gulp-concat安装："></a>gulp-concat安装：</h2><pre><code>npm install --save-dev gulp-concat
+</code></pre><h2 id="合并CSS与JS文件，减少http请求。"><a href="#合并CSS与JS文件，减少http请求。" class="headerlink" title="合并CSS与JS文件，减少http请求。"></a>合并CSS与JS文件，减少http请求。</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+var concat = require(&quot;gulp-concat&quot;);
+
+gulp.task(&apos;concat&apos;, function () {
+    gulp.src(&apos;js/*.js&apos;)  //要合并的文件
+    .pipe(concat(&apos;all.js&apos;))  // 合并匹配到的js文件并命名为 &quot;all.js&quot;
+    .pipe(gulp.dest(&apos;dist/js&apos;));
+});
+</code></pre><h1 id="gulp-less（编译Less）"><a href="#gulp-less（编译Less）" class="headerlink" title="gulp-less（编译Less）"></a>gulp-less（编译Less）</h1><h2 id="gulp-less安装："><a href="#gulp-less安装：" class="headerlink" title="gulp-less安装："></a>gulp-less安装：</h2><pre><code>npm install --save-dev gulp-less
+</code></pre><h2 id="把less文件转换为css。"><a href="#把less文件转换为css。" class="headerlink" title="把less文件转换为css。"></a>把less文件转换为css。</h2><pre><code>var gulp = require(&apos;gulp&apos;),
+    less = require(&quot;gulp-less&quot;);
+
+gulp.task(&apos;compile-less&apos;, function () {
+    gulp.src(&apos;less/*.less&apos;)
+    .pipe(less())
+    .pipe(gulp.dest(&apos;dist/css&apos;));
+});
+</code></pre><h1 id="gulp-sass（编译Sass）"><a href="#gulp-sass（编译Sass）" class="headerlink" title="gulp-sass（编译Sass）"></a>gulp-sass（编译Sass）</h1><h2 id="gulp-sass安装："><a href="#gulp-sass安装：" class="headerlink" title="gulp-sass安装："></a>gulp-sass安装：</h2><pre><code>npm install --save-dev gulp-sass
+</code></pre><h2 id="把scss文件转换为sass文件。"><a href="#把scss文件转换为sass文件。" class="headerlink" title="把scss文件转换为sass文件。"></a>把scss文件转换为sass文件。</h2><pre><code>var gulp = require(&apos;gulp&apos;),
+    sass = require(&quot;gulp-sass&quot;);
+
+gulp.task(&apos;compile-sass&apos;, function () {
+    gulp.src(&apos;sass/*.sass&apos;)
+    .pipe(sass())
+    .pipe(gulp.dest(&apos;dist/css&apos;));
+});
+</code></pre><h1 id="gulp-imagemin（压缩图片）"><a href="#gulp-imagemin（压缩图片）" class="headerlink" title="gulp-imagemin（压缩图片）"></a>gulp-imagemin（压缩图片）</h1><h2 id="gulp-imagemin安装："><a href="#gulp-imagemin安装：" class="headerlink" title="gulp-imagemin安装："></a>gulp-imagemin安装：</h2><pre><code>npm install --save-dev gulp-imagemin
+</code></pre><p>可以使用gulp-imagemin的插件来压缩jpg、png、gif等图片。（imagemin也是有插件的，是基于imagemin产生的插件，所以前缀是imagenin开头）</p>
+<h2 id="压缩png插件-imagemin-pngquant安装："><a href="#压缩png插件-imagemin-pngquant安装：" class="headerlink" title="压缩png插件-imagemin-pngquant安装："></a>压缩png插件-imagemin-pngquant安装：</h2><pre><code>$npm install--save-devimagemin-pngquant
+</code></pre><h2 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+var imagemin = require(&apos;gulp-imagemin&apos;);
+var pngquant = require(&apos;imagemin-pngquant&apos;); //png图片压缩插件
+
+gulp.task(&apos;default&apos;, function () {
+    return gulp.src(&apos;src/images/*&apos;)
+        .pipe(imagemin({
+            progressive: true,
+            use: [pngquant()] //使用pngquant来压缩png图片
+        }))
+        .pipe(gulp.dest(&apos;dist&apos;));
+});
+</code></pre><p>gulp-imagemin的使用比较复杂一点，它本身也有很多插件（更多imagemin插件），这里只是简单介绍一下，要想压缩不同格式的图片，必须对应安装不同的插件，这里只安装了pngquant插件。按照nodejs的模块化思想，每个require只包含一个功能，这样就可以达到按需加载的目的。</p>
+<h1 id="gulp-livereload（自动刷新）"><a href="#gulp-livereload（自动刷新）" class="headerlink" title="gulp-livereload（自动刷新）"></a>gulp-livereload（自动刷新）</h1><h2 id="gulp-livereload安装："><a href="#gulp-livereload安装：" class="headerlink" title="gulp-livereload安装："></a>gulp-livereload安装：</h2><pre><code>npm install --save-dev gulp-livereload
+</code></pre><p>当代码变化时，它可以帮助我们自动刷新页面，该插件最好配合谷歌浏览器，且要安装livereload chrome extension扩展插件，否则无效。</p>
+<h2 id="gulpfile-js-1"><a href="#gulpfile-js-1" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h2><pre><code>var gulp = require(&apos;gulp&apos;),
+    less = require(&apos;gulp-less&apos;),
+    livereload = require(&apos;gulp-livereload&apos;);
+
+gulp.task(&apos;less&apos;, function() {
+  gulp.src(&apos;less/*.less&apos;)
+    .pipe(less())
+    .pipe(gulp.dest(&apos;css&apos;))
+    .pipe(livereload());
+});
+
+gulp.task(&apos;watch&apos;, function() {
+  livereload.listen(); //要在这里调用listen()方法
+  gulp.watch(&apos;less/*.less&apos;, [&apos;less&apos;]);  //监听目录下的文件，若文件发生变化，则调用less任务。
+});
+</code></pre>
       
     </div>
     
@@ -342,13 +431,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2014/12/09/canvas/">canvas入门详解</a></p>
+        <p><span>本文标题:</span><a href="/2017/04/18/Gulp Plug-in summary/">前端自动化Gulp工具常用插件</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">琪艺安</a></p>
-        <p><span>发布时间:</span>2014-12-09, 11:20:56</p>
-        <p><span>最后更新:</span>2017-04-05, 10:26:20</p>
+        <p><span>发布时间:</span>2017-04-18, 14:25:01</p>
+        <p><span>最后更新:</span>2017-04-18, 14:49:54</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2014/12/09/canvas/" title="canvas入门详解">https://qiyian.github.io/2014/12/09/canvas/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://qiyian.github.io/2014/12/09/canvas/　　作者: 琪艺安" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/04/18/Gulp Plug-in summary/" title="前端自动化Gulp工具常用插件">https://qiyian.github.io/2017/04/18/Gulp Plug-in summary/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://qiyian.github.io/2017/04/18/Gulp Plug-in summary/　　作者: 琪艺安" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -360,16 +449,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2014/12/18/git/">
-                    Git与SVN的区别
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2014/10/16/html5/">
-                    html5总结之一（综述）
+                <a href="/2017/03/28/aboutNetwork/">
+                    网络知识
                 </a>
             </div>
         
@@ -381,7 +464,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#canvas-能够做什么"><span class="toc-number">1.</span> <span class="toc-text">canvas 能够做什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#支持的浏览器"><span class="toc-number">2.</span> <span class="toc-text">支持的浏览器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建Canvas"><span class="toc-number">3.1.</span> <span class="toc-text">创建Canvas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#画线"><span class="toc-number">3.2.</span> <span class="toc-text">画线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#画弧线"><span class="toc-number">3.3.</span> <span class="toc-text">画弧线</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#复杂线形"><span class="toc-number">4.</span> <span class="toc-text">复杂线形</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#箭头"><span class="toc-number">4.1.</span> <span class="toc-text">箭头</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线条属性"><span class="toc-number">5.</span> <span class="toc-text">线条属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#画五星"><span class="toc-number">5.1.</span> <span class="toc-text">画五星</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线条属性-lineJoin-连接处"><span class="toc-number">6.</span> <span class="toc-text">线条属性 lineJoin 连接处</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变换"><span class="toc-number">7.</span> <span class="toc-text">变换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#矩阵变换"><span class="toc-number">8.</span> <span class="toc-text">矩阵变换</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp-uglify-（JS压缩）"><span class="toc-number">1.</span> <span class="toc-text">gulp-uglify （JS压缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-uglify安装"><span class="toc-number">1.1.</span> <span class="toc-text">gulp-uglify安装:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-uglify用来压缩js文件，使用的是uglify引擎。"><span class="toc-number">1.2.</span> <span class="toc-text">gulp-uglify用来压缩js文件，使用的是uglify引擎。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp-minify-css（CSS压缩）"><span class="toc-number">2.</span> <span class="toc-text">gulp-minify-css（CSS压缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-minify-css安装："><span class="toc-number">2.1.</span> <span class="toc-text">gulp-minify-css安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以使用它来压缩CSS文件"><span class="toc-number">2.2.</span> <span class="toc-text">可以使用它来压缩CSS文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp-minify-html（html压缩）"><span class="toc-number">3.</span> <span class="toc-text">gulp-minify-html（html压缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-minify-html安装："><span class="toc-number">3.1.</span> <span class="toc-text">gulp-minify-html安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以使用它来压缩html文件"><span class="toc-number">3.2.</span> <span class="toc-text">可以使用它来压缩html文件.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp-jshint（JS代码检查）"><span class="toc-number">4.</span> <span class="toc-text">gulp-jshint（JS代码检查）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-jshint安装："><span class="toc-number">4.1.</span> <span class="toc-text">gulp-jshint安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以用来检查JS的代码"><span class="toc-number">4.2.</span> <span class="toc-text">可以用来检查JS的代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp-concat（文件合并）"><span class="toc-number">5.</span> <span class="toc-text">gulp-concat（文件合并）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-concat安装："><span class="toc-number">5.1.</span> <span class="toc-text">gulp-concat安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并CSS与JS文件，减少http请求。"><span class="toc-number">5.2.</span> <span class="toc-text">合并CSS与JS文件，减少http请求。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp-less（编译Less）"><span class="toc-number">6.</span> <span class="toc-text">gulp-less（编译Less）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-less安装："><span class="toc-number">6.1.</span> <span class="toc-text">gulp-less安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把less文件转换为css。"><span class="toc-number">6.2.</span> <span class="toc-text">把less文件转换为css。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp-sass（编译Sass）"><span class="toc-number">7.</span> <span class="toc-text">gulp-sass（编译Sass）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-sass安装："><span class="toc-number">7.1.</span> <span class="toc-text">gulp-sass安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把scss文件转换为sass文件。"><span class="toc-number">7.2.</span> <span class="toc-text">把scss文件转换为sass文件。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp-imagemin（压缩图片）"><span class="toc-number">8.</span> <span class="toc-text">gulp-imagemin（压缩图片）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-imagemin安装："><span class="toc-number">8.1.</span> <span class="toc-text">gulp-imagemin安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩png插件-imagemin-pngquant安装："><span class="toc-number">8.2.</span> <span class="toc-text">压缩png插件-imagemin-pngquant安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulpfile-js"><span class="toc-number">8.3.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp-livereload（自动刷新）"><span class="toc-number">9.</span> <span class="toc-text">gulp-livereload（自动刷新）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-livereload安装："><span class="toc-number">9.1.</span> <span class="toc-text">gulp-livereload安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulpfile-js-1"><span class="toc-number">9.2.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -417,7 +500,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"canvas入门详解　| qiyian's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"前端自动化Gulp工具常用插件　| qiyian's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -437,15 +520,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2014/12/18/git/" title="上一篇: Git与SVN的区别">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2014/10/16/html5/" title="下一篇: html5总结之一（综述）">
+            <a href="/2017/03/28/aboutNetwork/" title="下一篇: 网络知识">
                 <i class="fa fa-angle-right"></i>
             </a>
         
