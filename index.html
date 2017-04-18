@@ -303,16 +303,8 @@
 <p>npm init命令初始化当前文件夹后，在当前文件夹新建gulpfile.js文件。当前目录下的所有操作流都在gulpfile.js文件中定义。</p>
 <p><img src="http://i.imgur.com/UDZBC3K.jpg" alt=""></p>
 <h1 id="一、gulp-uglify-（JS压缩）"><a href="#一、gulp-uglify-（JS压缩）" class="headerlink" title="一、gulp-uglify （JS压缩）"></a>一、gulp-uglify （JS压缩）</h1><h2 id="gulp-uglify安装"><a href="#gulp-uglify安装" class="headerlink" title="gulp-uglify安装:"></a>gulp-uglify安装:</h2><pre><code>npm install --save-dev gulp-uglify
-</code></pre><h2 id="gulp-uglify用来压缩js文件，使用的是uglify引擎。"><a href="#gulp-uglify用来压缩js文件，使用的是uglify引擎。" class="headerlink" title="gulp-uglify用来压缩js文件，使用的是uglify引擎。"></a>gulp-uglify用来压缩js文件，使用的是uglify引擎。</h2><pre><code>var gulp = require(&apos;gulp&apos;);          //加载gulp
-var uglify = require(&apos;gulp-uglify&apos;);          //加载js压缩
-
-// 定义一个任务 compass
-gulp.task(&apos;compass&apos;, function () {
-    gulp.src([&apos;js/*.js&apos;,&apos;!js/*.min.js&apos;])          //获取文件，同时过滤掉.min.js文件
-        .pipe(uglify())
-        .pipe(gulp.dest(&apos;javascript/&apos;));          //输出文件
-});
-</code></pre><p>小技巧，第二个参数’！js/*.min.js’是用来过滤掉后缀为min.js，！感叹号为排除模式。</p>
+</code></pre><h2 id="gulp-uglify用来压缩js文件，使用的是uglify引擎。"><a href="#gulp-uglify用来压缩js文件，使用的是uglify引擎。" class="headerlink" title="gulp-uglify用来压缩js文件，使用的是uglify引擎。"></a>gulp-uglify用来压缩js文件，使用的是uglify引擎。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);  		<span class="comment">//加载gulp</span></div><div class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);  		<span class="comment">//加载js压缩</span></div><div class="line"></div><div class="line"><span class="comment">// 定义一个任务 compass</span></div><div class="line">gulp.task(<span class="string">'compass'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src([<span class="string">'js/*.js'</span>,<span class="string">'!js/*.min.js'</span>])  		<span class="comment">//获取文件，同时过滤掉.min.js文件</span></div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'javascript/'</span>));  		<span class="comment">//输出文件</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>小技巧，第二个参数’！js/*.min.js’是用来过滤掉后缀为min.js，！感叹号为排除模式。</p>
           
       
     </div>
