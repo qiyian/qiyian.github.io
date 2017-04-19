@@ -30,7 +30,7 @@ npm init命令初始化当前文件夹后，在当前文件夹新建gulpfile.js�
 一、gulp-uglify （JS压缩）gulp-uglify安装:npm install --save-dev gulp-uglify
 gulp-uglify用来压缩js文件，使">
 <meta property="og:image" content="http://i.imgur.com/UDZBC3K.jpg">
-<meta property="og:updated_time" content="2017-04-18T08:33:53.524Z">
+<meta property="og:updated_time" content="2017-04-19T06:52:00.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端自动化Gulp工具常用插件">
 <meta name="twitter:description" content="前面文章中提过了Gulp的入门使用，那么这一篇会写一些常见插件的使用。
@@ -150,13 +150,13 @@ gulp-uglify用来压缩js文件，使">
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>菜單</li>
+                        <li>標籤</li>
                         
-                        <li>友情链接</li>
+                        <li>友情鏈接</li>
                         
                         
-                        <li>关于我</li>
+                        <li>關於我</li>
                         
                     </ul>
                 </div>
@@ -276,7 +276,7 @@ gulp-uglify用来压缩js文件，使">
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="標籤" friends="友情鏈接" about="關於我"/>
 </nav>
       <div class="body-wrap"><article id="post-Gulp Plug-in summary" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -325,12 +325,12 @@ gulp-uglify用来压缩js文件，使">
         <p>前面文章中提过了Gulp的入门使用，那么这一篇会写一些常见插件的使用。</p>
 <p>npm init命令初始化当前文件夹后，在当前文件夹新建gulpfile.js文件。当前目录下的所有操作流都在gulpfile.js文件中定义。</p>
 <p><img src="http://i.imgur.com/UDZBC3K.jpg" alt=""></p>
-<h1 id="一、gulp-uglify-（JS压缩）"><a href="#一、gulp-uglify-（JS压缩）" class="headerlink" title="一、gulp-uglify （JS压缩）"></a>一、gulp-uglify （JS压缩）</h1><h2 id="gulp-uglify安装"><a href="#gulp-uglify安装" class="headerlink" title="gulp-uglify安装:"></a>gulp-uglify安装:</h2><pre><code>npm install --save-dev gulp-uglify
-</code></pre><h2 id="gulp-uglify用来压缩js文件，使用的是uglify引擎。"><a href="#gulp-uglify用来压缩js文件，使用的是uglify引擎。" class="headerlink" title="gulp-uglify用来压缩js文件，使用的是uglify引擎。"></a>gulp-uglify用来压缩js文件，使用的是uglify引擎。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);  		<span class="comment">//加载gulp</span></div><div class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);  		<span class="comment">//加载js压缩</span></div><div class="line"></div><div class="line"><span class="comment">// 定义一个任务 compass</span></div><div class="line">gulp.task(<span class="string">'compass'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src([<span class="string">'js/*.js'</span>,<span class="string">'!js/*.min.js'</span>])  		<span class="comment">//获取文件，同时过滤掉.min.js文件</span></div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'javascript/'</span>));  		<span class="comment">//输出文件</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="一、gulp-uglify-（JS压缩）"><a href="#一、gulp-uglify-（JS压缩）" class="headerlink" title="一、gulp-uglify （JS压缩）"></a>一、gulp-uglify （JS压缩）</h2><h3 id="gulp-uglify安装"><a href="#gulp-uglify安装" class="headerlink" title="gulp-uglify安装:"></a>gulp-uglify安装:</h3><pre><code>npm install --save-dev gulp-uglify
+</code></pre><h3 id="gulp-uglify用来压缩js文件，使用的是uglify引擎。"><a href="#gulp-uglify用来压缩js文件，使用的是uglify引擎。" class="headerlink" title="gulp-uglify用来压缩js文件，使用的是uglify引擎。"></a>gulp-uglify用来压缩js文件，使用的是uglify引擎。</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);  		<span class="comment">//加载gulp</span></div><div class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);  		<span class="comment">//加载js压缩</span></div><div class="line"></div><div class="line"><span class="comment">// 定义一个任务 compass</span></div><div class="line">gulp.task(<span class="string">'compass'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src([<span class="string">'js/*.js'</span>,<span class="string">'!js/*.min.js'</span>])  		<span class="comment">//获取文件，同时过滤掉.min.js文件</span></div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'javascript/'</span>));  		<span class="comment">//输出文件</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>小技巧，第二个参数’！js/*.min.js’是用来过滤掉后缀为min.js，！感叹号为排除模式。</p>
 <a id="more"></a>
-<h1 id="二、gulp-minify-css（CSS压缩）"><a href="#二、gulp-minify-css（CSS压缩）" class="headerlink" title="二、gulp-minify-css（CSS压缩）"></a>二、gulp-minify-css（CSS压缩）</h1><h2 id="gulp-minify-css安装："><a href="#gulp-minify-css安装：" class="headerlink" title="gulp-minify-css安装："></a>gulp-minify-css安装：</h2><pre><code>npm install --save-dev gulp-minify-css
-</code></pre><h2 id="可以使用它来压缩CSS文件"><a href="#可以使用它来压缩CSS文件" class="headerlink" title="可以使用它来压缩CSS文件"></a>可以使用它来压缩CSS文件</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+<h2 id="二、gulp-minify-css（CSS压缩）"><a href="#二、gulp-minify-css（CSS压缩）" class="headerlink" title="二、gulp-minify-css（CSS压缩）"></a>二、gulp-minify-css（CSS压缩）</h2><h3 id="gulp-minify-css安装："><a href="#gulp-minify-css安装：" class="headerlink" title="gulp-minify-css安装："></a>gulp-minify-css安装：</h3><pre><code>npm install --save-dev gulp-minify-css
+</code></pre><h3 id="可以使用它来压缩CSS文件"><a href="#可以使用它来压缩CSS文件" class="headerlink" title="可以使用它来压缩CSS文件"></a>可以使用它来压缩CSS文件</h3><pre><code>var gulp = require(&apos;gulp&apos;);
 var minify = require(&apos;gulp-minify-css&apos;);
 
 gulp.task(&apos;cssmini&apos;, function () {
@@ -338,8 +338,8 @@ gulp.task(&apos;cssmini&apos;, function () {
         .pipe(minify())
         .pipe(gulp.dest(&apos;buildcss/&apos;));
 });
-</code></pre><h1 id="三、gulp-minify-html（html压缩）"><a href="#三、gulp-minify-html（html压缩）" class="headerlink" title="三、gulp-minify-html（html压缩）"></a>三、gulp-minify-html（html压缩）</h1><h2 id="gulp-minify-html安装："><a href="#gulp-minify-html安装：" class="headerlink" title="gulp-minify-html安装："></a>gulp-minify-html安装：</h2><pre><code>npm install --save-dev gulp-minify-html
-</code></pre><h2 id="可以使用它来压缩html文件"><a href="#可以使用它来压缩html文件" class="headerlink" title="可以使用它来压缩html文件."></a>可以使用它来压缩html文件.</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+</code></pre><h2 id="三、gulp-minify-html（html压缩）"><a href="#三、gulp-minify-html（html压缩）" class="headerlink" title="三、gulp-minify-html（html压缩）"></a>三、gulp-minify-html（html压缩）</h2><h3 id="gulp-minify-html安装："><a href="#gulp-minify-html安装：" class="headerlink" title="gulp-minify-html安装："></a>gulp-minify-html安装：</h3><pre><code>npm install --save-dev gulp-minify-html
+</code></pre><h3 id="可以使用它来压缩html文件"><a href="#可以使用它来压缩html文件" class="headerlink" title="可以使用它来压缩html文件."></a>可以使用它来压缩html文件.</h3><pre><code>var gulp = require(&apos;gulp&apos;);
 var htmlmini = require(&apos;gulp-minify-html&apos;);
 
 gulp.task(&apos;htmlmini&apos;, function () {
@@ -347,8 +347,8 @@ gulp.task(&apos;htmlmini&apos;, function () {
         .pipe(htmlmini())
         .pipe(gulp.dest(&apos;minihtml&apos;));
 })
-</code></pre><h1 id="四、gulp-jshint（JS代码检查）"><a href="#四、gulp-jshint（JS代码检查）" class="headerlink" title="四、gulp-jshint（JS代码检查）"></a>四、gulp-jshint（JS代码检查）</h1><h2 id="gulp-jshint安装："><a href="#gulp-jshint安装：" class="headerlink" title="gulp-jshint安装："></a>gulp-jshint安装：</h2><pre><code>npm install --save-dev gulp-jshint
-</code></pre><h2 id="可以用来检查JS的代码"><a href="#可以用来检查JS的代码" class="headerlink" title="可以用来检查JS的代码"></a>可以用来检查JS的代码</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+</code></pre><h2 id="四、gulp-jshint（JS代码检查）"><a href="#四、gulp-jshint（JS代码检查）" class="headerlink" title="四、gulp-jshint（JS代码检查）"></a>四、gulp-jshint（JS代码检查）</h2><h3 id="gulp-jshint安装："><a href="#gulp-jshint安装：" class="headerlink" title="gulp-jshint安装："></a>gulp-jshint安装：</h3><pre><code>npm install --save-dev gulp-jshint
+</code></pre><h3 id="可以用来检查JS的代码"><a href="#可以用来检查JS的代码" class="headerlink" title="可以用来检查JS的代码"></a>可以用来检查JS的代码</h3><pre><code>var gulp = require(&apos;gulp&apos;);
 var jshint = require(&quot;gulp-jshint&quot;);
 
 gulp.task(&apos;jsLint&apos;, function () {
@@ -356,8 +356,8 @@ gulp.task(&apos;jsLint&apos;, function () {
     .pipe(jshint())
     .pipe(jshint.reporter()); // 输出检查结果
 });
-</code></pre><h1 id="五、gulp-concat（文件合并）"><a href="#五、gulp-concat（文件合并）" class="headerlink" title="五、gulp-concat（文件合并）"></a>五、gulp-concat（文件合并）</h1><h2 id="gulp-concat安装："><a href="#gulp-concat安装：" class="headerlink" title="gulp-concat安装："></a>gulp-concat安装：</h2><pre><code>npm install --save-dev gulp-concat
-</code></pre><h2 id="合并CSS与JS文件，减少http请求。"><a href="#合并CSS与JS文件，减少http请求。" class="headerlink" title="合并CSS与JS文件，减少http请求。"></a>合并CSS与JS文件，减少http请求。</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+</code></pre><h2 id="五、gulp-concat（文件合并）"><a href="#五、gulp-concat（文件合并）" class="headerlink" title="五、gulp-concat（文件合并）"></a>五、gulp-concat（文件合并）</h2><h3 id="gulp-concat安装："><a href="#gulp-concat安装：" class="headerlink" title="gulp-concat安装："></a>gulp-concat安装：</h3><pre><code>npm install --save-dev gulp-concat
+</code></pre><h3 id="合并CSS与JS文件，减少http请求。"><a href="#合并CSS与JS文件，减少http请求。" class="headerlink" title="合并CSS与JS文件，减少http请求。"></a>合并CSS与JS文件，减少http请求。</h3><pre><code>var gulp = require(&apos;gulp&apos;);
 var concat = require(&quot;gulp-concat&quot;);
 
 gulp.task(&apos;concat&apos;, function () {
@@ -365,8 +365,8 @@ gulp.task(&apos;concat&apos;, function () {
     .pipe(concat(&apos;all.js&apos;))  // 合并匹配到的js文件并命名为 &quot;all.js&quot;
     .pipe(gulp.dest(&apos;dist/js&apos;));
 });
-</code></pre><h1 id="六、gulp-less（编译Less）"><a href="#六、gulp-less（编译Less）" class="headerlink" title="六、gulp-less（编译Less）"></a>六、gulp-less（编译Less）</h1><h2 id="gulp-less安装："><a href="#gulp-less安装：" class="headerlink" title="gulp-less安装："></a>gulp-less安装：</h2><pre><code>npm install --save-dev gulp-less
-</code></pre><h2 id="把less文件转换为css。"><a href="#把less文件转换为css。" class="headerlink" title="把less文件转换为css。"></a>把less文件转换为css。</h2><pre><code>var gulp = require(&apos;gulp&apos;),
+</code></pre><h2 id="六、gulp-less（编译Less）"><a href="#六、gulp-less（编译Less）" class="headerlink" title="六、gulp-less（编译Less）"></a>六、gulp-less（编译Less）</h2><h3 id="gulp-less安装："><a href="#gulp-less安装：" class="headerlink" title="gulp-less安装："></a>gulp-less安装：</h3><pre><code>npm install --save-dev gulp-less
+</code></pre><h3 id="把less文件转换为css。"><a href="#把less文件转换为css。" class="headerlink" title="把less文件转换为css。"></a>把less文件转换为css。</h3><pre><code>var gulp = require(&apos;gulp&apos;),
     less = require(&quot;gulp-less&quot;);
 
 gulp.task(&apos;compile-less&apos;, function () {
@@ -374,8 +374,8 @@ gulp.task(&apos;compile-less&apos;, function () {
     .pipe(less())
     .pipe(gulp.dest(&apos;dist/css&apos;));
 });
-</code></pre><h1 id="七、gulp-sass（编译Sass）"><a href="#七、gulp-sass（编译Sass）" class="headerlink" title="七、gulp-sass（编译Sass）"></a>七、gulp-sass（编译Sass）</h1><h2 id="gulp-sass安装："><a href="#gulp-sass安装：" class="headerlink" title="gulp-sass安装："></a>gulp-sass安装：</h2><pre><code>npm install --save-dev gulp-sass
-</code></pre><h2 id="把scss文件转换为sass文件。"><a href="#把scss文件转换为sass文件。" class="headerlink" title="把scss文件转换为sass文件。"></a>把scss文件转换为sass文件。</h2><pre><code>var gulp = require(&apos;gulp&apos;),
+</code></pre><h2 id="七、gulp-sass（编译Sass）"><a href="#七、gulp-sass（编译Sass）" class="headerlink" title="七、gulp-sass（编译Sass）"></a>七、gulp-sass（编译Sass）</h2><h3 id="gulp-sass安装："><a href="#gulp-sass安装：" class="headerlink" title="gulp-sass安装："></a>gulp-sass安装：</h3><pre><code>npm install --save-dev gulp-sass
+</code></pre><h3 id="把scss文件转换为sass文件。"><a href="#把scss文件转换为sass文件。" class="headerlink" title="把scss文件转换为sass文件。"></a>把scss文件转换为sass文件。</h3><pre><code>var gulp = require(&apos;gulp&apos;),
     sass = require(&quot;gulp-sass&quot;);
 
 gulp.task(&apos;compile-sass&apos;, function () {
@@ -383,10 +383,10 @@ gulp.task(&apos;compile-sass&apos;, function () {
     .pipe(sass())
     .pipe(gulp.dest(&apos;dist/css&apos;));
 });
-</code></pre><h1 id="八、gulp-imagemin（压缩图片）"><a href="#八、gulp-imagemin（压缩图片）" class="headerlink" title="八、gulp-imagemin（压缩图片）"></a>八、gulp-imagemin（压缩图片）</h1><h2 id="gulp-imagemin安装："><a href="#gulp-imagemin安装：" class="headerlink" title="gulp-imagemin安装："></a>gulp-imagemin安装：</h2><pre><code>npm install --save-dev gulp-imagemin
+</code></pre><h2 id="八、gulp-imagemin（压缩图片）"><a href="#八、gulp-imagemin（压缩图片）" class="headerlink" title="八、gulp-imagemin（压缩图片）"></a>八、gulp-imagemin（压缩图片）</h2><h3 id="gulp-imagemin安装："><a href="#gulp-imagemin安装：" class="headerlink" title="gulp-imagemin安装："></a>gulp-imagemin安装：</h3><pre><code>npm install --save-dev gulp-imagemin
 </code></pre><p>可以使用gulp-imagemin的插件来压缩jpg、png、gif等图片。（imagemin也是有插件的，是基于imagemin产生的插件，所以前缀是imagenin开头）</p>
-<h2 id="压缩png插件-imagemin-pngquant安装："><a href="#压缩png插件-imagemin-pngquant安装：" class="headerlink" title="压缩png插件-imagemin-pngquant安装："></a>压缩png插件-imagemin-pngquant安装：</h2><pre><code>npm install--save-devimagemin-pngquant
-</code></pre><h2 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+<h3 id="压缩png插件-imagemin-pngquant安装："><a href="#压缩png插件-imagemin-pngquant安装：" class="headerlink" title="压缩png插件-imagemin-pngquant安装："></a>压缩png插件-imagemin-pngquant安装：</h3><pre><code>npm install--save-devimagemin-pngquant
+</code></pre><h3 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h3><pre><code>var gulp = require(&apos;gulp&apos;);
 var imagemin = require(&apos;gulp-imagemin&apos;);
 var pngquant = require(&apos;imagemin-pngquant&apos;); //png图片压缩插件
 
@@ -399,9 +399,9 @@ gulp.task(&apos;default&apos;, function () {
         .pipe(gulp.dest(&apos;dist&apos;));
 });
 </code></pre><p>gulp-imagemin的使用比较复杂一点，它本身也有很多插件（更多imagemin插件），这里只是简单介绍一下，要想压缩不同格式的图片，必须对应安装不同的插件，这里只安装了pngquant插件。按照nodejs的模块化思想，每个require只包含一个功能，这样就可以达到按需加载的目的。</p>
-<h1 id="九、gulp-livereload（自动刷新）"><a href="#九、gulp-livereload（自动刷新）" class="headerlink" title="九、gulp-livereload（自动刷新）"></a>九、gulp-livereload（自动刷新）</h1><h2 id="gulp-livereload安装："><a href="#gulp-livereload安装：" class="headerlink" title="gulp-livereload安装："></a>gulp-livereload安装：</h2><pre><code>npm install --save-dev gulp-livereload
+<h2 id="九、gulp-livereload（自动刷新）"><a href="#九、gulp-livereload（自动刷新）" class="headerlink" title="九、gulp-livereload（自动刷新）"></a>九、gulp-livereload（自动刷新）</h2><h3 id="gulp-livereload安装："><a href="#gulp-livereload安装：" class="headerlink" title="gulp-livereload安装："></a>gulp-livereload安装：</h3><pre><code>npm install --save-dev gulp-livereload
 </code></pre><p>当代码变化时，它可以帮助我们自动刷新页面，该插件最好配合谷歌浏览器，且要安装livereload chrome extension扩展插件，否则无效。</p>
-<h2 id="gulpfile-js-1"><a href="#gulpfile-js-1" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h2><pre><code>var gulp = require(&apos;gulp&apos;),
+<h3 id="gulpfile-js-1"><a href="#gulpfile-js-1" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h3><pre><code>var gulp = require(&apos;gulp&apos;),
     less = require(&apos;gulp-less&apos;),
     livereload = require(&apos;gulp-livereload&apos;);
 
@@ -416,8 +416,8 @@ gulp.task(&apos;watch&apos;, function() {
   livereload.listen(); //要在这里调用listen()方法
   gulp.watch(&apos;less/*.less&apos;, [&apos;less&apos;]);  //监听目录下的文件，若文件发生变化，则调用less任务。
 });
-</code></pre><h1 id="十、gulp-markdown（编辑md文件）"><a href="#十、gulp-markdown（编辑md文件）" class="headerlink" title="十、gulp-markdown（编辑md文件）"></a>十、gulp-markdown（编辑md文件）</h1><h2 id="gulp-markdown安装："><a href="#gulp-markdown安装：" class="headerlink" title="gulp-markdown安装："></a>gulp-markdown安装：</h2><pre><code>npm install --save-dev gulp-markdown
-</code></pre><h2 id="gulpfile-js-2"><a href="#gulpfile-js-2" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h2><pre><code>var gulp = require(&apos;gulp&apos;);
+</code></pre><h2 id="十、gulp-markdown（编辑md文件）"><a href="#十、gulp-markdown（编辑md文件）" class="headerlink" title="十、gulp-markdown（编辑md文件）"></a>十、gulp-markdown（编辑md文件）</h2><h3 id="gulp-markdown安装："><a href="#gulp-markdown安装：" class="headerlink" title="gulp-markdown安装："></a>gulp-markdown安装：</h3><pre><code>npm install --save-dev gulp-markdown
+</code></pre><h3 id="gulpfile-js-2"><a href="#gulpfile-js-2" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h3><pre><code>var gulp = require(&apos;gulp&apos;);
 var markdown = require(&apos;gulp-markdown&apos;);
 
 gulp.task(&apos;default&apos;, function () {
@@ -425,9 +425,9 @@ gulp.task(&apos;default&apos;, function () {
         .pipe(markdown())
         .pipe(gulp.dest(&apos;dist&apos;));
 });
-</code></pre><h1 id="十一、gulp-rename（重命名文件）"><a href="#十一、gulp-rename（重命名文件）" class="headerlink" title="十一、gulp-rename（重命名文件）"></a>十一、gulp-rename（重命名文件）</h1><p>当要把一个文件存储为不同版本时可以使用。比如在需要一个style.css同时你有需要一个style.min.css</p>
-<h2 id="gulp-rename安装"><a href="#gulp-rename安装" class="headerlink" title="gulp-rename安装"></a>gulp-rename安装</h2><pre><code>npm install --save-dev gulp-rename
-</code></pre><h2 id="gulpfile-js-3"><a href="#gulpfile-js-3" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h2><pre><code>var rename = require(&quot;gulp-rename&quot;);
+</code></pre><h2 id="十一、gulp-rename（重命名文件）"><a href="#十一、gulp-rename（重命名文件）" class="headerlink" title="十一、gulp-rename（重命名文件）"></a>十一、gulp-rename（重命名文件）</h2><p>当要把一个文件存储为不同版本时可以使用。比如在需要一个style.css同时你有需要一个style.min.css</p>
+<h3 id="gulp-rename安装"><a href="#gulp-rename安装" class="headerlink" title="gulp-rename安装"></a>gulp-rename安装</h3><pre><code>npm install --save-dev gulp-rename
+</code></pre><h3 id="gulpfile-js-3"><a href="#gulpfile-js-3" class="headerlink" title="gulpfile.js:"></a>gulpfile.js:</h3><pre><code>var rename = require(&quot;gulp-rename&quot;);
 
 // rename via string
 gulp.src(&quot;./src/main/text/hello.txt&quot;)
@@ -453,8 +453,7 @@ gulp.src(&quot;./src/main/text/hello.txt&quot;, { base: process.cwd() })
     extname: &quot;.md&quot;
   }))
   .pipe(gulp.dest(&quot;./dist&quot;));     // ./dist/main/text/ciao/bonjour-aloha-hola.md
-</code></pre><p># </p>
-
+</code></pre>
       
     </div>
     
@@ -462,17 +461,17 @@ gulp.src(&quot;./src/main/text/hello.txt&quot;, { base: process.cwd() })
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/04/18/Gulp Plug-in summary/">前端自动化Gulp工具常用插件</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">琪艺安</a></p>
-        <p><span>发布时间:</span>2017-04-18, 14:25:01</p>
-        <p><span>最后更新:</span>2017-04-18, 16:33:53</p>
+        <p><span>本文標題:</span><a href="/2017/04/18/Gulp Plug-in summary/">前端自动化Gulp工具常用插件</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主頁">琪艺安</a></p>
+        <p><span>發布時間:</span>2017-04-18, 14:25:01</p>
+        <p><span>最後更新:</span>2017-04-19, 14:52:00</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/04/18/Gulp Plug-in summary/" title="前端自动化Gulp工具常用插件">https://qiyian.github.io/2017/04/18/Gulp Plug-in summary/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://qiyian.github.io/2017/04/18/Gulp Plug-in summary/　　作者: 琪艺安" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始鏈接:</span><a class="post-url" href="/2017/04/18/Gulp Plug-in summary/" title="前端自动化Gulp工具常用插件">https://qiyian.github.io/2017/04/18/Gulp Plug-in summary/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://qiyian.github.io/2017/04/18/Gulp Plug-in summary/　　作者: 琪艺安" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+            <span>許可協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"姓名標示-非商業性-相同方式分享 4.0 國際"</a> 轉載請保留原文鏈接及作者。
         </p>
     </div>
 
@@ -493,9 +492,9 @@ gulp.src(&quot;./src/main/text/hello.txt&quot;, { base: process.cwd() })
 </article>
 
     <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">文章目錄</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、gulp-uglify-（JS压缩）"><span class="toc-number">1.</span> <span class="toc-text">一、gulp-uglify （JS压缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-uglify安装"><span class="toc-number">1.1.</span> <span class="toc-text">gulp-uglify安装:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-uglify用来压缩js文件，使用的是uglify引擎。"><span class="toc-number">1.2.</span> <span class="toc-text">gulp-uglify用来压缩js文件，使用的是uglify引擎。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、gulp-minify-css（CSS压缩）"><span class="toc-number">2.</span> <span class="toc-text">二、gulp-minify-css（CSS压缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-minify-css安装："><span class="toc-number">2.1.</span> <span class="toc-text">gulp-minify-css安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以使用它来压缩CSS文件"><span class="toc-number">2.2.</span> <span class="toc-text">可以使用它来压缩CSS文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、gulp-minify-html（html压缩）"><span class="toc-number">3.</span> <span class="toc-text">三、gulp-minify-html（html压缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-minify-html安装："><span class="toc-number">3.1.</span> <span class="toc-text">gulp-minify-html安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以使用它来压缩html文件"><span class="toc-number">3.2.</span> <span class="toc-text">可以使用它来压缩html文件.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、gulp-jshint（JS代码检查）"><span class="toc-number">4.</span> <span class="toc-text">四、gulp-jshint（JS代码检查）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-jshint安装："><span class="toc-number">4.1.</span> <span class="toc-text">gulp-jshint安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以用来检查JS的代码"><span class="toc-number">4.2.</span> <span class="toc-text">可以用来检查JS的代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、gulp-concat（文件合并）"><span class="toc-number">5.</span> <span class="toc-text">五、gulp-concat（文件合并）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-concat安装："><span class="toc-number">5.1.</span> <span class="toc-text">gulp-concat安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并CSS与JS文件，减少http请求。"><span class="toc-number">5.2.</span> <span class="toc-text">合并CSS与JS文件，减少http请求。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、gulp-less（编译Less）"><span class="toc-number">6.</span> <span class="toc-text">六、gulp-less（编译Less）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-less安装："><span class="toc-number">6.1.</span> <span class="toc-text">gulp-less安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把less文件转换为css。"><span class="toc-number">6.2.</span> <span class="toc-text">把less文件转换为css。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、gulp-sass（编译Sass）"><span class="toc-number">7.</span> <span class="toc-text">七、gulp-sass（编译Sass）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-sass安装："><span class="toc-number">7.1.</span> <span class="toc-text">gulp-sass安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把scss文件转换为sass文件。"><span class="toc-number">7.2.</span> <span class="toc-text">把scss文件转换为sass文件。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、gulp-imagemin（压缩图片）"><span class="toc-number">8.</span> <span class="toc-text">八、gulp-imagemin（压缩图片）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-imagemin安装："><span class="toc-number">8.1.</span> <span class="toc-text">gulp-imagemin安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩png插件-imagemin-pngquant安装："><span class="toc-number">8.2.</span> <span class="toc-text">压缩png插件-imagemin-pngquant安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulpfile-js"><span class="toc-number">8.3.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九、gulp-livereload（自动刷新）"><span class="toc-number">9.</span> <span class="toc-text">九、gulp-livereload（自动刷新）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-livereload安装："><span class="toc-number">9.1.</span> <span class="toc-text">gulp-livereload安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulpfile-js-1"><span class="toc-number">9.2.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十、gulp-markdown（编辑md文件）"><span class="toc-number">10.</span> <span class="toc-text">十、gulp-markdown（编辑md文件）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-markdown安装："><span class="toc-number">10.1.</span> <span class="toc-text">gulp-markdown安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulpfile-js-2"><span class="toc-number">10.2.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十一、gulp-rename（重命名文件）"><span class="toc-number">11.</span> <span class="toc-text">十一、gulp-rename（重命名文件）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gulp-rename安装"><span class="toc-number">11.1.</span> <span class="toc-text">gulp-rename安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gulpfile-js-3"><span class="toc-number">11.2.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、gulp-uglify-（JS压缩）"><span class="toc-number">1.</span> <span class="toc-text">一、gulp-uglify （JS压缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-uglify安装"><span class="toc-number">1.1.</span> <span class="toc-text">gulp-uglify安装:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-uglify用来压缩js文件，使用的是uglify引擎。"><span class="toc-number">1.2.</span> <span class="toc-text">gulp-uglify用来压缩js文件，使用的是uglify引擎。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、gulp-minify-css（CSS压缩）"><span class="toc-number">2.</span> <span class="toc-text">二、gulp-minify-css（CSS压缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-minify-css安装："><span class="toc-number">2.1.</span> <span class="toc-text">gulp-minify-css安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可以使用它来压缩CSS文件"><span class="toc-number">2.2.</span> <span class="toc-text">可以使用它来压缩CSS文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、gulp-minify-html（html压缩）"><span class="toc-number">3.</span> <span class="toc-text">三、gulp-minify-html（html压缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-minify-html安装："><span class="toc-number">3.1.</span> <span class="toc-text">gulp-minify-html安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可以使用它来压缩html文件"><span class="toc-number">3.2.</span> <span class="toc-text">可以使用它来压缩html文件.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、gulp-jshint（JS代码检查）"><span class="toc-number">4.</span> <span class="toc-text">四、gulp-jshint（JS代码检查）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-jshint安装："><span class="toc-number">4.1.</span> <span class="toc-text">gulp-jshint安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可以用来检查JS的代码"><span class="toc-number">4.2.</span> <span class="toc-text">可以用来检查JS的代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、gulp-concat（文件合并）"><span class="toc-number">5.</span> <span class="toc-text">五、gulp-concat（文件合并）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-concat安装："><span class="toc-number">5.1.</span> <span class="toc-text">gulp-concat安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合并CSS与JS文件，减少http请求。"><span class="toc-number">5.2.</span> <span class="toc-text">合并CSS与JS文件，减少http请求。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、gulp-less（编译Less）"><span class="toc-number">6.</span> <span class="toc-text">六、gulp-less（编译Less）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-less安装："><span class="toc-number">6.1.</span> <span class="toc-text">gulp-less安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#把less文件转换为css。"><span class="toc-number">6.2.</span> <span class="toc-text">把less文件转换为css。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、gulp-sass（编译Sass）"><span class="toc-number">7.</span> <span class="toc-text">七、gulp-sass（编译Sass）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-sass安装："><span class="toc-number">7.1.</span> <span class="toc-text">gulp-sass安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#把scss文件转换为sass文件。"><span class="toc-number">7.2.</span> <span class="toc-text">把scss文件转换为sass文件。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、gulp-imagemin（压缩图片）"><span class="toc-number">8.</span> <span class="toc-text">八、gulp-imagemin（压缩图片）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-imagemin安装："><span class="toc-number">8.1.</span> <span class="toc-text">gulp-imagemin安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩png插件-imagemin-pngquant安装："><span class="toc-number">8.2.</span> <span class="toc-text">压缩png插件-imagemin-pngquant安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulpfile-js"><span class="toc-number">8.3.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九、gulp-livereload（自动刷新）"><span class="toc-number">9.</span> <span class="toc-text">九、gulp-livereload（自动刷新）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-livereload安装："><span class="toc-number">9.1.</span> <span class="toc-text">gulp-livereload安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulpfile-js-1"><span class="toc-number">9.2.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十、gulp-markdown（编辑md文件）"><span class="toc-number">10.</span> <span class="toc-text">十、gulp-markdown（编辑md文件）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-markdown安装："><span class="toc-number">10.1.</span> <span class="toc-text">gulp-markdown安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulpfile-js-2"><span class="toc-number">10.2.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十一、gulp-rename（重命名文件）"><span class="toc-number">11.</span> <span class="toc-text">十一、gulp-rename（重命名文件）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp-rename安装"><span class="toc-number">11.1.</span> <span class="toc-text">gulp-rename安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulpfile-js-3"><span class="toc-number">11.2.</span> <span class="toc-text">gulpfile.js:</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -509,10 +508,10 @@ gulp.src(&quot;./src/main/text/hello.txt&quot;, { base: process.cwd() })
         }
     </style>
 
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+    <input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
 
     <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+        yiliaConfig.toc = ["隱藏目錄", "顯示目錄", !!"false"];
     </script>
 
 
@@ -551,7 +550,7 @@ gulp.src(&quot;./src/main/text/hello.txt&quot;, { base: process.cwd() })
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/" title="回到主頁"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -580,14 +579,14 @@ gulp.src(&quot;./src/main/text/hello.txt&quot;, { base: process.cwd() })
                 2016-2017 琪艺安
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、簡潔且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="簡而不減 Hexo 雙欄博客主題  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="本站到訪數"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -596,7 +595,7 @@ gulp.src(&quot;./src/main/text/hello.txt&quot;, { base: process.cwd() })
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="本頁閱讀量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -629,9 +628,9 @@ gulp.src(&quot;./src/main/text/hello.txt&quot;, { base: process.cwd() })
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回頂部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看評論"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="轉到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
