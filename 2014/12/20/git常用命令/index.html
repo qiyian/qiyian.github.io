@@ -29,7 +29,7 @@ $ git config [--global]">
 下载一个项目和它的整个代码历史$ git clone [url]
 配置设置提交代码时的用户信息$ git config [--global] user.name &amp;quot;[name]&amp;quot;
 $ git config [--global]">
-<meta property="og:updated_time" content="2017-05-18T06:31:09.769Z">
+<meta property="og:updated_time" content="2017-05-18T07:00:16.012Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 常用命令">
 <meta name="twitter:description" content="新建代码库在当前目录新建一个Git代码库$ git init
@@ -148,13 +148,13 @@ $ git config [--global]">
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -274,7 +274,7 @@ $ git config [--global]">
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap"><article id="post-git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -326,6 +326,35 @@ $ git config [--global]">
 </code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="设置提交代码时的用户信息"><a href="#设置提交代码时的用户信息" class="headerlink" title="设置提交代码时的用户信息"></a>设置提交代码时的用户信息</h3><pre><code>$ git config [--global] user.name &quot;[name]&quot;
 $ git config [--global] user.email &quot;[email address]&quot;
 </code></pre><a id="more"></a>
+<h2 id="增加-删除文件"><a href="#增加-删除文件" class="headerlink" title="增加/删除文件"></a>增加/删除文件</h2><h3 id="添加指定文件到暂存区"><a href="#添加指定文件到暂存区" class="headerlink" title="添加指定文件到暂存区"></a>添加指定文件到暂存区</h3><pre><code>$ git add [file1] [file2] ...
+</code></pre><h3 id="添加指定目录到暂存区，包括子目录"><a href="#添加指定目录到暂存区，包括子目录" class="headerlink" title="添加指定目录到暂存区，包括子目录"></a>添加指定目录到暂存区，包括子目录</h3><pre><code>$ git add [dir]
+</code></pre><h3 id="添加当前目录的所有文件到暂存区"><a href="#添加当前目录的所有文件到暂存区" class="headerlink" title="添加当前目录的所有文件到暂存区"></a>添加当前目录的所有文件到暂存区</h3><pre><code>$ git add .
+</code></pre><h3 id="添加每个变化前，都会要求确认、对于同一个文件的多处变化，可以实现分次提交"><a href="#添加每个变化前，都会要求确认、对于同一个文件的多处变化，可以实现分次提交" class="headerlink" title="添加每个变化前，都会要求确认、对于同一个文件的多处变化，可以实现分次提交"></a>添加每个变化前，都会要求确认、对于同一个文件的多处变化，可以实现分次提交</h3><pre><code>$ git add -p
+</code></pre><h3 id="删除工作区文件，并且将这次删除放入暂存区"><a href="#删除工作区文件，并且将这次删除放入暂存区" class="headerlink" title="删除工作区文件，并且将这次删除放入暂存区"></a>删除工作区文件，并且将这次删除放入暂存区</h3><pre><code>$ git rm [file1] [file2] ...
+</code></pre><h3 id="停止追踪指定文件，但该文件会保留在工作区"><a href="#停止追踪指定文件，但该文件会保留在工作区" class="headerlink" title="停止追踪指定文件，但该文件会保留在工作区"></a>停止追踪指定文件，但该文件会保留在工作区</h3><pre><code>$ git rm --cached [file]
+</code></pre><h3 id="改名文件，并且将这个改名放入暂存区"><a href="#改名文件，并且将这个改名放入暂存区" class="headerlink" title="改名文件，并且将这个改名放入暂存区"></a>改名文件，并且将这个改名放入暂存区</h3><pre><code>$ git mv [file-original] [file-renamed]
+</code></pre><h2 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h2><h3 id="提交暂存区到仓库区"><a href="#提交暂存区到仓库区" class="headerlink" title="提交暂存区到仓库区"></a>提交暂存区到仓库区</h3><pre><code>$ git commit -m [message]
+</code></pre><h3 id="提交暂存区的指定文件到仓库区"><a href="#提交暂存区的指定文件到仓库区" class="headerlink" title="提交暂存区的指定文件到仓库区"></a>提交暂存区的指定文件到仓库区</h3><pre><code>$ git commit [file1] [file2] ... -m [message]
+</code></pre><h3 id="提交工作区自上次commit之后的变化，直接到仓库区"><a href="#提交工作区自上次commit之后的变化，直接到仓库区" class="headerlink" title="提交工作区自上次commit之后的变化，直接到仓库区"></a>提交工作区自上次commit之后的变化，直接到仓库区</h3><pre><code>$ git commit -a
+</code></pre><h3 id="提交时显示所有diff信息"><a href="#提交时显示所有diff信息" class="headerlink" title="提交时显示所有diff信息"></a>提交时显示所有diff信息</h3><pre><code>$ git commit -v
+</code></pre><h3 id="使用一次新的commit，替代上一次提交、如果代码没有任何新变化，则用来改写上一次commit的提交信息"><a href="#使用一次新的commit，替代上一次提交、如果代码没有任何新变化，则用来改写上一次commit的提交信息" class="headerlink" title="使用一次新的commit，替代上一次提交、如果代码没有任何新变化，则用来改写上一次commit的提交信息"></a>使用一次新的commit，替代上一次提交、如果代码没有任何新变化，则用来改写上一次commit的提交信息</h3><pre><code>$ git commit --amend -m [message]
+</code></pre><h3 id="重做上一次commit，并包括指定文件的新变化"><a href="#重做上一次commit，并包括指定文件的新变化" class="headerlink" title="重做上一次commit，并包括指定文件的新变化"></a>重做上一次commit，并包括指定文件的新变化</h3><pre><code>$ git commit --amend [file1] [file2] ...
+</code></pre><h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><h3 id="列出所有本地分支"><a href="#列出所有本地分支" class="headerlink" title="列出所有本地分支"></a>列出所有本地分支</h3><pre><code>$ git branch
+</code></pre><h3 id="列出所有远程分支"><a href="#列出所有远程分支" class="headerlink" title="列出所有远程分支"></a>列出所有远程分支</h3><pre><code>$ git branch -r
+</code></pre><h3 id="列出所有本地分支和远程分支"><a href="#列出所有本地分支和远程分支" class="headerlink" title="列出所有本地分支和远程分支"></a>列出所有本地分支和远程分支</h3><pre><code>$ git branch -a
+</code></pre><h3 id="新建一个分支，但依然停留在当前分支"><a href="#新建一个分支，但依然停留在当前分支" class="headerlink" title="新建一个分支，但依然停留在当前分支"></a>新建一个分支，但依然停留在当前分支</h3><pre><code>$ git branch [branch-name]
+</code></pre><h3 id="新建一个分支，并切换到该分支"><a href="#新建一个分支，并切换到该分支" class="headerlink" title="新建一个分支，并切换到该分支"></a>新建一个分支，并切换到该分支</h3><pre><code>$ git checkout -b [branch]
+</code></pre><h3 id="新建一个分支，指向指定commit"><a href="#新建一个分支，指向指定commit" class="headerlink" title="新建一个分支，指向指定commit"></a>新建一个分支，指向指定commit</h3><pre><code>$ git branch [branch] [commit]
+</code></pre><h3 id="新建一个分支，与指定的远程分支建立追踪关系"><a href="#新建一个分支，与指定的远程分支建立追踪关系" class="headerlink" title="新建一个分支，与指定的远程分支建立追踪关系"></a>新建一个分支，与指定的远程分支建立追踪关系</h3><pre><code>$ git branch --track [branch] [remote-branch]
+</code></pre><h3 id="切换到指定分支，并更新工作区"><a href="#切换到指定分支，并更新工作区" class="headerlink" title="切换到指定分支，并更新工作区"></a>切换到指定分支，并更新工作区</h3><pre><code>$ git checkout [branch-name]
+</code></pre><h3 id="切换到上一个分支"><a href="#切换到上一个分支" class="headerlink" title="切换到上一个分支"></a>切换到上一个分支</h3><pre><code>$ git checkout -
+</code></pre><h3 id="建立追踪关系，在现有分支与指定的远程分支之间"><a href="#建立追踪关系，在现有分支与指定的远程分支之间" class="headerlink" title="建立追踪关系，在现有分支与指定的远程分支之间"></a>建立追踪关系，在现有分支与指定的远程分支之间</h3><pre><code>$ git branch --set-upstream [branch] [remote-branch]
+</code></pre><h3 id="合并指定分支到当前分支"><a href="#合并指定分支到当前分支" class="headerlink" title="合并指定分支到当前分支"></a>合并指定分支到当前分支</h3><pre><code>$ git merge [branch]
+</code></pre><h3 id="选择一个commit，合并进当前分支"><a href="#选择一个commit，合并进当前分支" class="headerlink" title="选择一个commit，合并进当前分支"></a>选择一个commit，合并进当前分支</h3><pre><code>$ git cherry-pick [commit]
+</code></pre><h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><pre><code>$ git branch -d [branch-name]
+</code></pre><h3 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h3><pre><code>$ git push origin --delete [branch-name]
+$ git branch -dr [remote/branch]
+</code></pre>
       
     </div>
     
@@ -333,17 +362,17 @@ $ git config [--global] user.email &quot;[email address]&quot;
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2014/12/20/git常用命令/">Git 常用命令</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">琪艺安</a></p>
-        <p><span>发布时间:</span>2014-12-20, 10:19:27</p>
-        <p><span>最后更新:</span>2017-05-18, 14:31:09</p>
+        <p><span>Title:</span><a href="/2014/12/20/git常用命令/">Git 常用命令</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">琪艺安</a></p>
+        <p><span>Created:</span>2014-12-20, 10:19:27</p>
+        <p><span>Updated:</span>2017-05-18, 15:00:16</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2014/12/20/git常用命令/" title="Git 常用命令">https://qiyian.github.io/2014/12/20/git常用命令/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://qiyian.github.io/2014/12/20/git常用命令/　　作者: 琪艺安" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/2014/12/20/git常用命令/" title="Git 常用命令">https://qiyian.github.io/2014/12/20/git常用命令/</a>
+            <span class="copy-path" data-clipboard-text="From https://qiyian.github.io/2014/12/20/git常用命令/　　By 琪艺安" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
     </div>
 
@@ -370,9 +399,9 @@ $ git config [--global] user.email &quot;[email address]&quot;
 </article>
 
     <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#新建代码库"><span class="toc-number">1.</span> <span class="toc-text">新建代码库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在当前目录新建一个Git代码库"><span class="toc-number">1.1.</span> <span class="toc-text">在当前目录新建一个Git代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个目录，将其初始化为Git代码库"><span class="toc-number">1.2.</span> <span class="toc-text">新建一个目录，将其初始化为Git代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载一个项目和它的整个代码历史"><span class="toc-number">1.3.</span> <span class="toc-text">下载一个项目和它的整个代码历史</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置提交代码时的用户信息"><span class="toc-number">2.1.</span> <span class="toc-text">设置提交代码时的用户信息</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#新建代码库"><span class="toc-number">1.</span> <span class="toc-text">新建代码库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在当前目录新建一个Git代码库"><span class="toc-number">1.1.</span> <span class="toc-text">在当前目录新建一个Git代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个目录，将其初始化为Git代码库"><span class="toc-number">1.2.</span> <span class="toc-text">新建一个目录，将其初始化为Git代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载一个项目和它的整个代码历史"><span class="toc-number">1.3.</span> <span class="toc-text">下载一个项目和它的整个代码历史</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置提交代码时的用户信息"><span class="toc-number">2.1.</span> <span class="toc-text">设置提交代码时的用户信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#增加-删除文件"><span class="toc-number">3.</span> <span class="toc-text">增加/删除文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加指定文件到暂存区"><span class="toc-number">3.1.</span> <span class="toc-text">添加指定文件到暂存区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加指定目录到暂存区，包括子目录"><span class="toc-number">3.2.</span> <span class="toc-text">添加指定目录到暂存区，包括子目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加当前目录的所有文件到暂存区"><span class="toc-number">3.3.</span> <span class="toc-text">添加当前目录的所有文件到暂存区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加每个变化前，都会要求确认、对于同一个文件的多处变化，可以实现分次提交"><span class="toc-number">3.4.</span> <span class="toc-text">添加每个变化前，都会要求确认、对于同一个文件的多处变化，可以实现分次提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除工作区文件，并且将这次删除放入暂存区"><span class="toc-number">3.5.</span> <span class="toc-text">删除工作区文件，并且将这次删除放入暂存区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止追踪指定文件，但该文件会保留在工作区"><span class="toc-number">3.6.</span> <span class="toc-text">停止追踪指定文件，但该文件会保留在工作区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改名文件，并且将这个改名放入暂存区"><span class="toc-number">3.7.</span> <span class="toc-text">改名文件，并且将这个改名放入暂存区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码提交"><span class="toc-number">4.</span> <span class="toc-text">代码提交</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#提交暂存区到仓库区"><span class="toc-number">4.1.</span> <span class="toc-text">提交暂存区到仓库区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交暂存区的指定文件到仓库区"><span class="toc-number">4.2.</span> <span class="toc-text">提交暂存区的指定文件到仓库区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交工作区自上次commit之后的变化，直接到仓库区"><span class="toc-number">4.3.</span> <span class="toc-text">提交工作区自上次commit之后的变化，直接到仓库区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交时显示所有diff信息"><span class="toc-number">4.4.</span> <span class="toc-text">提交时显示所有diff信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一次新的commit，替代上一次提交、如果代码没有任何新变化，则用来改写上一次commit的提交信息"><span class="toc-number">4.5.</span> <span class="toc-text">使用一次新的commit，替代上一次提交、如果代码没有任何新变化，则用来改写上一次commit的提交信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重做上一次commit，并包括指定文件的新变化"><span class="toc-number">4.6.</span> <span class="toc-text">重做上一次commit，并包括指定文件的新变化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支"><span class="toc-number">5.</span> <span class="toc-text">分支</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#列出所有本地分支"><span class="toc-number">5.1.</span> <span class="toc-text">列出所有本地分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列出所有远程分支"><span class="toc-number">5.2.</span> <span class="toc-text">列出所有远程分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列出所有本地分支和远程分支"><span class="toc-number">5.3.</span> <span class="toc-text">列出所有本地分支和远程分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个分支，但依然停留在当前分支"><span class="toc-number">5.4.</span> <span class="toc-text">新建一个分支，但依然停留在当前分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个分支，并切换到该分支"><span class="toc-number">5.5.</span> <span class="toc-text">新建一个分支，并切换到该分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个分支，指向指定commit"><span class="toc-number">5.6.</span> <span class="toc-text">新建一个分支，指向指定commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个分支，与指定的远程分支建立追踪关系"><span class="toc-number">5.7.</span> <span class="toc-text">新建一个分支，与指定的远程分支建立追踪关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到指定分支，并更新工作区"><span class="toc-number">5.8.</span> <span class="toc-text">切换到指定分支，并更新工作区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到上一个分支"><span class="toc-number">5.9.</span> <span class="toc-text">切换到上一个分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立追踪关系，在现有分支与指定的远程分支之间"><span class="toc-number">5.10.</span> <span class="toc-text">建立追踪关系，在现有分支与指定的远程分支之间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合并指定分支到当前分支"><span class="toc-number">5.11.</span> <span class="toc-text">合并指定分支到当前分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择一个commit，合并进当前分支"><span class="toc-number">5.12.</span> <span class="toc-text">选择一个commit，合并进当前分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除分支"><span class="toc-number">5.13.</span> <span class="toc-text">删除分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除远程分支"><span class="toc-number">5.14.</span> <span class="toc-text">删除远程分支</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -386,10 +415,10 @@ $ git config [--global] user.email &quot;[email address]&quot;
         }
     </style>
 
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
 
     <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
     </script>
 
 
@@ -428,15 +457,15 @@ $ git config [--global] user.email &quot;[email address]&quot;
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2014/12/23/BFC/" title="上一篇: 到底什么是BFC">
+            <a href="/2014/12/23/BFC/" title="Pre: 到底什么是BFC">
                 <i class="fa fa-angle-left"></i>
             </a>
         
 
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2014/12/18/git/" title="下一篇: Git与SVN的区别">
+            <a href="/2014/12/18/git/" title="Next: Git与SVN的区别">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -459,14 +488,14 @@ $ git config [--global] user.email &quot;[email address]&quot;
                 2016-2017 琪艺安
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -475,7 +504,7 @@ $ git config [--global] user.email &quot;[email address]&quot;
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -508,9 +537,9 @@ $ git config [--global] user.email &quot;[email address]&quot;
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
